@@ -17,8 +17,8 @@
 
 using namespace std;
 
-const double height = 2.16;
-const double width = 1.4375;
+const double height = /*2.16*/ 1.0;
+const double width = /*1.4375*/ 1.0;
 
 const char playerTexture = '@';
 const char screenDivisionTexture = '#';
@@ -65,8 +65,15 @@ int main()
 	
 	koordinate playerPov;
 	
-	line upperLine;
-	line lowerLine;
+	rectangle wallBlockingLight;
+	
+	line lineA;
+	bool lineAOverLine;
+	line lineB;
+	bool lineBOverLine;
+	
+	bool isPlayerNextTo;
+	bool isPlayerOverOrUnder;
 	
 	
 	//RENDER
@@ -181,6 +188,9 @@ int main()
 		
 		playerPov = getPov(playerPov, player, height, width);
 		
+		//elõször végigmegyek vízszintesen mindent s mindennkit leárnyékolok akit le kell 
+		//aztán végigmegyek függõlegesen s megint leárnyékolok mindent s mindenkit akit le kell.....
+		
 		for (int i = 0; i < SCREENROWS; i++)
 		{
 			int j = 0;
@@ -191,20 +201,38 @@ int main()
 				{
 					int k = 0;
 					
-					while (newWorld[i + camera.row][j + camera.col + k].solid)
+					while (newWorld[i + camera.row][j + camera.col + k].mapInView && newWorld[i + camera.row][j + camera.col + k].solid)
 					{
 						k++;
 					}
 					
-					lowerLine = getLowerLine(lowerLine, playerPov, j + camera.col, i + camera.row, height, width);
-					upperLine = getUpperLine(lowerLine, playerPov, j + camera.col, i + camera.row, height, width);
+					//REWRITE TIME FOTHERFUCKER!!!!!!!!!!!
 					
-//					if
+					wallBlockingLight = getRectangleEdges(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col);
 					
-					//DOING THINGS INBETWEEN
+					//két vonal ami közrefogja a téglalapot ezt az egészet 2 függvényben meg tudom oldani yay
 					
-					lowerLine = getLowerLine(lowerLine, playerPov, j + camera.col + k, i + camera.row, height, width);
-					upperLine = getUpperLine(upperLine, playerPov, j + camera.col + k, i + camera.row, height, width);
+					lineA = getLineEquation(playerPov.x, playerPov.y, wallBlockingLight.a.x, wallBlockingLight.a.y);
+					lineAOverLine = isLineOverLine(lineA, i + camera.row + 0.5, j + camera.col + 0.5);
+					lineB = getLineEquation(playerPov.x, playerPov.y, wallBlockingLight.b.x, wallBlockingLight.b.y);
+					lineBOverLine = isLineOverLine(lineB, i + camera.row + 0.5, j + camera.col + 0.5);
+					
+					isPlayerNextTo = isPlayerNextToRectangle(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col);
+					isPlayerOverOrUnder = isPlayerOverOrUnderRectangle(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col);
+					
+					for (int g = 0; g < SCREENROWS; g++)
+					{
+						for (int h = 0; h < SCREENCOLS; h++)
+						{
+							if (isWhollyInShadow(lineA, lineB, lineAOverLine, lineBOverLine, g + camera.row, h + camera.col))
+							{
+								if (isBehindWall(playerPov, g + camera.row, h + camera.col, isPlayerNextTo, isPlayerOverOrUnder, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col))
+								{
+									newWorld[g + camera.row][h + camera.col].mapInView = false;
+								}
+							}
+						}
+					}
 					
 					j = j + k;   //comment this shit out at the endt dud!
 				}

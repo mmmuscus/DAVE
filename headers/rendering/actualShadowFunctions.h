@@ -2,18 +2,22 @@
 
 koordinate getPov(koordinate pov, mob playr, double heigt, double widt);
 
-line getLineEquation(line e, double aXCol, double aYRow, double bXCol, double bYRow);
+line getLineEquation(int aXCol, int aYRow, int bXCol, int bYRow);
 
-line getLowerLine(line e, koordinate pov, int solidCol, int solidRow, double heigt, double widt);
+rectangle getRectangleEdges(koordinate pov, int top, int bottom, int right, int left);
 
-line getUpperLine(line e, koordinate pov, int solidCol, int solidRow, double heigt, double widt);
+bool isLineOverLine(line e, double middleOfFirstSolidYRow, double middleOfFirstSolidXCol);
 
-bool isPointOver(line e, double row, double col);
+bool isUnderLine(line e, int solidYRow, int solidXCol);
 
-bool isPointUnder(line e, double row, double col);
+bool isOverLine(line e, int solidYRow, int solidXCol);
 
-//actual shadowfunctions
+bool isWhollyInShadow (line a, line b, bool upperA, bool upperB, int yRow, int xCol);
 
-bool isWhollyInShadow(line overLine, line underLine, int row, int col, double heigt, double widt);
+bool isPlayerNextToRectangle(koordinate pov, int top, int bottom, int right, int left);
 
-//bool isBlockedFromLight(line e, bool inShadow, koordinate pov, int row, int col, double heigt, double widt);
+bool isPlayerOverOrUnderRectangle(koordinate pov, int top, int bottom, int right, int left);
+
+bool isBehindWall(koordinate pov, int yRow, int xCol, bool nextTo, bool underOver, int top, int bottom, int right, int left);
+
+line makeLineNull(line e);

@@ -57,61 +57,92 @@ koordinate getPov(koordinate pov, mob playr, double heigt, double widt)      //D
 	return pov;
 }
 
-line getLineEquation(line e, double aXCol, double aYRow, double bXCol, double bYRow)                          //ill give this fgvny the coords amiket megszoroztam a height (2.16) és a width (1.4375) el 
+//        XCOL               YROW
+
+line getLineEquation(int aXCol, int aYRow, int bXCol, int bYRow)            //(m * xcol) + b
 {
-	e.mSlope = (bYRow - aYRow) / (bXCol - aXCol);
+	line e;
+	
+	e.mSlope = (double)(bYRow - aYRow) / (bXCol - aXCol);
 	e.bIntercept = aYRow - (e.mSlope * aXCol);
 	
 	return e;
 }
 
-//ezt lehetne szebben is...de van elég erõs a kompjúter szóval...who gives a shit?! xD
-
-//WARNING THIS TWO FOLLOWING FUNCTIONS ARE PROBABLY FUCKED SO WATCH OUT FUTURE SELF IM CAOMING FOR U --PAST SELF P.S.: I HOPE I CAN LOVE U 
-
-//alkalmazni kéne az ispointover meg ispointunder függvényeket
-
-line getLowerLine(line e, koordinate pov, int solidCol, int solidRow, double heigt, double widt)        // talán csak az alsó kettõt kell csekkolni mert a többi nem lehet alsó határ???? s akkor vica versa felsõ határra
+rectangle getRectangleEdges(koordinate pov, int top, int bottom, int right, int left)
 {
-	solidCol = solidCol * widt;                                                                         //lehet h ilyet nem szabad csinálni! :O idk tho! :OOOOOOOOOOOOooo
-	solidRow = solidRow * heigt;
+	rectangle r;
 	
-	e = getLineEquation(e, solidCol + widt, solidRow + heigt, pov.x, pov.y);
+	if ((pov.x <= left) && (pov.y < top))
+	{
+		r.a.x = right;
+		r.a.y = top;
+		r.b.x = left;
+		r.b.y = bottom;
+	}
 	
-	if ((solidRow + heigt) > (e.mSlope * solidCol) + e.bIntercept) //this means felette van asszem     //lehet h mivel fejjel lefelé van a koordináta rendszer pont rossz relációjelet használok
+	if ((pov.x <= left) && (pov.y >= bottom))
 	{
-		return e;
+		r.a.x = left;
+		r.a.y = top;
+		r.b.x = right;
+		r.b.y = bottom;
 	}
-	else
+	
+	if ((pov.x > right) && (pov.y < top))
 	{
-		e = getLineEquation(e, solidCol, solidRow + heigt, pov.x, pov.y);
-		
-		return e;
+		r.a.x = left;
+		r.a.y = top;
+		r.b.x = right;
+		r.b.y = bottom;
 	}
+	
+	if ((pov.x > right) && (pov.y >= bottom))
+	{
+		r.a.x = right;
+		r.a.y = top;
+		r.b.x = left;
+		r.b.y = bottom;
+	}
+	
+	if ((pov.x <= left) && (pov.y > top) && (pov.y <= bottom))
+	{
+		r.a.x = left;
+		r.a.y = top;
+		r.b.x = left;
+		r.b.y = top;
+	}
+	
+	if ((pov.x > right) && (pov.y > top) && (pov.y <= bottom))
+	{
+		r.a.x = right;
+		r.a.y = top;
+		r.b.x = right;
+		r.b.y = bottom;
+	}
+	
+	if ((pov.y < top) && (pov.x < right) && (pov.x >= left))
+	{
+		r.a.x = right;
+		r.a.y = top;
+		r.b.x = left;
+		r.b.y = top;
+	}
+	
+	if ((pov.y >= bottom) && (pov.x < right) && (pov.x >= left))
+	{
+		r.a.x = right;
+		r.a.y = bottom;
+		r.b.x = left;
+		r.b.y = bottom;
+	}
+	
+	return r;
 }
 
-line getUpperLine(line e, koordinate pov, int solidCol, int solidRow, double heigt, double widt)        //alkalmazni kéne az ispointover meg ispointunder függvényeket
+bool isLineOverLine(line e, double middleOfFirstSolidYRow, double middleOfFirstSolidXCol)
 {
-	solidCol = solidCol * widt;                                                                         //lehet h ilyet nem szabad csinálni! :O idk tho! :OOOOOOOOOOOOooo
-	solidRow = solidRow * heigt;
-	
-	e = getLineEquation(e, solidCol, solidRow, pov.x, pov.y);
-	
-	if (solidRow < (e.mSlope * (solidCol + widt)) + e.bIntercept)
-	{
-		return e;
-	}
-	else
-	{
-		e = getLineEquation(e, solidCol + widt, solidRow, pov.x, pov.y);
-		
-		return e;
-	}
-}
-
-bool isPointOver(line e, double row, double col)
-{
-	if (row >= (e.mSlope * col) + e.bIntercept)
+	if(middleOfFirstSolidYRow < (middleOfFirstSolidXCol * e.mSlope) + e.bIntercept)
 	{
 		return true;
 	}
@@ -121,63 +152,136 @@ bool isPointOver(line e, double row, double col)
 	}
 }
 
-bool isPointUnder(line e, double row, double col)
+bool isUnderLine(line e, int solidYRow, int solidXCol)
 {
-	if (row <= (e.mSlope * col) + e.bIntercept)
-	{
+	if ((solidYRow < (solidXCol * e.mSlope) + e.bIntercept) && ((solidYRow + 1) < (solidXCol * e.mSlope) + e.bIntercept) && (solidYRow < ((solidXCol + 1) * e.mSlope) + e.bIntercept) && ((solidYRow + 1) < ((solidXCol + 1) * e.mSlope) + e.bIntercept))
+	{   //this shit checks if the point is wholly under the line
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	
+	return false;
 }
 
-bool isWhollyInShadow(line overLine, line underLine, int row, int col, double heigt, double widt)
+bool isOverLine(line e, int solidYRow, int solidXCol)
 {
-	col = col * widt;
-	row = row * heigt;
-	
-	if(isPointUnder(overLine, row, col) && isPointOver(underLine, row, col) && isPointUnder(overLine, row + heigt, col) && isPointOver(underLine, row + heigt, col) && isPointUnder(overLine, row, col + widt) && isPointOver(underLine, row, col + widt) && isPointUnder(overLine, row + heigt, col + widt) && isPointOver(underLine, row + heigt, col + widt))
-	{
+	if ((solidYRow > (solidXCol * e.mSlope) + e.bIntercept) && ((solidYRow + 1) > (solidXCol * e.mSlope) + e.bIntercept) && (solidYRow > ((solidXCol + 1) * e.mSlope) + e.bIntercept) && ((solidYRow + 1) > ((solidXCol + 1) * e.mSlope) + e.bIntercept))
+	{   //this shit checks if the point is wholly over the line
 		return true;
+	}
+	
+	return false;
+}
+
+bool isWhollyInShadow (line a, line b, bool upperA, bool upperB, int yRow, int xCol)
+{
+	if (upperA)
+	{
+		if (!isUnderLine(a, yRow, xCol))
+		{
+			return false;
+		}
 	}
 	else
 	{
-		return false;
+		if (!isOverLine(a, yRow, xCol))
+		{
+			return false;
+		}
+	}
+	
+	if (upperB)
+	{
+		if (!isUnderLine(b, yRow, xCol))
+		{
+			return false;
+		}
+	}
+	else
+	{
+		if (!isOverLine(b, yRow, xCol))
+		{
+			return false;
+		}
 	}
 	
 	return true;
 }
 
-//bool isBlockedFromLight(line e, bool inShadow, koordinate pov, int row, int col, double heigt, double widt)              //itt az egyenes a  falak síkjában húzott egyenes, lehet h külön kell egy fgvényt csinálni a függõleges egyenesekre :o
-//{
-//	if (inShadow)
-//	{
-//		col = col * widt;
-//		row = row * heigt;
-//		
-//		if (isPointUnder(e, pov.y, pov.x))
-//		{
-//			if (isPointOver(e, row, col))
-//			{
-//				return true;
-//			}
-//			else
-//			{
-//				return false;
-//			}
-//		}
-//		else
-//		{
-//			if (isPointUnder(e, row, col))
-//			{
-//				return true;
-//			}
-//			else
-//			{
-//				return false;
-//			}
-//		}
-//	}
-//}
+bool isPlayerNextToRectangle(koordinate pov, int top, int bottom, int right, int left)
+{
+	if ((pov.y > top) && (pov.y <= bottom))
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+bool isPlayerOverOrUnderRectangle(koordinate pov, int top, int bottom, int right, int left)
+{
+	if ((pov.x > left) && (pov.x <= right))
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+bool isBehindWall(koordinate pov, int yRow, int xCol, bool nextTo, bool underOver, int top, int bottom, int right, int left)
+{
+	if (nextTo)      //ill foglalkoz with this shit when ill do the other irányú végigmenés on the screen
+	{
+		if ((pov.x < left) && (xCol >= right))
+		{
+			return true;
+		}
+		
+		if ((pov.x >= right) && (xCol < left))
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
+	if (underOver)
+	{
+		if ((pov.y < top) && (yRow >= bottom))
+		{
+			return true;
+		}
+		
+		if ((pov.y >= bottom) && (yRow < top))
+		{
+			return true;
+		}
+	}
+	
+	if (((pov.x < left) && (xCol >= right)) || ((pov.y < top) && (yRow >= bottom)))
+	{
+		return true;
+	}
+	
+	if (((pov.x < left) && (xCol >= right)) || ((pov.y >= bottom) && (yRow < top)))
+	{
+		return true;
+	}
+	
+	if (((pov.x >= right) && (xCol < left)) || ((pov.y < top) && (yRow >= bottom)))
+	{
+		return true;
+	}
+	
+	if (((pov.x >= right) && (xCol < left)) || ((pov.y >= bottom) && (yRow < top)))
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+line makeLineNull(line e)
+{
+	e.bIntercept = 0;
+	e.mSlope = 0;
+}

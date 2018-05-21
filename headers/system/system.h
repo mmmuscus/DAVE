@@ -68,6 +68,12 @@ struct koordinate
 	double y;
 };
 
+struct rectangle
+{
+	koordinate a;
+	koordinate b;
+};
+
 //struct in
 //{
 //	bool w;
