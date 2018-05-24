@@ -21,3 +21,7 @@ bool isPlayerOverOrUnderRectangle(koordinate pov, int top, int bottom, int right
 bool isBehindWall(koordinate pov, int yRow, int xCol, bool nextTo, bool underOver, int top, int bottom, int right, int left);
 
 line makeLineNull(line e);
+
+// secon d megoldas maybe lets see
+
+line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, line firstLine, bool doesFirstLineExist);

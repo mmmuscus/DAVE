@@ -11,49 +11,49 @@ koordinate getPov(koordinate pov, mob playr, double heigt, double widt)      //D
 		pov.x = (playr.col * widt) + widt;
 		pov.y = (playr.row * heigt) + (heigt / 2);
 	}
-	
+
 	if (playr.right && playr.up)
 	{
 		pov.x = (playr.col * widt) + widt;
 		pov.y = (playr.row * heigt);
 	}
-	
+
 	if (playr.right && playr.down)
 	{
 		pov.x = (playr.col * widt) + widt;
 		pov.y = (playr.row * heigt) + heigt;
 	}
-	
+
 	if (playr.left && !playr.up && !playr.down)
 	{
 		pov.x = (playr.col * widt);
 		pov.y = (playr.row * heigt) + (heigt / 2);
 	}
-	
+
 	if (playr.left && playr.up)
 	{
 		pov.x = (playr.col * widt);
 		pov.y = (playr.row * heigt);
 	}
-	
+
 	if (playr.left && playr.down)
 	{
 		pov.x = (playr.col * widt);
 		pov.y = (playr.row * heigt) + heigt;
 	}
-	
+
 	if (playr.up && !playr.right && !playr.left)
 	{
 		pov.x = (playr.col * widt) + (widt / 2);
 		pov.y = (playr.row * heigt);
 	}
-	
+
 	if (playr.down && !playr.right && !playr.left)
 	{
 		pov.x = (playr.col * widt) + (widt / 2);
 		pov.y = (playr.row * heigt) + heigt;
 	}
-	
+
 	return pov;
 }
 
@@ -62,17 +62,17 @@ koordinate getPov(koordinate pov, mob playr, double heigt, double widt)      //D
 line getLineEquation(int aXCol, int aYRow, int bXCol, int bYRow)            //(m * xcol) + b
 {
 	line e;
-	
+
 	e.mSlope = (double)(bYRow - aYRow) / (bXCol - aXCol);
 	e.bIntercept = aYRow - (e.mSlope * aXCol);
-	
+
 	return e;
 }
 
 rectangle getRectangleEdges(koordinate pov, int top, int bottom, int right, int left)
 {
 	rectangle r;
-	
+
 	if ((pov.x <= left) && (pov.y < top))
 	{
 		r.a.x = right;
@@ -80,7 +80,7 @@ rectangle getRectangleEdges(koordinate pov, int top, int bottom, int right, int 
 		r.b.x = left;
 		r.b.y = bottom;
 	}
-	
+
 	if ((pov.x <= left) && (pov.y >= bottom))
 	{
 		r.a.x = left;
@@ -88,7 +88,7 @@ rectangle getRectangleEdges(koordinate pov, int top, int bottom, int right, int 
 		r.b.x = right;
 		r.b.y = bottom;
 	}
-	
+
 	if ((pov.x > right) && (pov.y < top))
 	{
 		r.a.x = left;
@@ -96,7 +96,7 @@ rectangle getRectangleEdges(koordinate pov, int top, int bottom, int right, int 
 		r.b.x = right;
 		r.b.y = bottom;
 	}
-	
+
 	if ((pov.x > right) && (pov.y >= bottom))
 	{
 		r.a.x = right;
@@ -104,7 +104,7 @@ rectangle getRectangleEdges(koordinate pov, int top, int bottom, int right, int 
 		r.b.x = left;
 		r.b.y = bottom;
 	}
-	
+
 	if ((pov.x <= left) && (pov.y > top) && (pov.y <= bottom))
 	{
 		r.a.x = left;
@@ -112,7 +112,7 @@ rectangle getRectangleEdges(koordinate pov, int top, int bottom, int right, int 
 		r.b.x = left;
 		r.b.y = top;
 	}
-	
+
 	if ((pov.x > right) && (pov.y > top) && (pov.y <= bottom))
 	{
 		r.a.x = right;
@@ -120,7 +120,7 @@ rectangle getRectangleEdges(koordinate pov, int top, int bottom, int right, int 
 		r.b.x = right;
 		r.b.y = bottom;
 	}
-	
+
 	if ((pov.y < top) && (pov.x < right) && (pov.x >= left))
 	{
 		r.a.x = right;
@@ -128,7 +128,7 @@ rectangle getRectangleEdges(koordinate pov, int top, int bottom, int right, int 
 		r.b.x = left;
 		r.b.y = top;
 	}
-	
+
 	if ((pov.y >= bottom) && (pov.x < right) && (pov.x >= left))
 	{
 		r.a.x = right;
@@ -136,7 +136,7 @@ rectangle getRectangleEdges(koordinate pov, int top, int bottom, int right, int 
 		r.b.x = left;
 		r.b.y = bottom;
 	}
-	
+
 	return r;
 }
 
@@ -158,7 +158,7 @@ bool isUnderLine(line e, int solidYRow, int solidXCol)
 	{   //this shit checks if the point is wholly under the line
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -168,7 +168,7 @@ bool isOverLine(line e, int solidYRow, int solidXCol)
 	{   //this shit checks if the point is wholly over the line
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -188,7 +188,7 @@ bool isWhollyInShadow (line a, line b, bool upperA, bool upperB, int yRow, int x
 			return false;
 		}
 	}
-	
+
 	if (upperB)
 	{
 		if (!isUnderLine(b, yRow, xCol))
@@ -203,7 +203,7 @@ bool isWhollyInShadow (line a, line b, bool upperA, bool upperB, int yRow, int x
 			return false;
 		}
 	}
-	
+
 	return true;
 }
 
@@ -213,7 +213,7 @@ bool isPlayerNextToRectangle(koordinate pov, int top, int bottom, int right, int
 	{
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -223,7 +223,7 @@ bool isPlayerOverOrUnderRectangle(koordinate pov, int top, int bottom, int right
 	{
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -235,48 +235,48 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, bool nextTo, bool underOve
 		{
 			return true;
 		}
-		
+
 		if ((pov.x >= right) && (xCol < left))
 		{
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	if (underOver)
 	{
 		if ((pov.y < top) && (yRow >= bottom))
 		{
 			return true;
 		}
-		
+
 		if ((pov.y >= bottom) && (yRow < top))
 		{
 			return true;
 		}
 	}
-	
+
 	if (((pov.x < left) && (xCol >= right)) || ((pov.y < top) && (yRow >= bottom)))
 	{
 		return true;
 	}
-	
+
 	if (((pov.x < left) && (xCol >= right)) || ((pov.y >= bottom) && (yRow < top)))
 	{
 		return true;
 	}
-	
+
 	if (((pov.x >= right) && (xCol < left)) || ((pov.y < top) && (yRow >= bottom)))
 	{
 		return true;
 	}
-	
+
 	if (((pov.x >= right) && (xCol < left)) || ((pov.y >= bottom) && (yRow < top)))
 	{
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -284,4 +284,71 @@ line makeLineNull(line e)
 {
 	e.bIntercept = 0;
 	e.mSlope = 0;
+}
+
+//second megoldas mayb lets see
+
+line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, line firstLine, bool doesFirstLineExist)
+{
+    line e;
+
+    bool found = false;
+
+    koordinate teglalap[2][2];
+
+    teglalap[0][1].x = right;  //top right
+    teglalap[0][1].y = top;
+
+    teglalap[0][0].x = left;   //top left
+    teglalap[0][0].y = top;
+
+    teglalap[1][1].x = right;  //bottom right
+    teglalap[1][1].y = bottom;
+
+    teglalap[1][0].x = left;   //bottom left
+    teglalap[1][0].y = bottom;
+
+    int i = 0;
+    int j = 0;
+
+    int pointPosCounter = 0;
+
+    while(!found && i <= 1 && j <= 1)
+    {
+        e = getLineEquation(pov.x, pov.y, teglalap[i][j].x, teglalap[i][j].y);
+
+        pointPosCounter = 0;
+
+        for (int g = 0; g <= 1; g++)
+        {
+            for (int h = 0; h <= 1; h++)
+            {
+                if (teglalap[g][h].y >= (teglalap[g][h].x * e.mSlope) + e.bIntercept)
+                {
+                    pointPosCounter++;
+                }
+                else
+                {
+                    pointPosCounter--;
+                }
+            }
+        }
+
+        if (!doesFirstLineExist)
+        {
+            if (pointPosCounter == 4 || pointPosCounter == -4)
+            {
+                found = true;
+            }
+        }
+        else
+        {
+            if ((e.mSlope != firstLine.mSlope || e.bIntercept != firstLine.bIntercept) && (pointPosCounter == 4 || pointPosCounter == -4))
+            {
+                found = true;
+            }
+        }
+    }
+
+    return e;
 }
