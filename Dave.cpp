@@ -215,7 +215,10 @@ int main()
 					//REWRITE TIME FOTHERFUCKER!!!!!!!!!!!
 					
 					goTo(i, 0);
-					wallBlockingLight = getRectangleEdges(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col);
+					wallBlockingLight = getRectangleEdges(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col - 1, j + camera.col);
+					//ha egy sorba van a cuccal akkor top = bottom és right = left, ha alatta vagy felette van akkor pedig teljesen megõrül
+					//balról jobbra nézva ami a player alatt van annak a right és left felcserélõdik
+					//jobbról balra nézve ami a player felett van annak a right és left felcserélõdik
 					//top one:		left: 62 top: 31 right: 64 bottom: 30
 					//middle one:	left: 60 top: 35 right: 71 bottom: 36
 					//bottom one:	left: 67 top: 39 right: 68 bottom: 40
