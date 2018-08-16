@@ -323,7 +323,7 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
         {
             for (int h = 0; h <= 1; h++)
             {
-                if (teglalap[g][h].y >= (teglalap[g][h].x * e.mSlope) + e.bIntercept)
+                if (teglalap[g][h].y > (teglalap[g][h].x * e.mSlope) + e.bIntercept)
                 {
                     pointPosCounter++;
                 }
@@ -336,7 +336,7 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
 
         if (!doesFirstLineExist)
         {
-            if (pointPosCounter == 4 || pointPosCounter == -4)
+            if (pointPosCounter == 3 || pointPosCounter == -3)
             {
                 found = true;
             }

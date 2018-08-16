@@ -38,25 +38,29 @@ int main()
 	
 	//OUTPUT
 	
+	//init player
 	mob player;
 	player.row = 35;
 	player.col = 45;
-	player.health = 10;
+	player.health = UNDEFINED;
 	player.up = false;
 	player.down = false;
 	player.right = true;
 	player.left = false;
 	
+	//init lastPlayer
 	mob lastPlayer;
 	lastPlayer.row = player.row;
 	lastPlayer.col = player.col;
 //	lastPlayer.health = UNDEFINED;
 	
+	//init camera
 	mob camera;
 	camera.row = player.row - 12;
 	camera.col = player.col - 3;
 //	camera.health = UNDEFINED;
 	
+	//init whereToCamera (where to move camera)
 	mob whereToCamera;
 	whereToCamera.row = camera.row;
 	whereToCamera.col = camera.col;
@@ -243,8 +247,6 @@ int main()
 			}
 		}
 		
-		//halálfej
-		
 		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 		for (int i = 0; i < SCREENROWS; i++)
@@ -287,6 +289,7 @@ int main()
 		renderMenu(oldMenu, newMenu);
 	}
 	
+	//Debug!!!!
 	clearScreen();
 	
 	drawTestMap(newWorld);
