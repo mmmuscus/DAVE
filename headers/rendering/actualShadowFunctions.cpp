@@ -6,53 +6,58 @@
 
 koordinate getPov(koordinate pov, mob playr, double heigt, double widt)      //DUBLE CHECK NEEDED JUST IN CASE //&&&
 {
-	if (playr.right && !playr.up && !playr.down)
-	{
-		pov.x = (playr.col * widt) + widt;
-		pov.y = (playr.row * heigt) + (heigt / 2);
-	}
+//	version 1: all of the different player stances have different pov points
+//	if (playr.right && !playr.up && !playr.down)
+//	{
+//		pov.x = (playr.col * widt) + widt;
+//		pov.y = (playr.row * heigt) + (heigt / 2);
+//	}
+//
+//	if (playr.right && playr.up)
+//	{
+//		pov.x = (playr.col * widt) + widt;
+//		pov.y = (playr.row * heigt);
+//	}
+//
+//	if (playr.right && playr.down)
+//	{
+//		pov.x = (playr.col * widt) + widt;
+//		pov.y = (playr.row * heigt) + heigt;
+//	}
+//
+//	if (playr.left && !playr.up && !playr.down)
+//	{
+//		pov.x = (playr.col * widt);
+//		pov.y = (playr.row * heigt) + (heigt / 2);
+//	}
+//
+//	if (playr.left && playr.up)
+//	{
+//		pov.x = (playr.col * widt);
+//		pov.y = (playr.row * heigt);
+//	}
+//
+//	if (playr.left && playr.down)
+//	{
+//		pov.x = (playr.col * widt);
+//		pov.y = (playr.row * heigt) + heigt;
+//	}
+//
+//	if (playr.up && !playr.right && !playr.left)
+//	{
+//		pov.x = (playr.col * widt) + (widt / 2);
+//		pov.y = (playr.row * heigt);
+//	}
+//
+//	if (playr.down && !playr.right && !playr.left)
+//	{
+//		pov.x = (playr.col * widt) + (widt / 2);
+//		pov.y = (playr.row * heigt) + heigt;
+//	}
 
-	if (playr.right && playr.up)
-	{
-		pov.x = (playr.col * widt) + widt;
-		pov.y = (playr.row * heigt);
-	}
-
-	if (playr.right && playr.down)
-	{
-		pov.x = (playr.col * widt) + widt;
-		pov.y = (playr.row * heigt) + heigt;
-	}
-
-	if (playr.left && !playr.up && !playr.down)
-	{
-		pov.x = (playr.col * widt);
-		pov.y = (playr.row * heigt) + (heigt / 2);
-	}
-
-	if (playr.left && playr.up)
-	{
-		pov.x = (playr.col * widt);
-		pov.y = (playr.row * heigt);
-	}
-
-	if (playr.left && playr.down)
-	{
-		pov.x = (playr.col * widt);
-		pov.y = (playr.row * heigt) + heigt;
-	}
-
-	if (playr.up && !playr.right && !playr.left)
-	{
-		pov.x = (playr.col * widt) + (widt / 2);
-		pov.y = (playr.row * heigt);
-	}
-
-	if (playr.down && !playr.right && !playr.left)
-	{
-		pov.x = (playr.col * widt) + (widt / 2);
-		pov.y = (playr.row * heigt) + heigt;
-	}
+//	version2: same pov point for every player stance
+	pov.x = playr.col + 0.5;
+	pov.y = playr.row + 0.5;
 
 	return pov;
 }
@@ -209,7 +214,7 @@ bool isWhollyInShadow (line a, line b, bool upperA, bool upperB, int yRow, int x
 
 bool isPlayerNextToRectangle(koordinate pov, int top, int bottom, int right, int left)
 {
-	if ((pov.y > top) && (pov.y <= bottom))
+	if ((pov.y >= top) && (pov.y <= bottom))
 	{
 		return true;
 	}
@@ -219,7 +224,7 @@ bool isPlayerNextToRectangle(koordinate pov, int top, int bottom, int right, int
 
 bool isPlayerOverOrUnderRectangle(koordinate pov, int top, int bottom, int right, int left)
 {
-	if ((pov.x > left) && (pov.x <= right))
+	if ((pov.x >= left) && (pov.x <= right))
 	{
 		return true;
 	}
@@ -287,6 +292,7 @@ line makeLineNull(line e)
 }
 
 //second megoldas mayb lets see
+// u need a bool isUnderline part to the line struct and you can change it from this function (if its +3 its true if its -3 its false)
 
 line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, line firstLine, bool doesFirstLineExist)
 {

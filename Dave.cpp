@@ -195,6 +195,8 @@ int main()
 		//elõször végigmegyek vízszintesen mindent s mindennkit leárnyékolok akit le kell 
 		//aztán végigmegyek függõlegesen s megint leárnyékolok mindent s mindenkit akit le kell.....
 		
+		//&&& IMPORTANT FOR DEBUGGING SHADOW FUNCTIONS !!! rossz oszlopban érzékeli a player charactert!!!!
+		
 		for (int i = 0; i < SCREENROWS; i++)
 		{
 			int j = 0;
@@ -212,7 +214,12 @@ int main()
 					
 					//REWRITE TIME FOTHERFUCKER!!!!!!!!!!!
 					
+					goTo(i, 0);
 					wallBlockingLight = getRectangleEdges(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col);
+					//top one:		left: 62 top: 31 right: 64 bottom: 30
+					//middle one:	left: 60 top: 35 right: 71 bottom: 36
+					//bottom one:	left: 67 top: 39 right: 68 bottom: 40
+					cout<<wallBlockingLight.a.x<<" top: "<<wallBlockingLight.a.y<<" "<<wallBlockingLight.b.x<<" bot: "<<wallBlockingLight.b.y;
 					
 					//két vonal ami közrefogja a téglalapot ezt az egészet 2 függvényben meg tudom oldani yay
 					
@@ -287,6 +294,11 @@ int main()
 		renderScreen(oldScreen, newScreen);
 		
 		renderMenu(oldMenu, newMenu);
+		
+		goTo(0, 0);
+		cout<<"row: "<<player.row<<" col: "<<player.col;
+		goTo(1, 0);
+		cout<<"row: "<<playerPov.y<<" col: "<<playerPov.x;
 	}
 	
 	//Debug!!!!
