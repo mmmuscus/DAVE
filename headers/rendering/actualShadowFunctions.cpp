@@ -348,16 +348,16 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
             if (pointPosCounter == 3 || pointPosCounter == -3)
             {
                 found = true;
+                return e;
             }
         }
         else
         {
-            if ((e.mSlope != firstLine.mSlope || e.bIntercept != firstLine.bIntercept) && (pointPosCounter == 4 || pointPosCounter == -4))
+            if ((e.mSlope != firstLine.mSlope || e.bIntercept != firstLine.bIntercept) && (pointPosCounter == 3 || pointPosCounter == -3))
             {
                 found = true;
+                return e;
             }
         }
     }
-
-    return e;
 }
