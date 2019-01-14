@@ -291,7 +291,7 @@ line makeLineNull(line e)
 	e.mSlope = 0;
 }
 
-//second megoldas mayb lets see
+// second megoldas mayb lets see
 // u need a bool isUnderline part to the line struct and you can change it from this function (if its +3 its true if its -3 its false)
 
 line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, line firstLine, bool doesFirstLineExist)
@@ -318,6 +318,9 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
     int j = 0;
 
     int pointPosCounter = 0;
+    
+    //so far so good
+    //where do i ++ i or j?!?!?!?!
 
     while(!found && i <= 1 && j <= 1)
     {

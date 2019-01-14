@@ -220,10 +220,11 @@ int main()
 					//balról jobbra nézva ami a player alatt van annak a right és left felcserélõdik
 					//jobbról balra nézve ami a player felett van annak a right és left felcserélõdik
 					//&&&                                                              REWRITE azt ami megszerzi a sarkokat!!! think about ur smart algorythm!!! jeeez my man! !!!getLineOfSight this is in actual shadow functions!!!
-					//top one:		left: 62 top: 31 right: 64 bottom: 30
-					//middle one:	left: 60 top: 35 right: 71 bottom: 36
-					//bottom one:	left: 67 top: 39 right: 68 bottom: 40
+					//top one:		left: 62 top: 31 right: 65 bottom: 30
+					//middle one:	left: 60 top: 35 right: 72 bottom: 36
+					//bottom one:	left: 67 top: 39 right: 69 bottom: 40
 //					cout<<wallBlockingLight.a.x<<" top: "<<wallBlockingLight.a.y<<" "<<wallBlockingLight.b.x<<" bot: "<<wallBlockingLight.b.y;
+//					cout<<"t: "<<i + camera.row<<" b: "<<i + camera.row + 1<<" l: "<<j + camera.col<<" r: "<<j + k + camera.col;               //ezeket az értékeket kéne átadni a funkciónak ami a vonalakat számolja
 					
 					//két vonal ami közrefogja a téglalapot ezt az egészet 2 függvényben meg tudom oldani yay
 					
@@ -306,6 +307,8 @@ int main()
 //		goTo(1, 0);
 //		cout<<"row: "<<playerPov.y<<" col: "<<playerPov.x;
 	}
+	
+	//END OF THE GAME LOOP
 	
 	//Debug!!!!
 	clearScreen();
