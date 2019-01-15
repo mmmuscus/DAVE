@@ -214,8 +214,8 @@ int main()
 					
 					//REWRITE TIME FOTHERFUCKER!!!!!!!!!!!
 					
-					goTo(i, 0);
-					wallBlockingLight = getRectangleEdges(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col - 1, j + camera.col);
+//					goTo(i, 0);
+//					wallBlockingLight = getRectangleEdges(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col - 1, j + camera.col);
 					//ha egy sorba van a cuccal akkor top = bottom és right = left, ha alatta vagy felette van akkor pedig teljesen megõrül
 					//balról jobbra nézva ami a player alatt van annak a right és left felcserélõdik
 					//jobbról balra nézve ami a player felett van annak a right és left felcserélõdik
@@ -228,27 +228,36 @@ int main()
 					
 					//két vonal ami közrefogja a téglalapot ezt az egészet 2 függvényben meg tudom oldani yay
 					
-					lineA = getLineEquation(playerPov.x, playerPov.y, wallBlockingLight.a.x, wallBlockingLight.a.y);
-					lineAOverLine = isLineOverLine(lineA, i + camera.row + 0.5, j + camera.col + 0.5);
-					lineB = getLineEquation(playerPov.x, playerPov.y, wallBlockingLight.b.x, wallBlockingLight.b.y);
-					lineBOverLine = isLineOverLine(lineB, i + camera.row + 0.5, j + camera.col + 0.5);
+					//MIT KÉNE CSINÁLNI?                                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					//eddig megvan a téglalapunk és a point of viewnk
+					//meg kell határozni a két vonalat ami köztefogja, ezt a getLineOfSight fügvénnyel meg tudom oldani, lehet hogy bezavar az hogy abban is van egy int i? dunno will find out but keep an eye out for that case
+					//el kell döntenem hogy mi esik a fal mögé, és mi esik a fal elé hogy mit is kéne eltakarnom
+					//amit el kell takarnom azt belenyomkodom a newWorldbe hogy  a rendering megoldja 
 					
-					isPlayerNextTo = isPlayerNextToRectangle(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col);
-					isPlayerOverOrUnder = isPlayerOverOrUnderRectangle(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col);
+					//NEW CODE:
 					
-					for (int g = 0; g < SCREENROWS; g++)
-					{
-						for (int h = 0; h < SCREENCOLS; h++)
-						{
-							if (isWhollyInShadow(lineA, lineB, lineAOverLine, lineBOverLine, g + camera.row, h + camera.col))
-							{
-								if (isBehindWall(playerPov, g + camera.row, h + camera.col, isPlayerNextTo, isPlayerOverOrUnder, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col))
-								{
-									newWorld[g + camera.row][h + camera.col].mapInView = false;
-								}
-							}
-						}
-					}
+					//OLD CODE:
+//					lineA = getLineEquation(playerPov.x, playerPov.y, wallBlockingLight.a.x, wallBlockingLight.a.y);
+//					lineAOverLine = isLineOverLine(lineA, i + camera.row + 0.5, j + camera.col + 0.5);
+//					lineB = getLineEquation(playerPov.x, playerPov.y, wallBlockingLight.b.x, wallBlockingLight.b.y);
+//					lineBOverLine = isLineOverLine(lineB, i + camera.row + 0.5, j + camera.col + 0.5);
+//					
+//					isPlayerNextTo = isPlayerNextToRectangle(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col);
+//					isPlayerOverOrUnder = isPlayerOverOrUnderRectangle(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col);
+//					
+//					for (int g = 0; g < SCREENROWS; g++)
+//					{
+//						for (int h = 0; h < SCREENCOLS; h++)
+//						{
+//							if (isWhollyInShadow(lineA, lineB, lineAOverLine, lineBOverLine, g + camera.row, h + camera.col))
+//							{
+//								if (isBehindWall(playerPov, g + camera.row, h + camera.col, isPlayerNextTo, isPlayerOverOrUnder, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col))
+//								{
+//									newWorld[g + camera.row][h + camera.col].mapInView = false;
+//								}  //isBehindWall is probably not working right
+//							}
+//						}
+//					}
 					
 					j = j + k;   //comment this shit out at the endt dud!
 				}

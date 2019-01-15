@@ -260,6 +260,8 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, bool nextTo, bool underOve
 		{
 			return true;
 		}
+		
+		return false;
 	}
 
 	if (((pov.x < left) && (xCol >= right)) || ((pov.y < top) && (yRow >= bottom)))
@@ -298,8 +300,6 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
 {
     line e;
 
-    bool found = false;
-
     koordinate teglalap[2][2];
 
     teglalap[0][1].x = right;  //top right
@@ -314,50 +314,62 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
     teglalap[1][0].x = left;   //bottom left
     teglalap[1][0].y = bottom;
 
-    int i = 0;
-    int j = 0;
-
     int pointPosCounter = 0;
     
     //so far so good
-    //where do i ++ i or j?!?!?!?!
 
-    while(!found && i <= 1 && j <= 1)
+    for (int i = 0; i <= 1; i++)
     {
-        e = getLineEquation(pov.x, pov.y, teglalap[i][j].x, teglalap[i][j].y);
+    	for (int j = 0; j <= 1; j++)
+    	{
+    		e = getLineEquation(pov.x, pov.y, teglalap[i][j].x, teglalap[i][j].y);
 
-        pointPosCounter = 0;
+        	pointPosCounter = 0;
 
-        for (int g = 0; g <= 1; g++)
-        {
-            for (int h = 0; h <= 1; h++)
-            {
-                if (teglalap[g][h].y > (teglalap[g][h].x * e.mSlope) + e.bIntercept)
-                {
-                    pointPosCounter++;
-                }
-                else
-                {
-                    pointPosCounter--;
-                }
-            }
-        }
+        	for (int g = 0; g <= 1; g++)
+        	{
+            	for (int h = 0; h <= 1; h++)
+            	{
+            	    if (teglalap[g][h].y > (teglalap[g][h].x * e.mSlope) + e.bIntercept)
+                	{
+                    	pointPosCounter++;
+                	}
+                	else if (teglalap[g][h].y < (teglalap[g][h].x * e.mSlope) + e.bIntercept)
+                	{
+                	    pointPosCounter--;
+                	}
+            	}
+        	}
 
-        if (!doesFirstLineExist)
-        {
-            if (pointPosCounter == 3 || pointPosCounter == -3)
-            {
-                found = true;
-                return e;
-            }
-        }
-        else
-        {
-            if ((e.mSlope != firstLine.mSlope || e.bIntercept != firstLine.bIntercept) && (pointPosCounter == 3 || pointPosCounter == -3))
-            {
-                found = true;
-                return e;
-            }
-        }
+        	if (!doesFirstLineExist)
+        	{
+            	if (pointPosCounter == 3)
+            	{
+                	e.isUnderLine = false;
+                	return e;
+				}
+				else if (pointPosCounter == -3)
+				{
+					e.isUnderLine = true;
+                	return e;
+				}
+        	}
+        	else
+        	{
+            	if (e.mSlope != firstLine.mSlope && e.bIntercept != firstLine.bIntercept)
+            	{
+                	if (pointPosCounter == 3)
+                	{
+                		e.isUnderLine = false;
+                		return e;
+					}
+					else if (pointPosCounter == -3)
+					{
+						e.isUnderLine = true;
+                		return e;
+					}
+            	}
+        	}
+		}
     }
 }

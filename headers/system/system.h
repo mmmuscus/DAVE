@@ -60,6 +60,7 @@ struct line                          //line = (m * x) + b
 {
 	double mSlope;
 	double bIntercept;
+	bool isUnderLine;
 };
 
 struct koordinate
