@@ -232,59 +232,29 @@ bool isPlayerOverOrUnderRectangle(koordinate pov, int top, int bottom, int right
 	return false;
 }
 
-bool isBehindWall(koordinate pov, int yRow, int xCol, bool nextTo, bool underOver, int top, int bottom, int right, int left)
+bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
 {
-	if (nextTo)      //ill foglalkoz with this shit when ill do the other irányú végigmenés on the screen
+	if (pov.x < left && xCol < left)
 	{
-		if ((pov.x < left) && (xCol >= right))
-		{
-			return true;
-		}
-
-		if ((pov.x >= right) && (xCol < left))
-		{
-			return true;
-		}
-
 		return false;
 	}
-
-	if (underOver)
+	
+	if (pov.x > right && xCol > right)
 	{
-		if ((pov.y < top) && (yRow >= bottom))
-		{
-			return true;
-		}
-
-		if ((pov.y >= bottom) && (yRow < top))
-		{
-			return true;
-		}
-		
 		return false;
 	}
-
-	if (((pov.x < left) && (xCol >= right)) || ((pov.y < top) && (yRow >= bottom)))
+	
+	if (pov.y < top && yRow < top)
 	{
-		return true;
+		return false;
 	}
-
-	if (((pov.x < left) && (xCol >= right)) || ((pov.y >= bottom) && (yRow < top)))
+	
+	if (pov.y > bottom && yRow > bottom)
 	{
-		return true;
+		return false;
 	}
-
-	if (((pov.x >= right) && (xCol < left)) || ((pov.y < top) && (yRow >= bottom)))
-	{
-		return true;
-	}
-
-	if (((pov.x >= right) && (xCol < left)) || ((pov.y >= bottom) && (yRow < top)))
-	{
-		return true;
-	}
-
-	return false;
+	
+	return true;
 }
 
 line makeLineNull(line e)

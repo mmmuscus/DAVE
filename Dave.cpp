@@ -224,17 +224,26 @@ int main()
 					//middle one:	left: 60 top: 35 right: 72 bottom: 36
 					//bottom one:	left: 67 top: 39 right: 69 bottom: 40
 //					cout<<wallBlockingLight.a.x<<" top: "<<wallBlockingLight.a.y<<" "<<wallBlockingLight.b.x<<" bot: "<<wallBlockingLight.b.y;
-//					cout<<"t: "<<i + camera.row<<" b: "<<i + camera.row + 1<<" l: "<<j + camera.col<<" r: "<<j + k + camera.col;               //ezeket az értékeket kéne átadni a funkciónak ami a vonalakat számolja
+//					cout<<"t: "<<i + camera.row<<" b: "<<i + camera.row + 1<<" l: "<<j + camera.col<<" r: "<<j + k + camera.col;               //!!!   ezeket az értékeket kéne átadni a funkciónak ami a vonalakat számolja
 					
 					//két vonal ami közrefogja a téglalapot ezt az egészet 2 függvényben meg tudom oldani yay
 					
-					//MIT KÉNE CSINÁLNI?                                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					//MIT KÉNE CSINÁLNI? aka NEW CODE PLAN                                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					//eddig megvan a téglalapunk és a point of viewnk
 					//meg kell határozni a két vonalat ami köztefogja, ezt a getLineOfSight fügvénnyel meg tudom oldani, lehet hogy bezavar az hogy abban is van egy int i? dunno will find out but keep an eye out for that case
 					//el kell döntenem hogy mi esik a fal mögé, és mi esik a fal elé hogy mit is kéne eltakarnom
 					//amit el kell takarnom azt belenyomkodom a newWorldbe hogy  a rendering megoldja 
 					
 					//NEW CODE:
+					
+					//get line equations:
+					lineA = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col, lineB, false);
+					lineB = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col, lineA, true);
+					
+					//what is behind the wall:
+					//prolly gonna do it simulatneously with the rendering preparations
+					//rewriting isBehindWall
+					//done with rewriting isBehindWall
 					
 					//OLD CODE:
 //					lineA = getLineEquation(playerPov.x, playerPov.y, wallBlockingLight.a.x, wallBlockingLight.a.y);

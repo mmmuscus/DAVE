@@ -18,7 +18,7 @@ bool isPlayerNextToRectangle(koordinate pov, int top, int bottom, int right, int
 
 bool isPlayerOverOrUnderRectangle(koordinate pov, int top, int bottom, int right, int left);
 
-bool isBehindWall(koordinate pov, int yRow, int xCol, bool nextTo, bool underOver, int top, int bottom, int right, int left);
+bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left);
 
 line makeLineNull(line e);
 
