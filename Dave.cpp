@@ -237,8 +237,8 @@ int main()
 					//NEW CODE:
 					
 					//get line equations:
-					lineA = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col, lineB, false);
-					lineB = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col, lineA, true);
+					lineA = getLineOfSight(playerPov, i + camera.row, i + camera.row, j + k + camera.col - 1, j + camera.col, lineB, false);
+					lineB = getLineOfSight(playerPov, i + camera.row, i + camera.row, j + k + camera.col - 1, j + camera.col, lineA, true);
 					
 					//what is behind the wall:
 					//prolly gonna do it simulatneously with the rendering preparations
@@ -251,12 +251,15 @@ int main()
 					{
 						for (int h = 0; h < SCREENCOLS; h++)
 						{
-							if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col))
+							if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) /*&& isBehindWall(playerPov, g + camera.row, h + camera.col, i + camera.row, i + camera.row, j + k + camera.col - 1, j + camera.col)*/)
 							{   // is it between the shadows, and is it behind the wall
 								newWorld[g + camera.row][h + camera.col].mapInView = false;
 							}
 						}
 					}
+					
+					//isBehindWall: a falak is le vannak árnyékolva dunno why
+					//isWhollyInShadow: not quite righ some bugs yea mintha y + 2 lenne nem y isk though
 					
 					//not quite good but hey its..something
 					
