@@ -259,7 +259,7 @@ int main()
 					}
 					
 					//isBehindWall: a falak is le vannak árnyékolva dunno why
-					//isWhollyInShadow: not quite righ some bugs yea mintha y + 2 lenne nem y isk though
+					//isWhollyInShadow: ha felette s balra van akkor tökéletesen mükszik ha simán felette van akkor meghal lehet hogy azzal van abaja hogy nincs in view a cucc but dunno...
 					
 					//not quite good but hey its..something
 					
