@@ -237,8 +237,8 @@ int main()
 					//NEW CODE:
 					
 					//get line equations:
-					lineA = getLineOfSight(playerPov, i + camera.row, i + camera.row, j + k + camera.col - 1, j + camera.col, lineB, false);
-					lineB = getLineOfSight(playerPov, i + camera.row, i + camera.row, j + k + camera.col - 1, j + camera.col, lineA, true);
+					lineA = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col, lineB, false);
+					lineB = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col, lineA, true);
 					
 					//what is behind the wall:
 					//prolly gonna do it simulatneously with the rendering preparations
