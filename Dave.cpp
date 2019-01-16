@@ -244,6 +244,21 @@ int main()
 					//prolly gonna do it simulatneously with the rendering preparations
 					//rewriting isBehindWall
 					//done with rewriting isBehindWall
+					//need to rewrite isWhollyInShadow
+					//it is done probably
+					
+					for (int g = 0; g < SCREENROWS; g++)
+					{
+						for (int h = 0; h < SCREENCOLS; h++)
+						{
+							if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col))
+							{   // is it between the shadows, and is it behind the wall
+								newWorld[g + camera.row][h + camera.col].mapInView = false;
+							}
+						}
+					}
+					
+					//not quite good but hey its..something
 					
 					//OLD CODE:
 //					lineA = getLineEquation(playerPov.x, playerPov.y, wallBlockingLight.a.x, wallBlockingLight.a.y);
@@ -267,6 +282,12 @@ int main()
 //							}
 //						}
 //					}
+
+					//what became obselete:
+					//isPlayerNextTo isPlayerNextToRectangle
+					//isPlayerUnderOrOver isPlayerUnderOrOverRectangle
+					//wallBlockingLIght getRectangleEdges
+					//lineAOverline lineBOverline isLineOverline
 					
 					j = j + k;   //comment this shit out at the endt dud!
 				}

@@ -12,7 +12,7 @@ bool isUnderLine(line e, int solidYRow, int solidXCol);
 
 bool isOverLine(line e, int solidYRow, int solidXCol);
 
-bool isWhollyInShadow (line a, line b, bool upperA, bool upperB, int yRow, int xCol);
+bool isWhollyInShadow (line a, line b, int yRow, int xCol);
 
 bool isPlayerNextToRectangle(koordinate pov, int top, int bottom, int right, int left);
 

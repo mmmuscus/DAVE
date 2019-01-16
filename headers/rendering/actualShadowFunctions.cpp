@@ -159,7 +159,7 @@ bool isLineOverLine(line e, double middleOfFirstSolidYRow, double middleOfFirstS
 
 bool isUnderLine(line e, int solidYRow, int solidXCol)
 {
-	if ((solidYRow < (solidXCol * e.mSlope) + e.bIntercept) && ((solidYRow + 1) < (solidXCol * e.mSlope) + e.bIntercept) && (solidYRow < ((solidXCol + 1) * e.mSlope) + e.bIntercept) && ((solidYRow + 1) < ((solidXCol + 1) * e.mSlope) + e.bIntercept))
+	if ((solidYRow <= (solidXCol * e.mSlope) + e.bIntercept) && ((solidYRow + 1) < (solidXCol * e.mSlope) + e.bIntercept) && (solidYRow < ((solidXCol + 1) * e.mSlope) + e.bIntercept) && ((solidYRow + 1) < ((solidXCol + 1) * e.mSlope) + e.bIntercept))
 	{   //this shit checks if the point is wholly under the line
 		return true;
 	}
@@ -169,7 +169,7 @@ bool isUnderLine(line e, int solidYRow, int solidXCol)
 
 bool isOverLine(line e, int solidYRow, int solidXCol)
 {
-	if ((solidYRow > (solidXCol * e.mSlope) + e.bIntercept) && ((solidYRow + 1) > (solidXCol * e.mSlope) + e.bIntercept) && (solidYRow > ((solidXCol + 1) * e.mSlope) + e.bIntercept) && ((solidYRow + 1) > ((solidXCol + 1) * e.mSlope) + e.bIntercept))
+	if ((solidYRow >= (solidXCol * e.mSlope) + e.bIntercept) && ((solidYRow + 1) > (solidXCol * e.mSlope) + e.bIntercept) && (solidYRow > ((solidXCol + 1) * e.mSlope) + e.bIntercept) && ((solidYRow + 1) > ((solidXCol + 1) * e.mSlope) + e.bIntercept))
 	{   //this shit checks if the point is wholly over the line
 		return true;
 	}
@@ -177,9 +177,9 @@ bool isOverLine(line e, int solidYRow, int solidXCol)
 	return false;
 }
 
-bool isWhollyInShadow (line a, line b, bool upperA, bool upperB, int yRow, int xCol)
+bool isWhollyInShadow (line a, line b, int yRow, int xCol)
 {
-	if (upperA)
+	if (a.isItUnderLine)
 	{
 		if (!isUnderLine(a, yRow, xCol))
 		{
@@ -194,7 +194,7 @@ bool isWhollyInShadow (line a, line b, bool upperA, bool upperB, int yRow, int x
 		}
 	}
 
-	if (upperB)
+	if (b.isItUnderLine)
 	{
 		if (!isUnderLine(b, yRow, xCol))
 		{
@@ -315,12 +315,12 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
         	{
             	if (pointPosCounter == 3)
             	{
-                	e.isUnderLine = false;
+                	e.isItUnderLine = false;
                 	return e;
 				}
 				else if (pointPosCounter == -3)
 				{
-					e.isUnderLine = true;
+					e.isItUnderLine = true;
                 	return e;
 				}
         	}
@@ -330,12 +330,12 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
             	{
                 	if (pointPosCounter == 3)
                 	{
-                		e.isUnderLine = false;
+                		e.isItUnderLine = false;
                 		return e;
 					}
 					else if (pointPosCounter == -3)
 					{
-						e.isUnderLine = true;
+						e.isItUnderLine = true;
                 		return e;
 					}
             	}
