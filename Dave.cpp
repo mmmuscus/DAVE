@@ -199,6 +199,36 @@ int main()
 		
 		//A GARAND REWRITE IS NEEDED
 		
+		for (int i = 0; i < SCREENROWS; i++)
+		{
+			for (int j = 0; j < SCREENCOLS; j++)
+			{
+				if (newWorld[i + camera.row][j + camera.col].mapInView && newWorld[i + camera.row][j + camera.col].solid)
+				{
+					//get line equations
+					lineA = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + camera.col + 1, j + camera.col, lineB, false);
+					lineB = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + camera.col + 1, j + camera.col, lineA, true);
+					
+					goTo(0, 0);
+					cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineA.mSlope<<") + "<<lineA.bIntercept;
+					goTo(1, 0);
+					cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineB.mSlope<<") + "<<lineB.bIntercept;
+					
+					//sg is not rite...
+					
+					for (int g = 0; g < SCREENROWS; g++)
+					{
+						for (int h = 0; h < SCREENCOLS; h++)
+						{
+							if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) && g != i && h != j)
+							{
+								newWorld[g + camera.row][h + camera.col].mapInView = false;
+							}
+						}
+					}
+				}
+			}
+		}
 		
 //		for (int i = 0; i < SCREENROWS; i++)
 //		{
