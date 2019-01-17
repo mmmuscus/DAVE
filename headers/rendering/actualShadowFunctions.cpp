@@ -64,11 +64,11 @@ koordinate getPov(koordinate pov, mob playr, double heigt, double widt)      //D
 
 //        XCOL               YROW
 
-line getLineEquation(int aXCol, int aYRow, int bXCol, int bYRow)            //(m * xcol) + b
+line getLineEquation(double aXCol, double aYRow, int bXCol, int bYRow)            //(m * xcol) + b
 {
 	line e;
 
-	e.mSlope = (double)(bYRow - aYRow) / (bXCol - aXCol);
+	e.mSlope = (bYRow - aYRow) / (bXCol - aXCol);
 	e.bIntercept = aYRow - (e.mSlope * aXCol);
 
 	return e;
@@ -411,4 +411,72 @@ edgeLines getEdges(koordinate pov, int top, int bot, int right, int left)
 	}
 	
 	return edg;
+}
+
+//xcol yrow
+
+line getFirstLine(koordinate pov, int top, int bot, int right, int left)
+{
+	line e; 
+	
+	if (pov.x < left && pov.y < bot)
+	{
+		e = getLineEquation(pov.x, pov.y, left, bot);
+		e.isItUnderLine = true;
+		return e;
+	}
+	
+	if (pov.x > left && pov.y < top)
+	{
+		e = getLineEquation(pov.x, pov.y, left, top);
+		e.isItUnderLine = false;
+		return e;
+	}
+	
+	if (pov.x > right && pov.y > top)
+	{
+		e = getLineEquation(pov.x, pov.y, right, top);
+		e.isItUnderLine = false;
+		return e;
+	}
+	
+	if (pov.x < right && pov.y > bot)
+	{
+		e = getLineEquation(pov.x, pov.y, right, bot);
+		e.isItUnderLine = true;
+		return e;
+	}
+}
+
+line getSecondLine(koordinate pov, int top, int bot, int right, int left)
+{
+	line e;
+	
+	if (pov.x < right && pov.y < top)
+	{
+		e = getLineEquation(pov.x, pov.y, right, top);
+		e.isItUnderLine = false;
+		return e;
+	}
+	
+	if (pov.x < left && pov.y > top)
+	{
+		e = getLineEquation(pov.x, pov.y, left, top);
+		e.isItUnderLine = false;
+		return e;
+	}
+	
+	if (pov.x > left && pov.y > bot)
+	{
+		e = getLineEquation(pov.x, pov.y, left, bot);
+		e.isItUnderLine = true;
+		return e;
+	}
+	
+	if (pov.x > right && pov.y < bot)
+	{
+		e = getLineEquation(pov.x, pov.y, right, bot);
+		e.isItUnderLine = true;
+		return e;
+	}
 }

@@ -232,11 +232,8 @@ int main()
 //			}
 //		}
 
-		makeLineNull(lineB);
-		lineA = getLineOfSight(playerPov, 35, 36, 60, 61, lineB, true);
-		lineB = getLineOfSight(playerPov, 35, 36, 60, 61, lineA, true);
-
-//		edges = getEdges(playerPov, 35, 36, 60, 61);
+		lineA = getFirstLine(playerPov, 35, 36, 60, 61);
+		lineB = getSecondLine(playerPov, 35, 36, 60, 61);
 
 		goTo(0, 0);
 		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineA.mSlope<<") + "<<lineA.bIntercept<<" ENDL";
@@ -247,7 +244,7 @@ int main()
 		{
 			for(int h = 0; h < SCREENCOLS; h++)
 			{
-				if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) && g + camera.row != 35 && h + camera.col != 60)
+				if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col))
 				{
 					newWorld[g + camera.row][h + camera.col].mapInView = false;
 				}

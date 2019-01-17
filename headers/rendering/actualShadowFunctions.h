@@ -2,7 +2,7 @@
 
 koordinate getPov(koordinate pov, mob playr, double heigt, double widt);
 
-line getLineEquation(int aXCol, int aYRow, int bXCol, int bYRow);
+line getLineEquation(double aXCol, double aYRow, int bXCol, int bYRow);
 
 rectangle getRectangleEdges(koordinate pov, int top, int bottom, int right, int left);
 
@@ -27,3 +27,7 @@ line makeLineNull(line e);
 line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, line firstLine, bool doesFirstLineExist);
 
 edgeLines getEdges(koordinate pov, int top, int bot, int right, int left);
+
+line getFirstLine(koordinate pov, int top, int bot, int right, int left);
+
+line getSecondLine(koordinate pov, int top, int bot, int right, int left);
