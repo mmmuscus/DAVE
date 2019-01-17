@@ -76,6 +76,8 @@ int main()
 	line lineB;
 	bool lineBOverLine;
 	
+	edgeLines edges;
+	
 	bool isPlayerNextTo;
 	bool isPlayerOverOrUnder;
 	
@@ -199,33 +201,55 @@ int main()
 		
 		//A GARAND REWRITE IS NEEDED
 		
-		for (int i = 0; i < SCREENROWS; i++)
+//		for (int i = 0; i < SCREENROWS; i++)
+//		{
+//			for (int j = 0; j < SCREENCOLS; j++)
+//			{
+//				if (newWorld[i + camera.row][j + camera.col].mapInView && newWorld[i + camera.row][j + camera.col].solid)
+//				{
+//					//get line equations
+//					lineA = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + camera.col + 1, j + camera.col, lineB, false);
+//					lineB = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + camera.col + 1, j + camera.col, lineA, true);
+//					
+//					goTo(0, 0);
+//					cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineA.mSlope<<") + "<<lineA.bIntercept;
+//					goTo(1, 0);
+//					cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineB.mSlope<<") + "<<lineB.bIntercept;
+//					
+//					//sg is not rite...
+//					
+//					for (int g = 0; g < SCREENROWS; g++)
+//					{
+//						for (int h = 0; h < SCREENCOLS; h++)
+//						{
+//							if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) && g != i && h != j)
+//							{
+//								newWorld[g + camera.row][h + camera.col].mapInView = false;
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+
+		makeLineNull(lineB);
+		lineA = getLineOfSight(playerPov, 35, 36, 60, 61, lineB, true);
+		lineB = getLineOfSight(playerPov, 35, 36, 60, 61, lineA, true);
+
+//		edges = getEdges(playerPov, 35, 36, 60, 61);
+
+		goTo(0, 0);
+		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineA.mSlope<<") + "<<lineA.bIntercept<<" ENDL";
+		goTo(1, 0);
+		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineB.mSlope<<") + "<<lineB.bIntercept<<" ENDL";
+		
+		for (int g = 0; g < SCREENROWS; g++)
 		{
-			for (int j = 0; j < SCREENCOLS; j++)
+			for(int h = 0; h < SCREENCOLS; h++)
 			{
-				if (newWorld[i + camera.row][j + camera.col].mapInView && newWorld[i + camera.row][j + camera.col].solid)
+				if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) && g + camera.row != 35 && h + camera.col != 60)
 				{
-					//get line equations
-					lineA = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + camera.col + 1, j + camera.col, lineB, false);
-					lineB = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + camera.col + 1, j + camera.col, lineA, true);
-					
-					goTo(0, 0);
-					cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineA.mSlope<<") + "<<lineA.bIntercept;
-					goTo(1, 0);
-					cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineB.mSlope<<") + "<<lineB.bIntercept;
-					
-					//sg is not rite...
-					
-					for (int g = 0; g < SCREENROWS; g++)
-					{
-						for (int h = 0; h < SCREENCOLS; h++)
-						{
-							if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) && g != i && h != j)
-							{
-								newWorld[g + camera.row][h + camera.col].mapInView = false;
-							}
-						}
-					}
+					newWorld[g + camera.row][h + camera.col].mapInView = false;
 				}
 			}
 		}

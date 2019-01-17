@@ -25,3 +25,5 @@ line makeLineNull(line e);
 // secon d megoldas maybe lets see
 
 line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, line firstLine, bool doesFirstLineExist);
+
+edgeLines getEdges(koordinate pov, int top, int bot, int right, int left);

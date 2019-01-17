@@ -159,7 +159,7 @@ bool isLineOverLine(line e, double middleOfFirstSolidYRow, double middleOfFirstS
 
 bool isUnderLine(line e, int solidYRow, int solidXCol)
 {
-	if ((solidYRow < (solidXCol * e.mSlope) + e.bIntercept) && ((solidYRow + 1) < (solidXCol * e.mSlope) + e.bIntercept) && (solidYRow < ((solidXCol + 1) * e.mSlope) + e.bIntercept) && ((solidYRow + 1) < ((solidXCol + 1) * e.mSlope) + e.bIntercept))
+	if ((solidYRow <= (solidXCol * e.mSlope) + e.bIntercept) && ((solidYRow + 1) <= (solidXCol * e.mSlope) + e.bIntercept) && (solidYRow <= ((solidXCol + 1) * e.mSlope) + e.bIntercept) && ((solidYRow + 1) <= ((solidXCol + 1) * e.mSlope) + e.bIntercept))
 	{   //this shit checks if the point is wholly under the line
 		return true;
 	}
@@ -169,7 +169,7 @@ bool isUnderLine(line e, int solidYRow, int solidXCol)
 
 bool isOverLine(line e, int solidYRow, int solidXCol)
 {
-	if ((solidYRow > (solidXCol * e.mSlope) + e.bIntercept) && ((solidYRow + 1) > (solidXCol * e.mSlope) + e.bIntercept) && (solidYRow > ((solidXCol + 1) * e.mSlope) + e.bIntercept) && ((solidYRow + 1) > ((solidXCol + 1) * e.mSlope) + e.bIntercept))
+	if ((solidYRow >= (solidXCol * e.mSlope) + e.bIntercept) && ((solidYRow + 1) >= (solidXCol * e.mSlope) + e.bIntercept) && (solidYRow >= ((solidXCol + 1) * e.mSlope) + e.bIntercept) && ((solidYRow + 1) >= ((solidXCol + 1) * e.mSlope) + e.bIntercept))
 	{   //this shit checks if the point is wholly over the line
 		return true;
 	}
@@ -304,11 +304,11 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
         	{
             	for (int h = 0; h <= 1; h++)
             	{
-            	    if (teglalap[g][h].y > (teglalap[g][h].x * e.mSlope) + e.bIntercept)
+            	    if (teglalap[g][h].y >= (teglalap[g][h].x * e.mSlope) + e.bIntercept)
                 	{
                     	pointPosCounter++;
                 	}
-                	else if (teglalap[g][h].y < (teglalap[g][h].x * e.mSlope) + e.bIntercept)
+                	else if (teglalap[g][h].y <= (teglalap[g][h].x * e.mSlope) + e.bIntercept)
                 	{
                 	    pointPosCounter--;
                 	}
@@ -317,12 +317,12 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
 
         	if (!doesFirstLineExist)
         	{
-            	if (pointPosCounter == 3)
+            	if (pointPosCounter == 4)
             	{
                 	e.isItUnderLine = false;
                 	return e;
 				}
-				else if (pointPosCounter == -3)
+				else if (pointPosCounter == -4)
 				{
 					e.isItUnderLine = true;
                 	return e;
@@ -332,12 +332,12 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
         	{
             	if (e.mSlope != firstLine.mSlope && e.bIntercept != firstLine.bIntercept)
             	{
-                	if (pointPosCounter == 3)
+                	if (pointPosCounter == 4)
                 	{
                 		e.isItUnderLine = false;
                 		return e;
 					}
-					else if (pointPosCounter == -3)
+					else if (pointPosCounter == -4)
 					{
 						e.isItUnderLine = true;
                 		return e;
@@ -346,4 +346,69 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
         	}
 		}
     }
+}
+
+edgeLines getEdges(koordinate pov, int top, int bot, int right, int left)
+{
+	edgeLines edg;
+	
+	koordinate rect[4];
+	
+	rect[0].x = right;
+	rect[0].y = top;
+	
+	rect[1].x = right;
+	rect[1].y = bot;
+	
+	rect[2].x = left;
+	rect[2].y = top;
+	
+	rect[3].x = left;
+	rect[3].y = bot;
+	
+	int pointPosCounter = 0;
+	
+	int i = 0;
+	
+	bool isFound = false;
+	
+	while (!isFound)
+	{
+		edg.first = getLineEquation(pov.x, pov.x, rect[i].x, rect[i].y);
+		
+		if (isOverLine(edg.first, top, right))
+		{
+			edg.first.isItUnderLine = true;
+			isFound = true;
+		}
+		else if (isUnderLine(edg.first, top, right))
+		{
+			edg.first.isItUnderLine = false;
+			isFound = true;
+		}
+		
+		i++;
+	}
+	
+	isFound = false;
+	
+	while (!isFound)
+	{
+		edg.second = getLineEquation(pov.x, pov.x, rect[i].x, rect[i].y);
+		
+		if (isOverLine(edg.second, top, right))
+		{
+			edg.second.isItUnderLine = true;
+			isFound = true;
+		}
+		else if (isUnderLine(edg.second, top, right))
+		{
+			edg.second.isItUnderLine = false;
+			isFound = true;
+		}
+		
+		i++;
+	}
+	
+	return edg;
 }

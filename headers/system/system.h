@@ -63,6 +63,12 @@ struct line                          //line = (m * x) + b
 	bool isItUnderLine;
 };
 
+struct edgeLines
+{
+	line first;
+	line second;
+};
+
 struct koordinate
 {
 	double x;
