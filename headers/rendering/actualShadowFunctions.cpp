@@ -234,16 +234,12 @@ bool isPlayerOverOrUnderRectangle(koordinate pov, int top, int bottom, int right
 
 bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
 {
-	//idk wtf is going on
-	
-	
-	
 	if (pov.x < left && xCol < left)
 	{
 		return false;
 	}
 	
-	if (pov.x > right && xCol > right)
+	if (pov.x > right && xCol > right - 1)      //dunno why i need to do it
 	{
 		return false;
 	}
@@ -253,7 +249,7 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int r
 		return false;
 	}
 	
-	if (pov.y > bottom && yRow > bottom)
+	if (pov.y > bottom && yRow > bottom - 1)    //dunno why i need to do it
 	{
 		return false;
 	}

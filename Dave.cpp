@@ -236,14 +236,15 @@ int main()
 //		lineB = getSecondLine(playerPov, 35, 36, 60, 61);
 
 		//valamiért néha lineA = lineB ezt nem kéne engedni...
-		lineA = getLineOfSight(playerPov, 35, 36, 60, 72, lineB, false);
-		lineB = getLineOfSight(playerPov, 35, 36, 60, 72, lineA, true);
+		lineA = getLineOfSight(playerPov, 35, 36, 72, 60, lineB, false);
+		lineB = getLineOfSight(playerPov, 35, 36, 72, 60, lineA, true);
 		
 		goTo(0, 0);
 		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineA.mSlope<<") + "<<lineA.bIntercept<<" ENDL";
 		goTo(1, 0);
 		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineB.mSlope<<") + "<<lineB.bIntercept<<" ENDL";
 		
+		//testing isWhollyInShadow
 		for (int g = 0; g < SCREENROWS; g++)
 		{
 			for(int h = 0; h < SCREENCOLS; h++)
@@ -254,6 +255,19 @@ int main()
 				}
 			}
 		}
+		
+		//testing isBehindWall
+		//UPDATE its working well most propably
+//		for (int g = 0; g < SCREENROWS; g++)
+//		{
+//			for(int h = 0; h < SCREENCOLS; h++)
+//			{
+//				if (isBehindWall(playerPov, g + camera.row, h + camera.col, 35, 36, 72, 60) && !newWorld[g + camera.row][h + camera.col].solid)
+//				{
+//					newWorld[g + camera.row][h + camera.col].mapInView = false;
+//				}
+//			}
+//		}
 		
 //		for (int i = 0; i < SCREENROWS; i++)
 //		{
