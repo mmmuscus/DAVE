@@ -270,23 +270,87 @@ line getLineOfSight(koordinate pov, int top, int bottom, int right, int left, li
 {
     line e;
 
+//    koordinate teglalap[4];
+//
+//    teglalap[0].x = right;  //top right
+//    teglalap[0].y = top;
+//
+//    teglalap[1].x = left;   //top left
+//    teglalap[1].y = top;
+//    
+//    teglalap[2].x = left;   //bottom left
+//    teglalap[2].y = bottom;
+//
+//    teglalap[3].x = right;  //bottom right
+//    teglalap[3].y = bottom;
+    
     koordinate teglalap[2][2];
 
-    teglalap[0][1].x = right;  //top right
-    teglalap[0][1].y = top;
-
-    teglalap[0][0].x = left;   //top left
+    teglalap[0][0].x = right;  //top right
     teglalap[0][0].y = top;
+
+    teglalap[0][1].x = left;   //top left
+    teglalap[0][1].y = top;
+    
+    teglalap[1][0].x = left;   //bottom left
+    teglalap[1][0].y = bottom;
 
     teglalap[1][1].x = right;  //bottom right
     teglalap[1][1].y = bottom;
 
-    teglalap[1][0].x = left;   //bottom left
-    teglalap[1][0].y = bottom;
-
     int pointPosCounter = 0;
     
     //so far so good
+    
+    //rewrite time...
+//    for (int i = 0; i < 4; i++)
+//    {
+//    	e = getLineEquation(pov.x, pov.y, teglalap[i].x, teglalap[i].y);
+//    	
+//    	pointPosCounter = 0;
+//    	
+//    	for (int j = 0; j < 4; j++)
+//    	{
+//    		if (teglalap[j].y > (teglalap[j].x * e.mSlope) + e.bIntercept)
+//    		{
+//    			pointPosCounter++;
+//			}
+//			else if (teglalap[j].y < (teglalap[j].x * e.mSlope) + e.bIntercept)
+//			{
+//				pointPosCounter--;
+//			}
+//		}
+//		
+//		if (doesFirstLineExist)
+//		{
+//			if (firstLine.mSlope != e.mSlope || firstLine.bIntercept != e.bIntercept)
+//			{
+//				if (pointPosCounter == 3)
+//				{
+//					e.isItUnderLine = true;
+//					return e;
+//				}
+//				else if (pointPosCounter = -3)
+//				{
+//					e.isItUnderLine = false;
+//					return e;
+//				}
+//			}
+//		}
+//		else
+//		{
+//			if (pointPosCounter == 3)
+//			{
+//				e.isItUnderLine = true;
+//				return e;
+//			}
+//			else if (pointPosCounter = -3)
+//			{
+//				e.isItUnderLine = false;
+//				return e;
+//			}
+//		}
+//	}
 
     for (int i = 0; i <= 1; i++)
     {
