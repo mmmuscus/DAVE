@@ -540,3 +540,82 @@ line getSecondLine(koordinate pov, int top, int bot, int right, int left)
 		return e;
 	}
 }
+
+edgeLines butaAF(koordinate pov, int top, int bot, int right, int left)
+{
+	edgeLines edg;
+	
+	if (pov.y < top)
+	{
+		if (pov.x < left)
+		{
+			edg.first = getLineEquation(pov.x, pov.y, right, top);
+			edg.first.isItUnderLine = false;
+			edg.second = getLineEquation(pov.x, pov.y, left, bot);
+			edg.second.isItUnderLine = true;
+			return edg;
+		}
+		else if (pov.x > right)
+		{
+			edg.first = getLineEquation(pov.x, pov.y, left, top);
+			edg.first.isItUnderLine = false;
+			edg.second = getLineEquation(pov.x, pov.y, right, bot);
+			edg.second.isItUnderLine = true;
+			return edg;
+		}
+		else
+		{
+			edg.first = getLineEquation(pov.x, pov.y, right, top);
+			edg.first.isItUnderLine = false;
+			edg.second = getLineEquation(pov.x, pov.y, left, top);
+			edg.second.isItUnderLine = false;
+			return edg;
+		}
+	}
+	else if (pov.y > bot)
+	{
+		if (pov.x < left)
+		{
+			edg.first = getLineEquation(pov.x, pov.y, left, top);
+			edg.first.isItUnderLine = false;
+			edg.second = getLineEquation(pov.x, pov.y, right, bot);
+			edg.second.isItUnderLine = true;
+			return edg;
+		}
+		else if (pov.x > right)
+		{
+			edg.first = getLineEquation(pov.x, pov.y, right, top);
+			edg.first.isItUnderLine = false;
+			edg.second = getLineEquation(pov.x, pov.y, left, bot);
+			edg.second.isItUnderLine = true;
+			return edg;
+		}
+		else
+		{
+			edg.first = getLineEquation(pov.x, pov.y, right, bot);
+			edg.first.isItUnderLine = true;
+			edg.second = getLineEquation(pov.x, pov.y, left, bot);
+			edg.second.isItUnderLine = true;
+			return edg;
+		}
+	}
+	else
+	{
+		if (pov.x < left)
+		{
+			edg.first = getLineEquation(pov.x, pov.y, left, top);
+			edg.first.isItUnderLine = false;
+			edg.second = getLineEquation(pov.x, pov.y, left, bot);
+			edg.second.isItUnderLine = true;
+			return edg;
+		}
+		else if (pov.x > right)
+		{
+			edg.first = getLineEquation(pov.x, pov.y, right, top);
+			edg.first.isItUnderLine = false;
+			edg.second = getLineEquation(pov.x, pov.y, right, bot);
+			edg.second.isItUnderLine = true;
+			return edg;
+		}
+	}
+}

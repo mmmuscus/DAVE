@@ -31,3 +31,5 @@ edgeLines getEdges(koordinate pov, int top, int bot, int right, int left);
 line getFirstLine(koordinate pov, int top, int bot, int right, int left);
 
 line getSecondLine(koordinate pov, int top, int bot, int right, int left);
+
+edgeLines butaAF(koordinate pov, int top, int bot, int right, int left);

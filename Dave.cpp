@@ -236,25 +236,25 @@ int main()
 //		lineB = getSecondLine(playerPov, 35, 36, 60, 61);
 
 		//valamiért néha lineA = lineB ezt nem kéne engedni...
-		lineA = getLineOfSight(playerPov, 35, 36, 72, 60, lineB, false);
-		lineB = getLineOfSight(playerPov, 35, 36, 72, 60, lineA, true);
-		
-		goTo(0, 0);
-		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineA.mSlope<<") + "<<lineA.bIntercept<<" ENDL";
-		goTo(1, 0);
-		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineB.mSlope<<") + "<<lineB.bIntercept<<" ENDL";
-		
-		//testing isWhollyInShadow
-		for (int g = 0; g < SCREENROWS; g++)
-		{
-			for(int h = 0; h < SCREENCOLS; h++)
-			{
-				if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
-				{
-					newWorld[g + camera.row][h + camera.col].mapInView = false;
-				}
-			}
-		}
+//		lineA = getLineOfSight(playerPov, 35, 36, 72, 60, lineB, false);
+//		lineB = getLineOfSight(playerPov, 35, 36, 72, 60, lineA, true);
+//		
+//		goTo(0, 0);
+//		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineA.mSlope<<") + "<<lineA.bIntercept<<" ENDL";
+//		goTo(1, 0);
+//		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineB.mSlope<<") + "<<lineB.bIntercept<<" ENDL";
+//		
+//		//testing isWhollyInShadow
+//		for (int g = 0; g < SCREENROWS; g++)
+//		{
+//			for(int h = 0; h < SCREENCOLS; h++)
+//			{
+//				if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
+//				{
+//					newWorld[g + camera.row][h + camera.col].mapInView = false;
+//				}
+//			}
+//		}
 		
 		//testing isBehindWall
 		//UPDATE its working well most propably
@@ -268,6 +268,26 @@ int main()
 //				}
 //			}
 //		}
+
+		//LETS TEST THE GETLINEEQUATION FUNCTION WITH A BUTA AF FUNCTION
+		edges = butaAF(playerPov, 35, 36, 72, 60);
+		
+		goTo(0, 0);
+		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<edges.first.mSlope<<") + "<<edges.first.bIntercept<<" ENDL";
+		goTo(1, 0);
+		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<edges.second.mSlope<<") + "<<edges.second.bIntercept<<" ENDL";
+		
+		//testing isWhollyInShadow
+		for (int g = 0; g < SCREENROWS; g++)
+		{
+			for(int h = 0; h < SCREENCOLS; h++)
+			{
+				if (isWhollyInShadow(edges.first, edges.second, g + camera.row, h + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
+				{
+					newWorld[g + camera.row][h + camera.col].mapInView = false;
+				}
+			}
+		}
 		
 //		for (int i = 0; i < SCREENROWS; i++)
 //		{
