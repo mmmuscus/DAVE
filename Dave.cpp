@@ -270,21 +270,62 @@ int main()
 //		}
 
 		//LETS TEST THE GETLINEEQUATION FUNCTION WITH A BUTA AF FUNCTION
-		edges = butaAF(playerPov, 35, 36, 72, 60);
 		
-		goTo(0, 0);
-		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<edges.first.mSlope<<") + "<<edges.first.bIntercept<<" ENDL";
-		goTo(1, 0);
-		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<edges.second.mSlope<<") + "<<edges.second.bIntercept<<" ENDL";
+		//ITSA WORKING
+//		edges = getEdgeLines(playerPov, 35, 36, 72, 60);
+		
+//		goTo(0, 0);
+//		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<edges.first.mSlope<<") + "<<edges.first.bIntercept<<" ENDL";
+//		goTo(1, 0);
+//		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<edges.second.mSlope<<") + "<<edges.second.bIntercept<<" ENDL";
 		
 		//testing isWhollyInShadow
-		for (int g = 0; g < SCREENROWS; g++)
+//		for (int g = 0; g < SCREENROWS; g++)
+//		{
+//			for(int h = 0; h < SCREENCOLS; h++)
+//			{
+//				if (isWhollyInShadow(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, 35, 36, 72, 60) && !newWorld[g + camera.row][h + camera.col].solid)
+//				{
+//					newWorld[g + camera.row][h + camera.col].mapInView = false;
+//				}
+//			}
+//		}
+		
+		//it works for horizontal
+		//rewrite the whole of it:
+		for (int i = 0; i < SCREENROWS; i++)
 		{
-			for(int h = 0; h < SCREENCOLS; h++)
+			int j = 0;
+			
+			while (j < SCREENCOLS)
 			{
-				if (isWhollyInShadow(edges.first, edges.second, g + camera.row, h + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
+				if (newWorld[i + camera.row][j + camera.col].mapInView && newWorld[i + camera.row][j + camera.col].solid)
 				{
-					newWorld[g + camera.row][h + camera.col].mapInView = false;
+					int k = 0;
+					
+					while (newWorld[i + camera.row][j + camera.col + k].mapInView && newWorld[i + camera.row][j + camera.col + k].solid)
+					{
+						k++;
+					}
+					
+					edges = getEdgeLines(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col);
+					
+					for (int g = 0; g < SCREENROWS; g++)
+					{
+						for(int h = 0; h < SCREENCOLS; h++)
+						{
+							if (isWhollyInShadow(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
+							{
+								newWorld[g + camera.row][h + camera.col].mapInView = false;
+							}
+						}
+					}
+					
+					j = j + k;
+				}
+				else
+				{
+					j++;
 				}
 			}
 		}
