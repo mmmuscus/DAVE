@@ -321,7 +321,47 @@ int main()
 						}
 					}
 					
-					j = j + k;
+					j += k;
+				}
+				else
+				{
+					j++;
+				}
+			}
+		}
+		
+		//vertical
+		//seems fine
+		//damn yo its working
+		for (int i = 0; i < SCREENCOLS; i++)
+		{
+			int j = 0;
+			
+			while (j < SCREENROWS)
+			{
+				if (newWorld[j + camera.row][i + camera.col].mapInView && newWorld[j + camera.row][i + camera.col].solid)
+				{
+					int k = 0;
+					
+					while (newWorld[j + camera.row + k][i + camera.col].mapInView && newWorld[j + camera.row + k][i + camera.col].solid)
+					{
+						k++;
+					}
+					
+					edges = getEdgeLines(playerPov, j + camera.row, j + k + camera.row, i + camera.col + 1, i + camera.col);
+					
+					for (int g = 0; g < SCREENROWS; g++)
+					{
+						for(int h = 0; h < SCREENCOLS; h++)
+						{
+							if (isWhollyInShadow(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, j + camera.row, j + k + camera.row, i + camera.col + 1, i + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
+							{
+								newWorld[g + camera.row][h + camera.col].mapInView = false;
+							}
+						}
+					}
+					
+					j += k;
 				}
 				else
 				{
