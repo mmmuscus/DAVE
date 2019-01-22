@@ -177,7 +177,7 @@ bool isOverLine(line e, int solidYRow, int solidXCol)
 	return false;
 }
 
-bool isWhollyInShadow (line a, line b, int yRow, int xCol)
+bool isBetweenLines (line a, line b, int yRow, int xCol)
 {
 	if (a.isItUnderLine)
 	{
@@ -618,4 +618,32 @@ edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left)
 			return edg;
 		}
 	}
+}
+
+bool isInShadow(line a, line b, int yRow, int xCol, koordinate pov, int top, int bot, int right, int left)
+{
+	if (!isBetweenLines(a, b, yRow, xCol))
+	{
+		return false;
+	}
+	
+	if (!isBehindWall(pov, yRow, xCol, top, bot, right, left))
+	{
+		return false;
+	}
+	
+//	if (bot - top == 1)
+//	{
+//		if (pov.y == top)
+//		{
+//			
+//		}
+//	}
+//	else if (right - left == 1)
+//	{
+//		if (pov.x == left)
+//		{
+//			
+//		}
+//	}
 }

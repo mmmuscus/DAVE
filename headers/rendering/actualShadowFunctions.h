@@ -12,7 +12,7 @@ bool isUnderLine(line e, int solidYRow, int solidXCol);
 
 bool isOverLine(line e, int solidYRow, int solidXCol);
 
-bool isWhollyInShadow (line a, line b, int yRow, int xCol);
+bool isBetweenLines (line a, line b, int yRow, int xCol);
 
 bool isPlayerNextToRectangle(koordinate pov, int top, int bottom, int right, int left);
 
@@ -33,3 +33,5 @@ line getFirstLine(koordinate pov, int top, int bot, int right, int left);
 line getSecondLine(koordinate pov, int top, int bot, int right, int left);
 
 edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left);
+
+bool isInShadow(line a, line b, int yRow, int xCol, koordinate pov, int top, int bot, int right, int left);

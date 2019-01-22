@@ -314,7 +314,7 @@ int main()
 					{
 						for(int h = 0; h < SCREENCOLS; h++)
 						{
-							if (isWhollyInShadow(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
+							if (isBetweenLines(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
 							{
 								newWorld[g + camera.row][h + camera.col].mapInView = false;
 							}
@@ -354,7 +354,7 @@ int main()
 					{
 						for(int h = 0; h < SCREENCOLS; h++)
 						{
-							if (isWhollyInShadow(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, j + camera.row, j + k + camera.row, i + camera.col + 1, i + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
+							if (isBetweenLines(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, j + camera.row, j + k + camera.row, i + camera.col + 1, i + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
 							{
 								newWorld[g + camera.row][h + camera.col].mapInView = false;
 							}
