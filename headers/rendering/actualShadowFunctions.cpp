@@ -182,35 +182,3 @@ edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left)
 		}
 	}
 }
-
-bool isInShadow(line a, line b, int yRow, int xCol, koordinate pov, int top, int bot, int right, int left)
-{
-	if (isBetweenLines(a, b, yRow, xCol) && isBehindWall(pov, yRow, xCol, top, bot, right, left))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-	
-//	if (!isBehindWall(pov, yRow, xCol, top, bot, right, left))
-//	{
-//		return false;
-//	}
-	
-//	if (bot - top == 1)
-//	{
-//		if (pov.y == top)
-//		{
-//			
-//		}
-//	}
-//	else if (right - left == 1)
-//	{
-//		if (pov.x == left)
-//		{
-//			
-//		}
-//	}
-}
