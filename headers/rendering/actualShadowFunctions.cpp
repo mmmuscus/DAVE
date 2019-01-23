@@ -234,22 +234,22 @@ bool isPlayerOverOrUnderRectangle(koordinate pov, int top, int bottom, int right
 
 bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
 {
-	if (pov.x < left && xCol < left)
+	if (pov.x < left && xCol < left + 1)
 	{
 		return false;
 	}
 	
-	if (pov.x > right && xCol > right - 1)      //dunno why i need to do it
+	if (pov.x > right && xCol > right - 2)      //dunno why i need to do it
 	{
 		return false;
 	}
 	
-	if (pov.y < top && yRow < top)
+	if (pov.y < top && yRow < top + 1)
 	{
 		return false;
 	}
 	
-	if (pov.y > bottom && yRow > bottom - 1)    //dunno why i need to do it
+	if (pov.y > bottom && yRow > bottom - 2)    //dunno why i need to do it
 	{
 		return false;
 	}
@@ -622,15 +622,19 @@ edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left)
 
 bool isInShadow(line a, line b, int yRow, int xCol, koordinate pov, int top, int bot, int right, int left)
 {
-	if (!isBetweenLines(a, b, yRow, xCol))
+	if (isBetweenLines(a, b, yRow, xCol) && isBehindWall(pov, yRow, xCol, top, bot, right, left))
+	{
+		return true;
+	}
+	else
 	{
 		return false;
 	}
 	
-	if (!isBehindWall(pov, yRow, xCol, top, bot, right, left))
-	{
-		return false;
-	}
+//	if (!isBehindWall(pov, yRow, xCol, top, bot, right, left))
+//	{
+//		return false;
+//	}
 	
 //	if (bot - top == 1)
 //	{

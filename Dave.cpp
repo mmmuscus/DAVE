@@ -299,11 +299,11 @@ int main()
 			
 			while (j < SCREENCOLS)
 			{
-				if (newWorld[i + camera.row][j + camera.col].mapInView && newWorld[i + camera.row][j + camera.col].solid)
+				if (/*newWorld[i + camera.row][j + camera.col].mapInView && */newWorld[i + camera.row][j + camera.col].solid)
 				{
 					int k = 0;
 					
-					while (newWorld[i + camera.row][j + camera.col + k].mapInView && newWorld[i + camera.row][j + camera.col + k].solid)
+					while (/*newWorld[i + camera.row][j + camera.col + k].mapInView && */newWorld[i + camera.row][j + camera.col + k].solid)
 					{
 						k++;
 					}
@@ -314,7 +314,7 @@ int main()
 					{
 						for(int h = 0; h < SCREENCOLS; h++)
 						{
-							if (isBetweenLines(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
+							if (isBetweenLines(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col)/* && !newWorld[g + camera.row][h + camera.col].solid*/)
 							{
 								newWorld[g + camera.row][h + camera.col].mapInView = false;
 							}
@@ -339,11 +339,11 @@ int main()
 			
 			while (j < SCREENROWS)
 			{
-				if (newWorld[j + camera.row][i + camera.col].mapInView && newWorld[j + camera.row][i + camera.col].solid)
+				if (/*newWorld[j + camera.row][i + camera.col].mapInView && */newWorld[j + camera.row][i + camera.col].solid)
 				{
 					int k = 0;
 					
-					while (newWorld[j + camera.row + k][i + camera.col].mapInView && newWorld[j + camera.row + k][i + camera.col].solid)
+					while (/*newWorld[j + camera.row + k][i + camera.col].mapInView && */newWorld[j + camera.row + k][i + camera.col].solid)
 					{
 						k++;
 					}
@@ -354,7 +354,7 @@ int main()
 					{
 						for(int h = 0; h < SCREENCOLS; h++)
 						{
-							if (isBetweenLines(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, j + camera.row, j + k + camera.row, i + camera.col + 1, i + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
+							if (isBetweenLines(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, j + camera.row, j + k + camera.row, i + camera.col + 1, i + camera.col)/* && !newWorld[g + camera.row][h + camera.col].solid*/)
 							{
 								newWorld[g + camera.row][h + camera.col].mapInView = false;
 							}
