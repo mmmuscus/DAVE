@@ -194,116 +194,17 @@ int main()
 		
 		playerPov = getPov(playerPov, player, height, width);
 		
-		//elõször végigmegyek vízszintesen mindent s mindennkit leárnyékolok akit le kell 
-		//aztán végigmegyek függõlegesen s megint leárnyékolok mindent s mindenkit akit le kell.....
-		
-		//&&& IMPORTANT FOR DEBUGGING SHADOW FUNCTIONS !!! rossz oszlopban érzékeli a player charactert!!!!
-		
-		//A GARAND REWRITE IS NEEDED
-		
-//		for (int i = 0; i < SCREENROWS; i++)
-//		{
-//			for (int j = 0; j < SCREENCOLS; j++)
-//			{
-//				if (newWorld[i + camera.row][j + camera.col].mapInView && newWorld[i + camera.row][j + camera.col].solid)
-//				{
-//					//get line equations
-//					lineA = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + camera.col + 1, j + camera.col, lineB, false);
-//					lineB = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + camera.col + 1, j + camera.col, lineA, true);
-//					
-//					goTo(0, 0);
-//					cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineA.mSlope<<") + "<<lineA.bIntercept;
-//					goTo(1, 0);
-//					cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineB.mSlope<<") + "<<lineB.bIntercept;
-//					
-//					//sg is not rite...
-//					
-//					for (int g = 0; g < SCREENROWS; g++)
-//					{
-//						for (int h = 0; h < SCREENCOLS; h++)
-//						{
-//							if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) && g != i && h != j)
-//							{
-//								newWorld[g + camera.row][h + camera.col].mapInView = false;
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
-
-//		lineA = getFirstLine(playerPov, 35, 36, 60, 61);
-//		lineB = getSecondLine(playerPov, 35, 36, 60, 61);
-
-		//valamiért néha lineA = lineB ezt nem kéne engedni...
-//		lineA = getLineOfSight(playerPov, 35, 36, 72, 60, lineB, false);
-//		lineB = getLineOfSight(playerPov, 35, 36, 72, 60, lineA, true);
-//		
-//		goTo(0, 0);
-//		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineA.mSlope<<") + "<<lineA.bIntercept<<" ENDL";
-//		goTo(1, 0);
-//		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<lineB.mSlope<<") + "<<lineB.bIntercept<<" ENDL";
-//		
-//		//testing isWhollyInShadow
-//		for (int g = 0; g < SCREENROWS; g++)
-//		{
-//			for(int h = 0; h < SCREENCOLS; h++)
-//			{
-//				if (isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) && !newWorld[g + camera.row][h + camera.col].solid)
-//				{
-//					newWorld[g + camera.row][h + camera.col].mapInView = false;
-//				}
-//			}
-//		}
-		
-		//testing isBehindWall
-		//UPDATE its working well most propably
-//		for (int g = 0; g < SCREENROWS; g++)
-//		{
-//			for(int h = 0; h < SCREENCOLS; h++)
-//			{
-//				if (isBehindWall(playerPov, g + camera.row, h + camera.col, 35, 36, 72, 60) && !newWorld[g + camera.row][h + camera.col].solid)
-//				{
-//					newWorld[g + camera.row][h + camera.col].mapInView = false;
-//				}
-//			}
-//		}
-
-		//LETS TEST THE GETLINEEQUATION FUNCTION WITH A BUTA AF FUNCTION
-		
-		//ITSA WORKING
-//		edges = getEdgeLines(playerPov, 35, 36, 72, 60);
-		
-//		goTo(0, 0);
-//		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<edges.first.mSlope<<") + "<<edges.first.bIntercept<<" ENDL";
-//		goTo(1, 0);
-//		cout<<playerPov.y<<" = ("<<playerPov.x<<" * "<<edges.second.mSlope<<") + "<<edges.second.bIntercept<<" ENDL";
-		
-		//testing isWhollyInShadow
-//		for (int g = 0; g < SCREENROWS; g++)
-//		{
-//			for(int h = 0; h < SCREENCOLS; h++)
-//			{
-//				if (isWhollyInShadow(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, 35, 36, 72, 60) && !newWorld[g + camera.row][h + camera.col].solid)
-//				{
-//					newWorld[g + camera.row][h + camera.col].mapInView = false;
-//				}
-//			}
-//		}
-		
-		//it works for horizontal
-		//rewrite the whole of it:
 		for (int i = 0; i < SCREENROWS; i++)
 		{
 			int j = 0;
 			
 			while (j < SCREENCOLS)
 			{
-				if (/*newWorld[i + camera.row][j + camera.col].mapInView && */newWorld[i + camera.row][j + camera.col].solid)
+				if (newWorld[i + camera.row][j + camera.col].solid)
 				{
 					int k = 0;
 					
-					while (/*newWorld[i + camera.row][j + camera.col + k].mapInView && */newWorld[i + camera.row][j + camera.col + k].solid)
+					while (newWorld[i + camera.row][j + camera.col + k].solid)
 					{
 						k++;
 					}
@@ -314,7 +215,7 @@ int main()
 					{
 						for(int h = 0; h < SCREENCOLS; h++)
 						{
-							if (isBetweenLines(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col)/* && !newWorld[g + camera.row][h + camera.col].solid*/)
+							if (isBetweenLines(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col))
 							{
 								newWorld[g + camera.row][h + camera.col].mapInView = false;
 							}
@@ -330,20 +231,17 @@ int main()
 			}
 		}
 		
-		//vertical
-		//seems fine
-		//damn yo its working
 		for (int i = 0; i < SCREENCOLS; i++)
 		{
 			int j = 0;
 			
 			while (j < SCREENROWS)
 			{
-				if (/*newWorld[j + camera.row][i + camera.col].mapInView && */newWorld[j + camera.row][i + camera.col].solid)
+				if (newWorld[j + camera.row][i + camera.col].solid)
 				{
 					int k = 0;
 					
-					while (/*newWorld[j + camera.row + k][i + camera.col].mapInView && */newWorld[j + camera.row + k][i + camera.col].solid)
+					while (newWorld[j + camera.row + k][i + camera.col].solid)
 					{
 						k++;
 					}
@@ -354,7 +252,7 @@ int main()
 					{
 						for(int h = 0; h < SCREENCOLS; h++)
 						{
-							if (isBetweenLines(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, j + camera.row, j + k + camera.row, i + camera.col + 1, i + camera.col)/* && !newWorld[g + camera.row][h + camera.col].solid*/)
+							if (isBetweenLines(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, j + camera.row, j + k + camera.row, i + camera.col + 1, i + camera.col))
 							{
 								newWorld[g + camera.row][h + camera.col].mapInView = false;
 							}
@@ -369,111 +267,6 @@ int main()
 				}
 			}
 		}
-		
-//		for (int i = 0; i < SCREENROWS; i++)
-//		{
-//			int j = 0;
-//			
-//			while (j < SCREENCOLS)
-//			{
-//				if (newWorld[i + camera.row][j + camera.col].mapInView && newWorld[i + camera.row][j + camera.col].solid)
-//				{
-//					int k = 0;
-//					
-//					while (newWorld[i + camera.row][j + camera.col + k].mapInView && newWorld[i + camera.row][j + camera.col + k].solid)
-//					{
-//						k++;
-//					}
-//					
-//					//REWRITE TIME FOTHERFUCKER!!!!!!!!!!!
-//					
-////					goTo(i, 0);
-////					wallBlockingLight = getRectangleEdges(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col - 1, j + camera.col);
-//					//ha egy sorba van a cuccal akkor top = bottom és right = left, ha alatta vagy felette van akkor pedig teljesen megõrül
-//					//balról jobbra nézva ami a player alatt van annak a right és left felcserélõdik
-//					//jobbról balra nézve ami a player felett van annak a right és left felcserélõdik
-//					//&&&                                                              REWRITE azt ami megszerzi a sarkokat!!! think about ur smart algorythm!!! jeeez my man! !!!getLineOfSight this is in actual shadow functions!!!
-//					//top one:		left: 62 top: 31 right: 65 bottom: 30
-//					//middle one:	left: 60 top: 35 right: 72 bottom: 36
-//					//bottom one:	left: 67 top: 39 right: 69 bottom: 40
-////					cout<<wallBlockingLight.a.x<<" top: "<<wallBlockingLight.a.y<<" "<<wallBlockingLight.b.x<<" bot: "<<wallBlockingLight.b.y;
-////					cout<<"t: "<<i + camera.row<<" b: "<<i + camera.row + 1<<" l: "<<j + camera.col<<" r: "<<j + k + camera.col;               //!!!   ezeket az értékeket kéne átadni a funkciónak ami a vonalakat számolja
-//					
-//					//két vonal ami közrefogja a téglalapot ezt az egészet 2 függvényben meg tudom oldani yay
-//					
-//					//MIT KÉNE CSINÁLNI? aka NEW CODE PLAN                                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//					//eddig megvan a téglalapunk és a point of viewnk
-//					//meg kell határozni a két vonalat ami köztefogja, ezt a getLineOfSight fügvénnyel meg tudom oldani, lehet hogy bezavar az hogy abban is van egy int i? dunno will find out but keep an eye out for that case
-//					//el kell döntenem hogy mi esik a fal mögé, és mi esik a fal elé hogy mit is kéne eltakarnom
-//					//amit el kell takarnom azt belenyomkodom a newWorldbe hogy  a rendering megoldja 
-//					
-//					//NEW CODE:
-//					
-//					//get line equations:
-//					lineA = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col, lineB, false);
-//					lineB = getLineOfSight(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col, lineA, true);
-//					
-//					//what is behind the wall:
-//					//prolly gonna do it simulatneously with the rendering preparations
-//					//rewriting isBehindWall
-//					//done with rewriting isBehindWall
-//					//need to rewrite isWhollyInShadow
-//					//it is done probably
-//					
-//					for (int g = 0; g < SCREENROWS; g++)
-//					{
-//						for (int h = 0; h < SCREENCOLS; h++)
-//						{
-//							if (/*isWhollyInShadow(lineA, lineB, g + camera.row, h + camera.col) && */isBehindWall(playerPov, g + camera.row, h + camera.col, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col))
-//							{   // is it between the shadows, and is it behind the wall
-//								newWorld[g + camera.row][h + camera.col].mapInView = false;
-//							}
-//						}
-//					}
-//					
-//					//isBehindWall: a falak is le vannak árnyékolva dunno why
-//					//isWhollyInShadow: ha felette s balra van akkor tökéletesen mükszik ha simán felette van akkor meghal lehet hogy azzal van abaja hogy nincs in view a cucc but dunno...
-//					
-//					//not quite good but hey its..something
-//					
-//					//OLD CODE:
-////					lineA = getLineEquation(playerPov.x, playerPov.y, wallBlockingLight.a.x, wallBlockingLight.a.y);
-////					lineAOverLine = isLineOverLine(lineA, i + camera.row + 0.5, j + camera.col + 0.5);
-////					lineB = getLineEquation(playerPov.x, playerPov.y, wallBlockingLight.b.x, wallBlockingLight.b.y);
-////					lineBOverLine = isLineOverLine(lineB, i + camera.row + 0.5, j + camera.col + 0.5);
-////					
-////					isPlayerNextTo = isPlayerNextToRectangle(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col);
-////					isPlayerOverOrUnder = isPlayerOverOrUnderRectangle(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col);
-////					
-////					for (int g = 0; g < SCREENROWS; g++)
-////					{
-////						for (int h = 0; h < SCREENCOLS; h++)
-////						{
-////							if (isWhollyInShadow(lineA, lineB, lineAOverLine, lineBOverLine, g + camera.row, h + camera.col))
-////							{
-////								if (isBehindWall(playerPov, g + camera.row, h + camera.col, isPlayerNextTo, isPlayerOverOrUnder, i + camera.row, i + camera.row + 1, j + k + camera.col + 1, j + camera.col))
-////								{
-////									newWorld[g + camera.row][h + camera.col].mapInView = false;
-////								}  //isBehindWall is probably not working right
-////							}
-////						}
-////					}
-//
-//					//what became obselete:
-//					//isPlayerNextTo isPlayerNextToRectangle
-//					//isPlayerUnderOrOver isPlayerUnderOrOverRectangle
-//					//wallBlockingLIght getRectangleEdges
-//					//lineAOverline lineBOverline isLineOverline
-//					
-//					j = j + k;   //comment this shit out at the endt dud!
-//				}
-//				else
-//				{
-//					j++;
-//				}
-//			}
-//		}
-		
 		//end of shadow functions
 		
 		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
@@ -516,11 +309,6 @@ int main()
 		renderScreen(oldScreen, newScreen);
 		
 		renderMenu(oldMenu, newMenu);
-		
-//		goTo(0, 0);
-//		cout<<"row: "<<player.row<<" col: "<<player.col;
-//		goTo(1, 0);
-//		cout<<"row: "<<playerPov.y<<" col: "<<playerPov.x;
 	}
 	
 	//END OF THE GAME LOOP
