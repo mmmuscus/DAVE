@@ -69,17 +69,7 @@ int main()
 	
 	koordinate playerPov;
 	
-	rectangle wallBlockingLight;
-	
-	line lineA;
-	bool lineAOverLine;
-	line lineB;
-	bool lineBOverLine;
-	
 	edgeLines edges;
-	
-	bool isPlayerNextTo;
-	bool isPlayerOverOrUnder;
 	
 	
 	//RENDER
@@ -191,6 +181,8 @@ int main()
 		// X COL    Y ROW OMG !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
 		//SHADOW FUNCTIONS
+		//&&& ha egy vízszintes téglalaptól jobbra van a játékos és 2 távolságra akkor valamiért a felsõ vonal egyel korábban indul(?)
+		// ^ valahol van egy >= vagy <= egy > vagy egy < helyett i dont care enough to solve it now though...
 		
 		playerPov = getPov(playerPov, player, height, width);
 		
@@ -269,6 +261,8 @@ int main()
 		}
 		//end of shadow functions
 		
+		//meg kell határozni az isEdgeket
+		
 		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 		for (int i = 0; i < SCREENROWS; i++)
@@ -303,8 +297,6 @@ int main()
 		{
 			newMenu[i][0] = screenDivisionTexture;
 		}
-		
-		//RENDER IT IS DONE...MAYBE...PROBABLY THO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
 		renderScreen(oldScreen, newScreen);
 		
