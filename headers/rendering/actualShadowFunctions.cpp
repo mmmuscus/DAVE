@@ -4,7 +4,7 @@
 
 // GET COORDINATES OF THE THINGS I GUESS
 
-koordinate getPov(koordinate pov, mob playr, double heigt, double widt)      //DUBLE CHECK NEEDED JUST IN CASE //&&&
+koordinate getPov(koordinate pov, mob playr)      //DUBLE CHECK NEEDED JUST IN CASE //&&&
 {
 	pov.x = playr.col + 0.5;
 	pov.y = playr.row + 0.5;
@@ -179,6 +179,87 @@ edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left)
 			edg.second = getLineEquation(pov.x, pov.y, right, bot);
 			edg.second.isItUnderLine = true;
 			return edg;
+		}
+	}
+}
+
+//SHADOW FUNCTIONS
+//&&& ha egy vízszintes téglalaptól jobbra van a játékos és 2 távolságra akkor valamiért a felsõ vonal egyel korábban indul(?)
+// ^ valahol van egy >= vagy <= egy > vagy egy < helyett i dont care enough to solve it now though...
+
+void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRow, koordinate pov, edgeLines edg)
+{
+	for (int i = 0; i < SCREENROWS; i++)
+	{
+		int j = 0;
+			
+		while (j < SCREENCOLS)
+		{
+			if (world[i + cameraRow][j + cameraCol].solid)
+			{
+				int k = 0;
+				
+				while (world[i + cameraRow][j + cameraCol + k].solid)
+				{
+					k++;
+				}
+				
+				edg = getEdgeLines(pov, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol);
+				
+				for (int g = 0; g < SCREENROWS; g++)
+				{
+					for(int h = 0; h < SCREENCOLS; h++)
+					{
+						if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) && isBehindWall(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
+						{
+							world[g + cameraRow][h + cameraCol].mapInView = false;
+						}
+					}
+				}
+				
+				j += k;
+			}
+			else
+			{
+				j++;
+			}
+		}
+	}
+	
+	for (int i = 0; i < SCREENCOLS; i++)
+	{
+		int j = 0;
+		
+		while (j < SCREENROWS)
+		{
+			if (world[j + cameraRow][i + cameraCol].solid)
+			{
+				int k = 0;
+				
+				while (world[j + cameraRow + k][i + cameraCol].solid)
+				{
+					k++;
+				}
+				
+				edg = getEdgeLines(pov, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol);
+				
+				for (int g = 0; g < SCREENROWS; g++)
+				{
+					for(int h = 0; h < SCREENCOLS; h++)
+					{
+						if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) && isBehindWall(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol))
+						{
+							world[g + cameraRow][h + cameraCol].mapInView = false;
+						}
+					}
+				}
+				
+				j += k;
+			}
+			else
+			{
+				j++;
+			}
 		}
 	}
 }

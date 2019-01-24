@@ -1,6 +1,6 @@
 #include "../system/system.h"
 
-koordinate getPov(koordinate pov, mob playr, double heigt, double widt);
+koordinate getPov(koordinate pov, mob playr);
 
 line getLineEquation(double aXCol, double aYRow, int bXCol, int bYRow);
 
@@ -15,3 +15,5 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int r
 // secon d megoldas maybe lets see
 
 edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left);
+
+void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRow, koordinate pov, edgeLines edg);

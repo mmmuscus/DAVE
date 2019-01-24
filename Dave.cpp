@@ -17,9 +17,6 @@
 
 using namespace std;
 
-const double height = /*2.16*/ 1.0;
-const double width = /*1.4375*/ 1.0;
-
 const char playerTexture = '@';
 const char screenDivisionTexture = '#';
 
@@ -108,7 +105,7 @@ int main()
 	
 	playerInFov = getPlayerPosInFov(player, playerInFov);
 	
-	playerPov = getPov(playerPov, player, height, width);
+	playerPov = getPov(playerPov, player);
 	
 	char solid[SOLIDCOUNT];
 	char walkable[WALKABLECOUNT];
@@ -139,8 +136,6 @@ int main()
 		isSPressed = sPressed();
 		isDPressed = dPressed();
 		isEscPressed = escPressed();
-
-//		getInput(input);
 
 		cancelOut(isWPressed, isSPressed);
 		cancelOut(isAPressed, isDPressed);
@@ -178,90 +173,9 @@ int main()
 		playerInFov = getPlayerPosInFov(player, playerInFov);
 		addFovInfoToMap(newWorld, player, playerInFov, currentFov);
 		
-		// X COL    Y ROW OMG !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		playerPov = getPov(playerPov, player);
 		
-		//SHADOW FUNCTIONS
-		//&&& ha egy vízszintes téglalaptól jobbra van a játékos és 2 távolságra akkor valamiért a felsõ vonal egyel korábban indul(?)
-		// ^ valahol van egy >= vagy <= egy > vagy egy < helyett i dont care enough to solve it now though...
-		
-		playerPov = getPov(playerPov, player, height, width);
-		
-		for (int i = 0; i < SCREENROWS; i++)
-		{
-			int j = 0;
-			
-			while (j < SCREENCOLS)
-			{
-				if (newWorld[i + camera.row][j + camera.col].solid)
-				{
-					int k = 0;
-					
-					while (newWorld[i + camera.row][j + camera.col + k].solid)
-					{
-						k++;
-					}
-					
-					edges = getEdgeLines(playerPov, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col);
-					
-					for (int g = 0; g < SCREENROWS; g++)
-					{
-						for(int h = 0; h < SCREENCOLS; h++)
-						{
-							if (isBetweenLines(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, i + camera.row, i + camera.row + 1, j + k + camera.col, j + camera.col))
-							{
-								newWorld[g + camera.row][h + camera.col].mapInView = false;
-							}
-						}
-					}
-					
-					j += k;
-				}
-				else
-				{
-					j++;
-				}
-			}
-		}
-		
-		for (int i = 0; i < SCREENCOLS; i++)
-		{
-			int j = 0;
-			
-			while (j < SCREENROWS)
-			{
-				if (newWorld[j + camera.row][i + camera.col].solid)
-				{
-					int k = 0;
-					
-					while (newWorld[j + camera.row + k][i + camera.col].solid)
-					{
-						k++;
-					}
-					
-					edges = getEdgeLines(playerPov, j + camera.row, j + k + camera.row, i + camera.col + 1, i + camera.col);
-					
-					for (int g = 0; g < SCREENROWS; g++)
-					{
-						for(int h = 0; h < SCREENCOLS; h++)
-						{
-							if (isBetweenLines(edges.first, edges.second, g + camera.row, h + camera.col) && isBehindWall(playerPov, g + camera.row, h + camera.col, j + camera.row, j + k + camera.row, i + camera.col + 1, i + camera.col))
-							{
-								newWorld[g + camera.row][h + camera.col].mapInView = false;
-							}
-						}
-					}
-					
-					j += k;
-				}
-				else
-				{
-					j++;
-				}
-			}
-		}
-		//end of shadow functions
-		
-		//meg kell határozni az isEdgeket
+		shadowFunction(newWorld, camera.col, camera.row, playerPov, edges);
 		
 		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
