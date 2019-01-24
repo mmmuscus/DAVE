@@ -20,14 +20,7 @@ void initRight(fov dir[FOVROWS][FOVCOLS])
 			{
 				dir[i][j].inView = true;
 				
-				if (cahr == '_')
-				{
-					dir[i][j].isEdge = true;
-				}
-				else
-				{
-					dir[i][j].isEdge = false;
-				}
+				dir[i][j].isEdge = false;
 			}
 			else
 			{
@@ -66,14 +59,7 @@ void initLeft(fov dir[FOVROWS][FOVCOLS])
 			{
 				dir[i][j].inView = true;
 				
-				if (cahr == '_')
-				{
-					dir[i][j].isEdge = true;
-				}
-				else
-				{
-					dir[i][j].isEdge = false;
-				}
+				dir[i][j].isEdge = false;
 			}
 			else
 			{
@@ -112,14 +98,7 @@ void initUp(fov dir[FOVROWS][FOVCOLS])
 			{
 				dir[i][j].inView = true;
 				
-				if (cahr == '_')
-				{
-					dir[i][j].isEdge = true;
-				}
-				else
-				{
-					dir[i][j].isEdge = false;
-				}
+				dir[i][j].isEdge = false;
 			}
 			else
 			{
@@ -158,14 +137,7 @@ void initDown(fov dir[FOVROWS][FOVCOLS])
 			{
 				dir[i][j].inView = true;
 				
-				if (cahr == '_')
-				{
-					dir[i][j].isEdge = true;
-				}
-				else
-				{
-					dir[i][j].isEdge = false;
-				}
+				dir[i][j].isEdge = false;
 			}
 			else
 			{
@@ -204,14 +176,7 @@ void initRightUp(fov dir[FOVROWS][FOVCOLS])
 			{
 				dir[i][j].inView = true;
 				
-				if (cahr == '_')
-				{
-					dir[i][j].isEdge = true;
-				}
-				else
-				{
-					dir[i][j].isEdge = false;
-				}
+				dir[i][j].isEdge = false;
 			}
 			else
 			{
@@ -250,14 +215,7 @@ void initRightDown(fov dir[FOVROWS][FOVCOLS])
 			{
 				dir[i][j].inView = true;
 				
-				if (cahr == '_')
-				{
-					dir[i][j].isEdge = true;
-				}
-				else
-				{
-					dir[i][j].isEdge = false;
-				}
+				dir[i][j].isEdge = false;
 			}
 			else
 			{
@@ -296,14 +254,7 @@ void initLeftUp(fov dir[FOVROWS][FOVCOLS])
 			{
 				dir[i][j].inView = true;
 				
-				if (cahr == '_')
-				{
-					dir[i][j].isEdge = true;
-				}
-				else
-				{
-					dir[i][j].isEdge = false;
-				}
+				dir[i][j].isEdge = false;
 			}
 			else
 			{
@@ -342,14 +293,7 @@ void initLeftDown(fov dir[FOVROWS][FOVCOLS])
 			{
 				dir[i][j].inView = true;
 				
-				if (cahr == '_')
-				{
-					dir[i][j].isEdge = true;
-				}
-				else
-				{
-					dir[i][j].isEdge = false;
-				}
+				dir[i][j].isEdge = false;
 			}
 			else
 			{

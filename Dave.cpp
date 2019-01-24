@@ -178,6 +178,7 @@ int main()
 		shadowFunction(newWorld, camera.col, camera.row, playerPov, edges);
 		
 		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+		//akkor lesz isedge ha van mellette isinview ami nem solid és van mellette !isinview
 
 		for (int i = 0; i < SCREENROWS; i++)
 		{
