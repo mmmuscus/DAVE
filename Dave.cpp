@@ -173,13 +173,27 @@ int main()
 		playerInFov = getPlayerPosInFov(player, playerInFov);
 		addFovInfoToMap(newWorld, player, playerInFov, currentFov);
 		
+		//SHADOW FUNCTIONS IS DONE BELOW:
 		playerPov = getPov(playerPov, player);
-		
+	
 		shadowFunction(newWorld, camera.col, camera.row, playerPov, edges);
 		
 		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-		//akkor lesz isedge ha van mellette isinview ami nem solid és van mellette !isinview
+		//akkor lesz isedge ha van mellette isinview ami nem solid és van mellette !isinview plusz ha õ is !solid
+		for (int i = 0; i < SCREENROWS; i++)
+		{
+			for (int j = 0; j < SCREENCOLS; j++)
+			{
+				//ha invew és nem solid
+				if (newWorld[i + camera.row][j + camera.col].mapInView && !newWorld[i + camera.row][j + camera.col].solid)
+				{
+					//function ami eldönti h van e mellette isinview ami nem solid
+					//function amki eldönti h van e mellette !isinview
+				}
+			}
+		}
 
+		//this is filling out mapIsEdge
 		for (int i = 0; i < SCREENROWS; i++)
 		{
 			for (int j = 0; j < SCREENCOLS; j++)
