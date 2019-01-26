@@ -17,3 +17,7 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int r
 edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left);
 
 void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRow, koordinate pov, edgeLines edg);
+
+bool isBesideNotSolidInView(map world[WORLDROWS][WORLDCOLS], int xCol, int yRow);
+
+bool isBesideNotInView(map world[WORLDROWS][WORLDCOLS], int xCol, int yRow);
