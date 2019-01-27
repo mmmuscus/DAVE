@@ -185,10 +185,15 @@ int main()
 			for (int j = 0; j < SCREENCOLS; j++)
 			{
 				//ha invew és nem solid
+				//olyat kell találnom ami jó notinviewre!!!
 				if (newWorld[i + camera.row][j + camera.col].mapInView && !newWorld[i + camera.row][j + camera.col].solid)
 				{
 					//function ami eldönti h van e mellette isinview ami nem solid
 					//function amki eldönti h van e mellette !isinview
+					if (isBesideNotInView(newWorld, j + camera.col, i + camera.row) && isBesideNotSolidInView(newWorld, j + camera.col, i + camera.row))
+					{
+						newWorld[i + camera.row][j + camera.col].mapIsEdge = true;
+					}
 				}
 			}
 		}
