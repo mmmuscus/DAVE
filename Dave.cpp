@@ -182,17 +182,37 @@ int main()
 		
 		//comment this out if tests look ugly ¡ 
 		//akkor lesz isedge ha van mellette isinview ami nem solid és van mellette !isinview plusz ha õ is !solid
+		//is not actually working
+//		for (int i = 0; i < SCREENROWS; i++)
+//		{
+//			for (int j = 0; j < SCREENCOLS; j++)
+//			{
+//				//ha invew és nem solid
+//				//olyat kell találnom ami jó notinviewre!!!
+//				if (newWorld[i + camera.row][j + camera.col].mapInView && !newWorld[i + camera.row][j + camera.col].solid)
+//				{
+//					//function ami eldönti h van e mellette isinview ami nem solid
+//					//function amki eldönti h van e mellette !isinview
+//					if (isBesideNotInView(newWorld, j + camera.col, i + camera.row) && isBesideNotSolidInView(newWorld, j + camera.col, i + camera.row))
+//					{
+//						newWorld[i + camera.row][j + camera.col].mapIsEdge = true;
+//					}
+//				}
+//			}
+//		}
+		
+		//rewirite time:
+		//why is this not working?
+		//if this is working dont forget to delete the stuffz from rendering (the for for below this)
 		for (int i = 0; i < SCREENROWS; i++)
 		{
 			for (int j = 0; j < SCREENCOLS; j++)
 			{
-				//ha invew és nem solid
 				//olyat kell találnom ami jó notinviewre!!!
-				if (newWorld[i + camera.row][j + camera.col].mapInView && !newWorld[i + camera.row][j + camera.col].solid)
+				if (!newWorld[i + camera.row][j + camera.col].mapInView)
 				{
-					//function ami eldönti h van e mellette isinview ami nem solid
-					//function amki eldönti h van e mellette !isinview
-					if (isBesideNotInView(newWorld, j + camera.col, i + camera.row) && isBesideNotSolidInView(newWorld, j + camera.col, i + camera.row))
+					//function ami megnézi h van e mellette inview ami nem solid
+					if (isBesideNotSolidInView(newWorld, j + camera.col, i + camera.row))
 					{
 						newWorld[i + camera.row][j + camera.col].mapIsEdge = true;
 					}
@@ -218,7 +238,14 @@ int main()
 				}
 				else
 				{
-					newScreen[i][j] = char(178);
+					if (newWorld[i + camera.row][j + camera.col].mapIsEdge)
+					{
+							newScreen[i][j] = char(176);
+					}
+					else
+					{
+						newScreen[i][j] = char(178);
+					}
 				}
 			}
 		}
