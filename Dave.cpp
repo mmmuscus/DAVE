@@ -208,7 +208,6 @@ int main()
 		{
 			for (int j = 0; j < SCREENCOLS; j++)
 			{
-				//olyat kell találnom ami jó notinviewre!!!
 				if (!newWorld[i + camera.row][j + camera.col].mapInView)
 				{
 					//function ami megnézi h van e mellette inview ami nem solid
