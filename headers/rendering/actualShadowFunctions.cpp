@@ -264,18 +264,16 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 	}
 }
 
+// i need to rewrite this cos sg is really bad
 bool isBesideNotSolidInView(map world[WORLDROWS][WORLDCOLS], int xCol, int yRow)
 {
 	for (int i = yRow - 1; i <= yRow + 1; i++)
 	{
 		for (int j = xCol - 1; j <= xCol; j++)
 		{
-			if (i != yRow || j != xCol)
+			if (world[i][j].mapInView /*&& !world[i][j].solid*/)
 			{
-				if (world[i][j].mapInView && !world[i][j].solid)
-				{
-					return true;
-				}
+				return true;
 			}
 		}
 	}

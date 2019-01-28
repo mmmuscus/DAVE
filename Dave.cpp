@@ -176,6 +176,7 @@ int main()
 		//SHADOW FUNCTIONS IS DONE BELOW:
 		playerPov = getPov(playerPov, player);
 	
+		//&&& edges is felesleges RIGHT HERE BELOW
 		shadowFunction(newWorld, camera.col, camera.row, playerPov, edges);
 		
 		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
@@ -204,17 +205,34 @@ int main()
 		//rewirite time:
 		//why is this not working?
 		//if this is working dont forget to delete the stuffz from rendering (the for for below this)
+//		for (int i = 0; i < SCREENROWS; i++)
+//		{
+//			for (int j = 0; j < SCREENCOLS; j++)
+//			{
+//				if (!newWorld[i + camera.row][j + camera.col].mapInView)
+//				{
+//					//function ami megnézi h van e mellette inview ami nem solid
+//					if (isBesideNotSolidInView(newWorld, j + camera.col, i + camera.row))
+//					{
+//						newWorld[i + camera.row][j + camera.col].mapIsEdge = true;
+//					}
+//				}
+//			}
+//		}
+		
+		//re rewrite time:
+		//okay sg is not rite cos it freezes and stops ehe ^^" 
 		for (int i = 0; i < SCREENROWS; i++)
 		{
 			for (int j = 0; j < SCREENCOLS; j++)
 			{
 				if (!newWorld[i + camera.row][j + camera.col].mapInView)
 				{
-					//function ami megnézi h van e mellette inview ami nem solid
-					if (isBesideNotSolidInView(newWorld, j + camera.col, i + camera.row))
-					{
+					//function which decides if there are any spaces beside this one that are in view and not solid
+//					if (isBesideNotSolidInView(newWorld, i + camera.row, j + camera.col))
+//					{
 						newWorld[i + camera.row][j + camera.col].mapIsEdge = true;
-					}
+//					}
 				}
 			}
 		}
