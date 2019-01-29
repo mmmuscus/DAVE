@@ -228,11 +228,11 @@ int main()
 			{
 				if (!newWorld[i + camera.row][j + camera.col].mapInView)
 				{
-					//function which decides if there are any spaces beside this one that are in view and not solid
-//					if (isBesideNotSolidInView(newWorld, i + camera.row, j + camera.col))
-//					{
+//					function which decides if there are any spaces beside this one that are in view and not solid
+					if (isBesideNotSolidInView(newWorld, i + camera.row, j + camera.col))
+					{
 						newWorld[i + camera.row][j + camera.col].mapIsEdge = true;
-//					}
+					}
 				}
 			}
 		}

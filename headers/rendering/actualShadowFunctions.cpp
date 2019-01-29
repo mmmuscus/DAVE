@@ -271,7 +271,7 @@ bool isBesideNotSolidInView(map world[WORLDROWS][WORLDCOLS], int xCol, int yRow)
 	{
 		for (int j = xCol - 1; j <= xCol; j++)
 		{
-			if (world[i][j].mapInView /*&& !world[i][j].solid*/)
+			if (world[j][i].mapInView && !world[j][i].solid)
 			{
 				return true;
 			}
