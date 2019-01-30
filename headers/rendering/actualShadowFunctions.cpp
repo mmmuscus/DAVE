@@ -265,11 +265,12 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 }
 
 // i need to rewrite this cos sg is really bad
+// there is still a bug it is shaped like the camera, while there is a camera pan
 bool isBesideNotSolidInView(map world[WORLDROWS][WORLDCOLS], int xCol, int yRow)
 {
 	for (int i = yRow - 1; i <= yRow + 1; i++)
 	{
-		for (int j = xCol - 1; j <= xCol; j++)
+		for (int j = xCol - 1; j <= xCol + 1; j++)
 		{
 			if (world[j][i].mapInView && !world[j][i].solid)
 			{
