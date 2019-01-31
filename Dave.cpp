@@ -219,14 +219,6 @@ int main()
 //				}
 //			}
 //		}
-		
-//		for (int i = 0, i < SCREENROWS; i++)
-//		{
-//			for (int j = 0; j < SCREENCOLS; j++)
-//			{
-//				if (newWorld[i + cam])
-//			}
-//		}
 			
 		//re rewrite time:
 		//okay sg is not rite cos it freezes and stops ehe ^^" 
