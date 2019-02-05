@@ -182,7 +182,6 @@ int main()
 		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 			
 		//re rewrite time:
-		//okay sg is not rite cos it freezes and stops ehe ^^" 
 		for (int i = 0; i < SCREENROWS; i++)
 		{
 			for (int j = 0; j < SCREENCOLS; j++)
