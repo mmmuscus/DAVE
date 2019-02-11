@@ -180,7 +180,21 @@ int main()
 		shadowFunction(newWorld, camera.col, camera.row, playerPov, edges);
 		
 		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-			
+		
+		//possible bugfix
+		//looping through the rows and cols just outside view, and making them not in view so the rows and cols beside wont register falsly as isEdge
+		for (int i = 0; i < SCREENROWS + 2; i++)
+		{
+			newWorld[camera.row - 1 + i][camera.col - 1].mapInView = false;
+			newWorld[camera.row - 1 + i][camera.col + SCREENCOLS].mapInView = false;
+		}
+		
+		for (int i = 0; i < SCREENCOLS + 2; i++)
+		{
+			newWorld[camera.row - 1][camera.col - 1 + i].mapInView = false;
+			newWorld[camera.row + SCREENROWS][camera.col - 1 + i].mapInView = false;
+		}
+		
 		//re rewrite time:
 		for (int i = 0; i < SCREENROWS; i++)
 		{

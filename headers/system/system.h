@@ -18,7 +18,7 @@
 #define FOVROWS 21
 #define FOVCOLS 35
 
-#define WORLDROWS 75
+#define WORLDROWS 87
 #define WORLDCOLS 231
 
 #define SOLIDCOUNT 5
