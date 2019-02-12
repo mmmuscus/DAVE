@@ -22,6 +22,10 @@ const char screenDivisionTexture = '#';
 
 int main()
 {	
+	//making cin cout faster, we ll see if there is any problems there
+	//&&& lets uncomment this when we implement inits with freopen
+//	ios_base::sync_with_stdio(false);
+	
 	//INPUT
 	
 //	in input;
