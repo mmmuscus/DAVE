@@ -239,7 +239,10 @@ int main()
 					}
 					else
 					{
-						newScreen[i][j] = char(178);
+						//&&& possible choice between black or white shadows
+//						newScreen[i][j] = char(178);
+						//if you choose the black shadow make sure you make some marks on the ground (eg.: . : , ; - ¡ ^) somer rubbble to make sure what you do see and what you dont
+						newScreen[i][j] = ' ';
 					}
 				}
 			}
