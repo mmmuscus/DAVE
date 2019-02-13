@@ -281,3 +281,36 @@ bool isBesideNotSolidInView(map world[WORLDROWS][WORLDCOLS], int xCol, int yRow)
 	
 	return false;
 }
+
+void mapIsEdgeCalculation(map world[WORLDROWS][WORLDCOLS], int cameraRow, int cameraCol)
+{
+	//possible bugfix
+	//looping through the rows and cols just outside view, and making them not in view so the rows and cols beside wont register falsly as isEdge
+	for (int i = 0; i < SCREENROWS + 2; i++)
+	{
+		world[cameraRow - 1 + i][cameraCol - 1].mapInView = false;
+		world[cameraRow - 1 + i][cameraCol + SCREENCOLS].mapInView = false;
+	}
+	
+	for (int i = 0; i < SCREENCOLS + 2; i++)
+	{
+		world[cameraRow - 1][cameraCol - 1 + i].mapInView = false;
+		world[cameraRow + SCREENROWS][cameraCol - 1 + i].mapInView = false;
+	}
+	
+	//re rewrite time:
+	for (int i = 0; i < SCREENROWS; i++)
+	{
+		for (int j = 0; j < SCREENCOLS; j++)
+		{
+			if (!world[i + cameraRow][j + cameraCol].mapInView)
+			{
+//				function which decides if there are any spaces beside this one that are in view and not solid
+				if (isBesideNotSolidInView(world, i + cameraRow, j + cameraCol))
+				{
+					world[i + cameraRow][j + cameraCol].mapIsEdge = true;
+				}
+			}
+		}
+	}
+}

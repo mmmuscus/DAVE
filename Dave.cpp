@@ -183,38 +183,9 @@ int main()
 		//&&& edges is felesleges RIGHT HERE BELOW
 		shadowFunction(newWorld, camera.col, camera.row, playerPov, edges);
 		
-		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+		mapIsEdgeCalculation(newWorld, camera.row, camera.col);
 		
-		//possible bugfix
-		//looping through the rows and cols just outside view, and making them not in view so the rows and cols beside wont register falsly as isEdge
-		for (int i = 0; i < SCREENROWS + 2; i++)
-		{
-			newWorld[camera.row - 1 + i][camera.col - 1].mapInView = false;
-			newWorld[camera.row - 1 + i][camera.col + SCREENCOLS].mapInView = false;
-		}
-		
-		for (int i = 0; i < SCREENCOLS + 2; i++)
-		{
-			newWorld[camera.row - 1][camera.col - 1 + i].mapInView = false;
-			newWorld[camera.row + SCREENROWS][camera.col - 1 + i].mapInView = false;
-		}
-		
-		//re rewrite time:
-		for (int i = 0; i < SCREENROWS; i++)
-		{
-			for (int j = 0; j < SCREENCOLS; j++)
-			{
-				if (!newWorld[i + camera.row][j + camera.col].mapInView)
-				{
-//					function which decides if there are any spaces beside this one that are in view and not solid
-					if (isBesideNotSolidInView(newWorld, i + camera.row, j + camera.col))
-					{
-						newWorld[i + camera.row][j + camera.col].mapIsEdge = true;
-					}
-				}
-			}
-		}
-
+		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 		//this is filling out mapIsEdge
 		for (int i = 0; i < SCREENROWS; i++)
 		{
@@ -222,14 +193,7 @@ int main()
 			{
 				if (newWorld[i + camera.row][j + camera.col].mapInView)
 				{
-					if (newWorld[i + camera.row][j + camera.col].mapIsEdge)
-					{
-							newScreen[i][j] = char(176);
-					}
-					else
-					{
-						newScreen[i][j] = newWorld[i + camera.row][j + camera.col].texture;
-					}
+					newScreen[i][j] = newWorld[i + camera.row][j + camera.col].texture;
 				}
 				else
 				{
