@@ -84,3 +84,31 @@ void renderMenu(char oldM[SCREENROWS][MENUCOLS], char newM[SCREENROWS][MENUCOLS]
 		}
 	}
 }
+
+void calculateScreen(map world[WORLDROWS][WORLDCOLS], char screen[SCREENROWS][SCREENCOLS], int cameraRow, int cameraCol)
+{
+	for (int i = 0; i < SCREENROWS; i++)
+	{
+		for (int j = 0; j < SCREENCOLS; j++)
+		{
+			if (world[i + cameraRow][j + cameraCol].mapInView)
+			{
+				screen[i][j] = world[i + cameraRow][j + cameraCol].texture;
+			}
+			else
+			{
+				if (world[i + cameraRow][j + cameraCol].mapIsEdge)
+				{
+						screen[i][j] = char(176);
+				}
+				else
+				{
+					//&&& possible choice between black or white shadows
+					screen[i][j] = char(178);
+					//if you choose the black shadow make sure you make some marks on the ground (eg.: . : , ; - ¡ ^) somer rubbble to make sure what you do see and what you dont
+//					screen[i][j] = ' ';
+				}
+			}
+		}
+	}
+}

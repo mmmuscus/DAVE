@@ -187,30 +187,7 @@ int main()
 		
 		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 		//this is filling out mapIsEdge
-		for (int i = 0; i < SCREENROWS; i++)
-		{
-			for (int j = 0; j < SCREENCOLS; j++)
-			{
-				if (newWorld[i + camera.row][j + camera.col].mapInView)
-				{
-					newScreen[i][j] = newWorld[i + camera.row][j + camera.col].texture;
-				}
-				else
-				{
-					if (newWorld[i + camera.row][j + camera.col].mapIsEdge)
-					{
-							newScreen[i][j] = char(176);
-					}
-					else
-					{
-						//&&& possible choice between black or white shadows
-						newScreen[i][j] = char(178);
-						//if you choose the black shadow make sure you make some marks on the ground (eg.: . : , ; - ¡ ^) somer rubbble to make sure what you do see and what you dont
-//						newScreen[i][j] = ' ';
-					}
-				}
-			}
-		}
+		calculateScreen(newWorld, newScreen, camera.row, camera.col);
 		
 		if (newScreen[lastPlayer.row - camera.row][lastPlayer.col - camera.col] == playerTexture)
 		{		
