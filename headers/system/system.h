@@ -3,7 +3,8 @@
 #include <fstream>
 #include <winnt.h>
 #include <stdio.h>
-
+#include <String>
+using namespace std;
 
 #ifndef DEFINE_INITTT
 #define DEFINE_INITTT

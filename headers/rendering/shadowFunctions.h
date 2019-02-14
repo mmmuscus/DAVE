@@ -1,23 +1,5 @@
 #include "../system/system.h"
 
-//INITIALISE THE STUFF OMG
-
-void initRight(fov direction[FOVROWS][FOVCOLS]);
-
-void initLeft(fov dir[FOVROWS][FOVCOLS]);
-
-void initUp(fov dir[FOVROWS][FOVCOLS]);
-
-void initDown(fov dir[FOVROWS][FOVCOLS]);
-
-void initRightUp(fov dir[FOVROWS][FOVCOLS]);
-
-void initRightDown(fov dir[FOVROWS][FOVCOLS]);
-
-void initLeftUp(fov dir[FOVROWS][FOVCOLS]);
-
-void initLeftDown(fov dir[FOVROWS][FOVCOLS]);
-
 //SET CURRENT FOV
 
 void makeCurrentFov(fov presetDir[FOVROWS][FOVCOLS], fov toBeDir[FOVROWS][FOVCOLS]);

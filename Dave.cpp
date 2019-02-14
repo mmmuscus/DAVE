@@ -15,7 +15,7 @@
 #include "headers/rendering/actualShadowFunctions.h"
 
 
-using namespace std;
+//using namespace std;
 
 const char playerTexture = '@';
 const char screenDivisionTexture = '#';
@@ -96,14 +96,14 @@ int main()
 	
 	fov currentFov[FOVROWS][FOVCOLS];
 	
-	initRight(right);
-	initLeft(left);
-	initUp(up);
-	initDown(down);
-	initRightUp(rightUp);
-	initRightDown(rightDown);
-	initLeftUp(leftUp);
-	initLeftDown(leftDown);
+	initFOV(right, "FOVs/right.txt");
+	initFOV(left, "FOVs/left.txt");
+	initFOV(down, "FOVs/down.txt");
+	initFOV(up, "FOVs/up.txt");
+	initFOV(rightDown, "FOVs/rightDown.txt");
+	initFOV(rightUp, "FOVs/rightUp.txt");
+	initFOV(leftDown, "FOVs/leftDown.txt");
+	initFOV(leftUp, "FOVs/leftUp.txt");
 	
 	makeCurrentFov(right, currentFov);
 	

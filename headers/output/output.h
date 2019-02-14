@@ -9,3 +9,5 @@ void initSolid(char solide[SOLIDCOUNT]);
 void initWalkable(char walkablee[WALKABLECOUNT]);
 
 void initWorld(map world[WORLDROWS][WORLDCOLS], char solide[SOLIDCOUNT], char walkablee[WALKABLECOUNT]);
+
+void initFOV(fov [FOVROWS][FOVCOLS], string fileName);

@@ -93,3 +93,41 @@ void initWorld(map world[WORLDROWS][WORLDCOLS], char solide[SOLIDCOUNT], char wa
 	
 	fbe.close();
 }
+
+void initFOV(fov dir[FOVROWS][FOVCOLS], string fileName)
+{
+	char cahr;
+	
+	freopen(fileName.c_str(),"r",stdin);
+	
+	for (int i = 0; i < FOVROWS; i++)
+	{
+		for (int j = 0; j < FOVCOLS; j++)
+		{
+			cin>>cahr;
+			
+			if (cahr == 'x' || cahr == '_')
+			{
+				dir[i][j].inView = true;
+				dir[i][j].isEdge = false;
+			}
+			else
+			{
+				dir[i][j].inView = false;
+				dir[i][j].isEdge = false;
+			}
+			
+			if (cahr == '@')
+			{
+				dir[i][j].isPlayer = true;
+				dir[i][j].inView = true;
+			}
+			else
+			{
+				dir[i][j].isPlayer = false;
+			}
+		}
+	}
+	
+	fclose(stdin);
+}
