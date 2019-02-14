@@ -24,9 +24,10 @@ void saveLastMenuArray(char oldM[SCREENROWS][MENUCOLS], char newM[SCREENROWS][ME
 	}
 }
 
-void initSolid(char solide[SOLIDCOUNT])
+void initSolid(char solide[SOLIDCOUNT], string fileName)
 {
-	fstream fbe ("materials/solid.txt");
+	fstream fbe (fileName.c_str());
+//	freopen(fileName.c_str(),"r",stdin);
 	
 	for (int i = 0; i < SOLIDCOUNT; i++)
 	{
@@ -34,11 +35,13 @@ void initSolid(char solide[SOLIDCOUNT])
 	}
 	
 	fbe.close();
+//	fclose(stdin);
 }
 
-void initWalkable(char walkablee[WALKABLECOUNT])
+void initWalkable(char walkablee[WALKABLECOUNT], string fileName)
 {
-	fstream fbe ("materials/walkable.txt");
+	fstream fbe (fileName.c_str());
+//	freopen(fileName.c_str(),"r",stdin);
 	
 	for (int i = 0; i < WALKABLECOUNT; i++)
 	{
@@ -46,19 +49,20 @@ void initWalkable(char walkablee[WALKABLECOUNT])
 	}
 	
 	fbe.close();
+//	fclose(stdin);
 }
 
-void initWorld(map world[WORLDROWS][WORLDCOLS], char solide[SOLIDCOUNT], char walkablee[WALKABLECOUNT])
+void initWorld(map world[WORLDROWS][WORLDCOLS], char solide[SOLIDCOUNT], char walkablee[WALKABLECOUNT], string fileName)
 {
 	char cahr;
 	
-	fstream fbe ("maps/world.txt");
+	freopen(fileName.c_str(),"r",stdin);
 	
 	for (int i = 0; i < WORLDROWS; i++)
 	{
 		for (int j = 0; j < WORLDCOLS; j++)
 		{
-			fbe>>cahr;
+			cin>>cahr;
 			
 			if (cahr == 'i' || cahr == '0')
 			{
@@ -91,7 +95,7 @@ void initWorld(map world[WORLDROWS][WORLDCOLS], char solide[SOLIDCOUNT], char wa
 		}
 	}
 	
-	fbe.close();
+	fclose(stdin);
 }
 
 void initFOV(fov dir[FOVROWS][FOVCOLS], string fileName)

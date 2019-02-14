@@ -114,13 +114,13 @@ int main()
 	char solid[SOLIDCOUNT];
 	char walkable[WALKABLECOUNT];
 	
-	initSolid(solid);
-	initWalkable(walkable);
+	initSolid(solid, "materials/solid.txt");
+	initWalkable(walkable, "materials/walkable.txt");
 	
 	map newWorld[WORLDROWS][WORLDCOLS];
 //	map oldWorld[WORLDROWS][WORLDCOLS];
 
-	initWorld(newWorld, solid, walkable);
+	initWorld(newWorld, solid, walkable, "maps/world.txt");
 	
 	//gmae lööp
 	while (isNotExit)
