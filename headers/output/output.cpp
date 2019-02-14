@@ -106,7 +106,7 @@ void initFOV(fov dir[FOVROWS][FOVCOLS], string fileName)
 		{
 			cin>>cahr;
 			
-			if (cahr == 'x' || cahr == '_')
+			if (cahr == '_')
 			{
 				dir[i][j].inView = true;
 				dir[i][j].isEdge = false;
