@@ -12,7 +12,7 @@
 
 #include "headers/rendering/render.h"
 #include "headers/rendering/shadowFunctions.h"
-#include "headers/rendering/actualShadowFunctions.h"
+//#include "headers/rendering/actualShadowFunctions.h"
 
 
 //using namespace std;
