@@ -122,6 +122,7 @@ int main()
 
 	initWorld(newWorld, solid, walkable);
 	
+	//gmae lööp
 	while (isNotExit)
 	{
 		Sleep(sleepTime);
