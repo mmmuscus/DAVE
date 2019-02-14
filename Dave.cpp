@@ -21,10 +21,6 @@ const char screenDivisionTexture = '#';
 
 int main()
 {	
-	//making cin cout faster, we ll see if there is any problems there
-	//&&& lets uncomment this when we implement inits with freopen
-//	ios_base::sync_with_stdio(false);
-	
 	//INPUT
 	
 //	in input;
@@ -42,7 +38,6 @@ int main()
 	mob player;
 	player.row = 35;
 	player.col = 45;
-	player.health = UNDEFINED;
 	player.up = false;
 	player.down = false;
 	player.right = true;
@@ -52,13 +47,11 @@ int main()
 	mob lastPlayer;
 	lastPlayer.row = player.row;
 	lastPlayer.col = player.col;
-//	lastPlayer.health = UNDEFINED;
 	
 	//init camera
 	mob camera;
 	camera.row = player.row - 12;
 	camera.col = player.col - 3;
-//	camera.health = UNDEFINED;
 	
 	//init whereToCamera (where to move camera)
 	mob whereToCamera;

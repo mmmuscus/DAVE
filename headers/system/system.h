@@ -9,8 +9,6 @@ using namespace std;
 #ifndef DEFINE_INIT
 #define DEFINE_INIT
 
-#define UNDEFINED 0
-
 #define SCREENROWS 24
 #define SCREENCOLS 39
 
@@ -38,7 +36,6 @@ struct mob
 	bool down;
 	bool right;
 	bool left;
-	int health;	
 };
 
 struct map
@@ -74,12 +71,6 @@ struct koordinate
 {
 	double x;
 	double y;
-};
-
-struct rectangle
-{
-	koordinate a;
-	koordinate b;
 };
 
 //struct in
