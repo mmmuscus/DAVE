@@ -6,8 +6,8 @@
 #include <String>
 using namespace std;
 
-#ifndef DEFINE_INITTT
-#define DEFINE_INITTT
+#ifndef DEFINE_INIT
+#define DEFINE_INIT
 
 #define UNDEFINED 0
 
@@ -25,7 +25,7 @@ using namespace std;
 #define SOLIDCOUNT 5
 #define WALKABLECOUNT 3
 
-#endif //DEFINE_INITTT
+#endif //DEFINE_INIT
 
 #ifndef STRUCT_INIT
 #define STRUCT_INIT
