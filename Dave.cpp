@@ -203,15 +203,15 @@ int main()
 	//Debug!!!!
 	clearScreen();
 	
-	drawTestMap(newWorld);
-	
-	drawTestSolid(newWorld);
-	
-	drawTestWalkable(newWorld);
-	
-	drawTestFov(up);
-	
-	drawTestInView(newWorld);
+//	drawTestMap(newWorld);
+//	
+//	drawTestSolid(newWorld);
+//	
+//	drawTestWalkable(newWorld);
+//	
+//	drawTestFov(up);
+//	
+//	drawTestInView(newWorld);
 	
 	return 0;
 }
