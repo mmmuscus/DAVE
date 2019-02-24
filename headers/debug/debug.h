@@ -9,3 +9,5 @@ void drawTestSolid(map world[WORLDROWS][WORLDCOLS]);
 void drawTestFov(fov dir[FOVROWS][FOVCOLS]);
 
 void drawTestInView(map world[WORLDROWS][WORLDCOLS]);
+
+void screenShot(char s[SCREENROWS][SCREENCOLS]);

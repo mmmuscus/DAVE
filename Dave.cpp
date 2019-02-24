@@ -212,6 +212,8 @@ int main()
 //	drawTestFov(up);
 //	
 //	drawTestInView(newWorld);
+
+	screenShot(newScreen);
 	
 	return 0;
 }

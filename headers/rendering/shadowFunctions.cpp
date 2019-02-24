@@ -9,7 +9,7 @@ void makeCurrentFov(fov presetDir[FOVROWS][FOVCOLS], fov toBeDir[FOVROWS][FOVCOL
 		for (int j = 0; j < FOVCOLS; j++)
 		{
 			toBeDir[i][j].inView = presetDir[i][j].inView;
-			toBeDir[i][j].isEdge = presetDir[i][j].isEdge;
+//			toBeDir[i][j].isEdge = presetDir[i][j].isEdge;
 			toBeDir[i][j].isPlayer = presetDir[i][j].isPlayer;
 		}
 	}

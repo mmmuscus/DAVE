@@ -128,3 +128,27 @@ void drawTestInView(map world[WORLDROWS][WORLDCOLS])
 	
 	fki.close();
 }
+
+void screenShot(char s[SCREENROWS][SCREENCOLS])
+{
+	ofstream fki ("screenShot.txt");
+	
+	for (int i = 0; i < SCREENROWS; i++)
+	{
+		for (int j = 0; j < SCREENCOLS; j++)
+		{
+			if (s[i][j] == char(176) || s[i][j] == char(178))
+			{
+				fki<<"#";
+			}
+			else
+			{
+				fki<<s[i][j];
+			}
+		}
+		
+		fki<<endl;
+	}
+	
+	fki.close();
+}

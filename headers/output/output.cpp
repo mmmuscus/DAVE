@@ -75,7 +75,7 @@ void initWorld(map world[WORLDROWS][WORLDCOLS], char solide[SOLIDCOUNT], char wa
 			
 			world[i][j].solid = false;
 			
-			for (int k = 0; k <= SOLIDCOUNT; k++)
+			for (int k = 0; k < SOLIDCOUNT; k++)
 			{
 				if (cahr == solide[k])
 				{
@@ -85,7 +85,7 @@ void initWorld(map world[WORLDROWS][WORLDCOLS], char solide[SOLIDCOUNT], char wa
 			
 			world[i][j].walkable = false;
 			
-			for (int k = 0; k <= WALKABLECOUNT; k++)
+			for (int k = 0; k < WALKABLECOUNT; k++)
 			{
 				if (cahr == walkablee[k])
 				{
