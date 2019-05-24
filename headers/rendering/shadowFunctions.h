@@ -26,6 +26,8 @@ bool isOverLine(line e, int solidYRow, int solidXCol);
 
 bool isBetweenLines(line a, line b, int yRow, int xCol);
 
+bool doesLineIntersectIt(line e, int top, int bot, int right, int left);
+
 bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left);
 
 // secon d megoldas maybe lets see

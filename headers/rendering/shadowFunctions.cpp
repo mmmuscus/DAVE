@@ -224,22 +224,22 @@ bool isBetweenLines(line a, line b, int yRow, int xCol)
 
 bool doesLineIntersectIt(line e, int top, int bot, int right, int left)
 {
-	if (top < (e.mSlope * left) + e.bIntercept && bot > (e.mSlope * left) + e.bIntercept)
+	if (top <= (e.mSlope * left) + e.bIntercept && bot >= (e.mSlope * left) + e.bIntercept)
 	{
 		return true;
 	}
 	
-	if (top < (e.mSlope * right) + e.bIntercept && bot > (e.mSlope * right) + e.bIntercept)
+	if (top <= (e.mSlope * right) + e.bIntercept && bot >= (e.mSlope * right) + e.bIntercept)
 	{
 		return true;
 	}
 	
-	if (left < (top - e.bIntercept) / e.mSlope && right > (top - e.bIntercept) / e.mSlope)
+	if (left <= (top - e.bIntercept) / e.mSlope && right >= (top - e.bIntercept) / e.mSlope)
 	{
 		return true;
 	}
 	
-	if (left < (bot - e.bIntercept) / e.mSlope && right > (bot - e.bIntercept) / e.mSlope)
+	if (left <= (bot - e.bIntercept) / e.mSlope && right >= (bot - e.bIntercept) / e.mSlope)
 	{
 		return true;
 	}
@@ -378,9 +378,12 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 				{
 					for(int h = 0; h < SCREENCOLS; h++)
 					{
-						if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) && isBehindWall(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
+						if (/*isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) && */isBehindWall(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
 						{
-							world[g + cameraRow][h + cameraCol].mapInView = false;
+							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol) && doesLineIntersectIt(edg.second, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol)))
+							{
+								world[g + cameraRow][h + cameraCol].mapInView = false;
+							}			
 						}
 					}
 				}
