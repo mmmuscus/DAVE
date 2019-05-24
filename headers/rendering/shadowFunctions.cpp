@@ -224,6 +224,29 @@ bool isBetweenLines(line a, line b, int yRow, int xCol)
 
 bool doesLineIntersectIt(line e, int yRow, int xCol)
 {
+//	if (!isUnderLine(e, yRow, xCol) && !isOverLine(e, yRow, xCol))
+//	{
+//		if (yRow == (e.mSlope * xCol) + e.bIntercept)
+//		{
+//			return true;
+//		}
+//		
+//		if (yRow == (e.mSlope * (xCol + 1)) + e.bIntercept)
+//		{
+//			return true;
+//		}
+//		
+//		if ((yRow + 1) == (e.mSlope * xCol) + e.bIntercept)
+//		{
+//			return true;
+//		}
+//		
+//		if ((yRow + 1) == (e.mSlope * (xCol + 1)) + e.bIntercept)
+//		{
+//			return true;
+//		}
+//	}
+	
 	if (yRow <= (e.mSlope * xCol) + e.bIntercept && (yRow + 1) >= (e.mSlope * xCol) + e.bIntercept)
 	{
 		return true;
@@ -380,7 +403,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					{
 						if (/*isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) && */isBehindWall(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
 						{
-							if (/*isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || */(doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
+							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
 							{
 								world[g + cameraRow][h + cameraCol].mapInView = false;
 							}			
@@ -418,9 +441,12 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 				{
 					for(int h = 0; h < SCREENCOLS; h++)
 					{
-						if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) && isBehindWall(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol))
+						if (/*isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) && */isBehindWall(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol))
 						{
-							world[g + cameraRow][h + cameraCol].mapInView = false;
+							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
+							{
+								world[g + cameraRow][h + cameraCol].mapInView = false;
+							}
 						}
 					}
 				}
