@@ -137,9 +137,9 @@ void screenShot(char s[SCREENROWS][SCREENCOLS])
 	{
 		for (int j = 0; j < SCREENCOLS; j++)
 		{
-			if (s[i][j] == char(176) || s[i][j] == char(178))
+			if (s[i][j] == ' ')
 			{
-				fki<<"#";
+				fki<<'i';
 			}
 			else
 			{
@@ -151,4 +151,32 @@ void screenShot(char s[SCREENROWS][SCREENCOLS])
 	}
 	
 	fki.close();
+}
+
+void frameDraw()
+{
+	ifstream fbe ("screenShot.txt");
+	
+	char cahr;
+	
+	for (int i = 0; i < SCREENROWS; i++)
+	{
+		for (int j = 0; j < SCREENCOLS; j++)
+		{
+			fbe>>cahr;
+			
+			if (cahr == 'i')
+			{
+				cout<<" ";
+			}
+			else
+			{
+				cout<<cahr;
+			}	
+		}
+		
+		cout<<endl;
+	}
+	
+	fbe.close();
 }

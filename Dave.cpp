@@ -114,6 +114,8 @@ int main()
 
 	initWorld(newWorld, solid, walkable, "maps/world.txt");
 	
+	int fiveMinuitesOfFrames = sleepTime * 5 * 60;
+	
 	//gmae lööp
 	while (isNotExit)
 	{
@@ -214,6 +216,8 @@ int main()
 //	drawTestInView(newWorld);
 
 	screenShot(newScreen);
+	goTo(0, 0);
+	frameDraw();
 	
 	return 0;
 }

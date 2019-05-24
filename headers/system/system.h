@@ -73,6 +73,11 @@ struct koordinate
 	double y;
 };
 
+struct animation
+{
+	char frame[SCREENROWS][SCREENCOLS + MENUCOLS];
+};
+
 //struct in
 //{
 //	bool w;
