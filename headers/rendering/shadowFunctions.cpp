@@ -222,6 +222,31 @@ bool isBetweenLines(line a, line b, int yRow, int xCol)
 	return true;
 }
 
+bool doesLineIntersectIt(line e, int top, int bot, int right, int left)
+{
+	if (top < (e.mSlope * left) + e.bIntercept && bot > (e.mSlope * left) + e.bIntercept)
+	{
+		return true;
+	}
+	
+	if (top < (e.mSlope * right) + e.bIntercept && bot > (e.mSlope * right) + e.bIntercept)
+	{
+		return true;
+	}
+	
+	if (left < (top - e.bIntercept) / e.mSlope && right > (top - e.bIntercept) / e.mSlope)
+	{
+		return true;
+	}
+	
+	if (left < (bot - e.bIntercept) / e.mSlope && right > (bot - e.bIntercept) / e.mSlope)
+	{
+		return true;
+	}
+	
+	return false;
+}
+
 bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
 {
 	if (pov.x < left && xCol < left + 1)
