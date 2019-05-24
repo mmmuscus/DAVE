@@ -216,8 +216,8 @@ int main()
 //	drawTestInView(newWorld);
 
 	screenShot(newScreen);
-	goTo(0, 0);
-	frameDraw();
+
+//	frameDraw();
 	
 	return 0;
 }
