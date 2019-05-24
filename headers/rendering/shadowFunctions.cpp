@@ -222,7 +222,7 @@ bool isBetweenLines(line a, line b, int yRow, int xCol)
 	return true;
 }
 
-bool doesLineIntersectIt(line e, int yRow, int xCol)
+bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS THE BEHINDWALL AND THIS FUNCTION INTERACTING
 {
 //	if (!isUnderLine(e, yRow, xCol) && !isOverLine(e, yRow, xCol))
 //	{
@@ -247,22 +247,27 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)
 //		}
 //	}
 	
-	if (yRow <= (e.mSlope * xCol) + e.bIntercept && (yRow + 1) >= (e.mSlope * xCol) + e.bIntercept)
+	if (yRow < (e.mSlope * xCol) + e.bIntercept && (yRow + 1) > (e.mSlope * xCol) + e.bIntercept)
 	{
 		return true;
 	}
 	
-	if (yRow <= (e.mSlope * (xCol + 1)) + e.bIntercept && (yRow + 1) >= (e.mSlope * (xCol + 1)) + e.bIntercept)
+	if (yRow < (e.mSlope * (xCol + 1)) + e.bIntercept && (yRow + 1) > (e.mSlope * (xCol + 1)) + e.bIntercept)
 	{
 		return true;
 	}
 	
-	if (xCol <= (yRow - e.bIntercept) / e.mSlope && (xCol + 1) >= (yRow - e.bIntercept) / e.mSlope)
+	if (xCol < (yRow - e.bIntercept) / e.mSlope && (xCol + 1) > (yRow - e.bIntercept) / e.mSlope)
 	{
 		return true;
 	}
 	
-	if (xCol <= ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) >= ((yRow + 1) - e.bIntercept) / e.mSlope)
+	if (xCol < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) > ((yRow + 1) - e.bIntercept) / e.mSlope)
+	{
+		return true;
+	}
+	
+	if (yRow + 0.5 == (e.mSlope * (xCol + 0.5)) + e.bIntercept)
 	{
 		return true;
 	}
