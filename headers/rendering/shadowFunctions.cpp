@@ -272,27 +272,36 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 
 bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
 {	
-	if (pov.x < left && xCol < left)
+// sg that recognises the wall is blow(?)
+	if (yRow >= top || yRow < bottom /*&& /*xCol < left &&*//* xCol > right*/)
 	{
 		return false;
 	}
-	
-	if (pov.x > right && xCol > right - 1)      //dunno why i need to do it (-2)
-	{
-		return false;
-	}
-	
-	if (pov.y < top && yRow < top)
-	{
-		return false;
-	}
-	
-	if (pov.y > bottom && yRow > bottom - 1)    //dunno why i need to do it
-	{
-		return false;
-	}
-	
 	return true;
+
+//	something that works is below
+//
+//	if (pov.x < left && xCol < left + 1)
+//	{
+//		return false;
+//	}
+//	
+//	if (pov.x > right && xCol > right - 2)      //dunno why i need to do it (-2)
+//	{
+//		return false;
+//	}
+//	
+//	if (pov.y < top && yRow < top + 1)
+//	{
+//		return false;
+//	}
+//	
+//	if (pov.y > bottom && yRow > bottom - 2)    //dunno why i need to do it
+//	{
+//		return false;
+//	}
+//	
+//	return true;
 }
 
 edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left)
