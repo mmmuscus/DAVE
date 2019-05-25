@@ -271,14 +271,13 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 }
 
 bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
-{
-	//if rectangle return true else his shite below
+{	
 	if (pov.x < left && xCol < left)
 	{
 		return false;
 	}
 	
-	if (pov.x > right && xCol > right - 1)      //dunno why i need to do it
+	if (pov.x > right && xCol > right - 1)      //dunno why i need to do it (-2)
 	{
 		return false;
 	}
