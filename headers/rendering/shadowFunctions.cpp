@@ -272,8 +272,7 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 
 bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
 {	
-// 8 esetszétválasztásó
-	
+	//16 esetszétválasztás
 	//when above or beisde it but its 1 wide/tall
 	if (bottom - top == 1 && right - left != 1 && pov.y == top + 0.5)
 	{
@@ -416,6 +415,35 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int r
 			}
 			
 			if (xCol == left && yRow > bottom - 1)
+			{
+				return true;
+			}
+		}
+	}
+	
+	if (pov.y > bottom - 1 && bottom - top != 1)
+	{
+		if (pov.x < left)
+		{
+			if (xCol > left && yRow <= bottom - 1)
+			{
+				return true;
+			}
+			
+			if (xCol == left && yRow < top)
+			{
+				return true;
+			}
+		}
+		
+		if (pov.x > right - 1)
+		{
+			if (xCol < right - 1 && yRow <= bottom - 1)
+			{
+				return true;
+			}
+			
+			if (xCol == left && yRow < top)
 			{
 				return true;
 			}
