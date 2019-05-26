@@ -272,54 +272,9 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 
 bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
 {	
-// 8 esetszétválasztás
-//	if (pov.y < top)
-//	{
-//		if (pov.x < left)
-//		{
-//			
-//		}
-//		else if (pov.y >= right)
-//		{
-//			
-//		}
-//		else
-//		{
-//			
-//		}
-//	}
-//	else if (pov.y >= bot)
-//	{
-//		if (pov.x < left)
-//		{
-//			
-//		}
-//		else if (pov.y >= right)
-//		{
-//			
-//		}
-//		else
-//		{
-//			
-//		}
-//	}
-//	else
-//	{
-//		if (pov.x < left)
-//		{
-//			
-//		}
-//		else if (pov.y >= right)
-//		{
-//			
-//		}
-//		else
-//		{
-//			
-//		}
-//	}
+// 8 esetszétválasztásó
 
-	if (/*bottom - top == 1 && */pov.y == top + 0.5)
+	if (bottom - top == 1 && right - left != 1 && pov.y == top + 0.5)
 	{
 		if (pov.x < left)
 		{
@@ -328,7 +283,49 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int r
 				return true;
 			}
 			
-			if (xCol >= left && (yRow != top))
+			if (xCol >= left && yRow != top)
+			{
+				return true;
+			}
+		}
+		
+		if (pov.x > right)
+		{
+			if (xCol < right - 1)
+			{
+				return true;
+			}
+			
+			if (xCol <= right - 1 && yRow != top)
+			{
+				return true;
+			}
+		}
+	}
+	
+	if (right - left == 1 && bottom - top != 1 && pov.x == left + 0.5)
+	{
+		if (pov.y < top)
+		{
+			if (yRow > top)
+			{
+				return true;
+			}
+			
+			if (yRow >= top && xCol != left)
+			{
+				return true;
+			}
+		}
+		
+		if (pov.y > bottom)
+		{
+			if (yRow < bottom - 1)
+			{
+				return true;
+			}
+			
+			if (yRow <= bottom - 1 && xCol != left)
 			{
 				return true;
 			}
