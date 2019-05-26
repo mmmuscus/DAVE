@@ -272,12 +272,70 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 
 bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
 {	
-// sg that recognises the wall is blow(?)
-	if (yRow >= top || yRow < bottom /*&& /*xCol < left &&*//* xCol > right*/)
+// 8 esetszétválasztás
+//	if (pov.y < top)
+//	{
+//		if (pov.x < left)
+//		{
+//			
+//		}
+//		else if (pov.y >= right)
+//		{
+//			
+//		}
+//		else
+//		{
+//			
+//		}
+//	}
+//	else if (pov.y >= bot)
+//	{
+//		if (pov.x < left)
+//		{
+//			
+//		}
+//		else if (pov.y >= right)
+//		{
+//			
+//		}
+//		else
+//		{
+//			
+//		}
+//	}
+//	else
+//	{
+//		if (pov.x < left)
+//		{
+//			
+//		}
+//		else if (pov.y >= right)
+//		{
+//			
+//		}
+//		else
+//		{
+//			
+//		}
+//	}
+
+	if (/*bottom - top == 1 && */pov.y == top + 0.5)
 	{
-		return false;
+		if (pov.x < left)
+		{
+			if (xCol > left)
+			{
+				return true;
+			}
+			
+			if (xCol >= left && (yRow != top))
+			{
+				return true;
+			}
+		}
 	}
-	return true;
+	
+	return false;
 
 //	something that works is below
 //
