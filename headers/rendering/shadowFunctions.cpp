@@ -273,7 +273,8 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
 {	
 // 8 esetszétválasztásó
-
+	
+	//when above or beisde it but its 1 wide/tall
 	if (bottom - top == 1 && right - left != 1 && pov.y == top + 0.5)
 	{
 		if (pov.x < left)
@@ -326,6 +327,95 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int r
 			}
 			
 			if (yRow <= bottom - 1 && xCol != left)
+			{
+				return true;
+			}
+		}
+	}
+	
+	//when above or beside it but its not 1 tall or 1 wide
+	if (pov.y > top && pov.y < bottom && bottom - top != 1)
+	{
+		if (pov.x < left)
+		{
+			if (xCol > left)
+			{
+				return true;
+			}
+			
+			if (xCol == left && (yRow < top || yRow > bottom - 1))
+			{
+				return true;
+			}
+		}
+		
+		if (pov.x > right - 1)
+		{
+			if (xCol < right - 1)
+			{
+				return true;
+			}
+			
+			if (xCol == left && (yRow < top || yRow > bottom - 1))
+			{
+				return true;
+			}
+		}
+	}
+	
+	if (pov.x > left && pov.x < right && right - left != 1)
+	{
+		if (pov.y < top)
+		{
+			if (yRow > top)
+			{
+				return true;
+			}
+			
+			if (yRow == top && (xCol < left || xCol > right - 1))
+			{
+				return true;
+			}
+		}
+		
+		if (pov.y > bottom - 1)
+		{
+			if (yRow < bottom - 1)
+			{
+				return true;
+			}
+			
+			if (yRow == top && (xCol < left || xCol > right - 1))
+			{
+				return true;
+			}
+		}
+	}
+	
+	//when not above or beside it
+	if (pov.y < top && bottom - top != 1)
+	{
+		if (pov.x < left)
+		{
+			if (xCol > left && yRow >= top)
+			{
+				return true;
+			}
+			
+			if (xCol == left && yRow > bottom - 1)
+			{
+				return true;
+			}
+		}
+		
+		if (pov.x > right - 1)
+		{
+			if (xCol < right - 1 && yRow >= top)
+			{
+				return true;
+			}
+			
+			if (xCol == left && yRow > bottom - 1)
 			{
 				return true;
 			}
