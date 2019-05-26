@@ -224,28 +224,7 @@ bool isBetweenLines(line a, line b, int yRow, int xCol)
 
 bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS THE BEHINDWALL AND THIS FUNCTION INTERACTING
 {
-//	if (!isUnderLine(e, yRow, xCol) && !isOverLine(e, yRow, xCol))
-//	{
-//		if (yRow == (e.mSlope * xCol) + e.bIntercept)
-//		{
-//			return true;
-//		}
-//		
-//		if (yRow == (e.mSlope * (xCol + 1)) + e.bIntercept)
-//		{
-//			return true;
-//		}
-//		
-//		if ((yRow + 1) == (e.mSlope * xCol) + e.bIntercept)
-//		{
-//			return true;
-//		}
-//		
-//		if ((yRow + 1) == (e.mSlope * (xCol + 1)) + e.bIntercept)
-//		{
-//			return true;
-//		}
-//	}
+//a közepe valahol belül legyen
 	
 	if (yRow <= (e.mSlope * xCol) + e.bIntercept && (yRow + 1) >= (e.mSlope * xCol) + e.bIntercept)
 	{
@@ -391,7 +370,7 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int r
 		}
 	}
 	
-	//when not above or beside it
+	//when neither above nor beside it
 	if (pov.y < top && bottom - top != 1)
 	{
 		if (pov.x < left)
@@ -450,31 +429,65 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int r
 		}
 	}
 	
+	if (pov.x < left && right - left != 1)
+	{
+		if (pov.y < top)
+		{
+			if (yRow > top && xCol >= left)
+			{
+				return true;
+			}
+			
+			if (yRow == top && xCol > right - 1)
+			{
+				return true;
+			}
+		}
+		
+		if (pov.y > bottom - 1)
+		{
+			if (yRow < bottom - 1 && xCol >= left)
+			{
+				return true;
+			}
+			
+			if (yRow == top && xCol > right - 1)
+			{
+				return true;
+			}
+		}
+	}
+	
+	if (pov.x > right - 1 && right - left != 1)
+	{
+		if (pov.y < top)
+		{
+			if (yRow > bottom - 1 && xCol <= right - 1)
+			{
+				return true;
+			}
+			
+			if (yRow == top && xCol < left)
+			{
+				return true;
+			}
+		}
+		
+		if (pov.y > bottom - 1)
+		{
+			if (yRow < top && xCol <= right - 1)
+			{
+				return true;
+			}
+			
+			if (yRow == top && xCol < left)
+			{
+				return true;
+			}
+		}
+	}
+	
 	return false;
-
-//	something that works is below
-//
-//	if (pov.x < left && xCol < left + 1)
-//	{
-//		return false;
-//	}
-//	
-//	if (pov.x > right && xCol > right - 2)      //dunno why i need to do it (-2)
-//	{
-//		return false;
-//	}
-//	
-//	if (pov.y < top && yRow < top + 1)
-//	{
-//		return false;
-//	}
-//	
-//	if (pov.y > bottom && yRow > bottom - 2)    //dunno why i need to do it
-//	{
-//		return false;
-//	}
-//	
-//	return true;
 }
 
 edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left)
@@ -583,12 +596,12 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 				{
 					for(int h = 0; h < SCREENCOLS; h++)
 					{
-						if (/*isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) && */isBehindWall(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
+						if (isBehindWall(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
 						{
-//							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
-//							{
+							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
+							{
 								world[g + cameraRow][h + cameraCol].mapInView = false;
-//							}			
+							}			
 						}
 					}
 				}
@@ -623,12 +636,12 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 				{
 					for(int h = 0; h < SCREENCOLS; h++)
 					{
-						if (/*isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) && */isBehindWall(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol))
+						if (isBehindWall(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol))
 						{
-//							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
-//							{
+							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
+							{
 								world[g + cameraRow][h + cameraCol].mapInView = false;
-//							}
+							}
 						}
 					}
 				}
