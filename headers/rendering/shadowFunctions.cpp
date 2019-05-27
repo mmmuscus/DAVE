@@ -227,21 +227,21 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 //	half of the area
 //	checked its cool
 	//the other case clompletely identical to this one 
-	if (e.isItUnderLine)
-	{
+//	if (e.isItUnderLine)
+//	{
 //		if (xCol < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) > ((yRow + 1) - e.bIntercept) / e.mSlope)
 //		{
-//			if (yRow <= (e.mSlope * xCol) + e.bIntercept && yRow + 1 >= (e.mSlope * xCol) + e.bIntercept)
+//			if (yRow < (e.mSlope * xCol) + e.bIntercept && yRow + 1 > (e.mSlope * xCol) + e.bIntercept)
 //			{
 //				return true;
 //			}
-//			
-//			if (yRow <= (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 >= (e.mSlope * (xCol + 1)) + e.bIntercept)
+////			
+//			if (yRow < (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 > (e.mSlope * (xCol + 1)) + e.bIntercept)
 //			{
 //				return true;
 //			}
 //		}
-		
+//		
 //		if (yRow <= (e.mSlope * xCol) + e.bIntercept && yRow + 1 >= (e.mSlope * xCol) + e.bIntercept && yRow <= (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 >= (e.mSlope * (xCol + 1)) + e.bIntercept)
 //		{
 //			if ((e.mSlope * xCol) + e.bIntercept - yRow + (e.mSlope * (xCol + 1)) + e.bIntercept - yRow >= 1)
@@ -268,23 +268,23 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 //				}
 //			}
 //		}
-	}
-	
-	if (!e.isItUnderLine)
-	{
+//	}
+//	
+//	if (!e.isItUnderLine)
+//	{
 //		if (xCol < (yRow - e.bIntercept) / e.mSlope && (xCol + 1) > (yRow - e.bIntercept) / e.mSlope)
 //		{
-//			if (yRow <= (e.mSlope * xCol) + e.bIntercept && yRow + 1 >= (e.mSlope * xCol) + e.bIntercept)
+//			if (yRow < (e.mSlope * xCol) + e.bIntercept && yRow + 1 > (e.mSlope * xCol) + e.bIntercept)
 //			{
 //				return true;
 //			}
-////			
-//			if (yRow <= (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 >= (e.mSlope * (xCol + 1)) + e.bIntercept)
+//////			
+//			if (yRow < (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 > (e.mSlope * (xCol + 1)) + e.bIntercept)
 //			{
 //				return true;
 //			}
 //		}
-		
+//		
 //		if (yRow <= (e.mSlope * xCol) + e.bIntercept && yRow + 1 >= (e.mSlope * xCol) + e.bIntercept && yRow <= (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 >= (e.mSlope * (xCol + 1)) + e.bIntercept)
 //		{
 //			if ((e.mSlope * xCol) + e.bIntercept - yRow + (e.mSlope * (xCol + 1)) + e.bIntercept - yRow <= 1)
@@ -311,37 +311,32 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 //				}
 //			}
 //		}
-	}
-
-	return false;
+//	}
+//
+//	return false;
 	
 //	egy "mûködõ" dolog
-//	if (yRow < (e.mSlope * xCol) + e.bIntercept && (yRow + 1) > (e.mSlope * xCol) + e.bIntercept)
-//	{
-//		return true;
-//	}
-//	
-//	if (yRow < (e.mSlope * (xCol + 1)) + e.bIntercept && (yRow + 1) > (e.mSlope * (xCol + 1)) + e.bIntercept)
-//	{
-//		return true;
-//	}
-//	
-//	if (xCol < (yRow - e.bIntercept) / e.mSlope && (xCol + 1) > (yRow - e.bIntercept) / e.mSlope)
-//	{
-//		return true;
-//	}
-//	
-//	if (xCol < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) > ((yRow + 1) - e.bIntercept) / e.mSlope)
-//	{
-//		return true;
-//	}
-//	
-//	if ((yRow + 0.5) == (e.mSlope * (xCol + 0.5)) + e.bIntercept)
-//	{
-//		return true;
-//	}
-//	
-//	return false;
+	if (yRow < (e.mSlope * xCol) + e.bIntercept && (yRow + 1) > (e.mSlope * xCol) + e.bIntercept)
+	{
+		return true;
+	}
+	
+	if (yRow < (e.mSlope * (xCol + 1)) + e.bIntercept && (yRow + 1) > (e.mSlope * (xCol + 1)) + e.bIntercept)
+	{
+		return true;
+	}
+	
+	if (xCol < (yRow - e.bIntercept) / e.mSlope && (xCol + 1) > (yRow - e.bIntercept) / e.mSlope)
+	{
+		return true;
+	}
+	
+	if (xCol < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) > ((yRow + 1) - e.bIntercept) / e.mSlope)
+	{
+		return true;
+	}
+	
+	return false;
 }
 
 bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
