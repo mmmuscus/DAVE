@@ -236,74 +236,74 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 //		return true;
 //	}
 	
-	if (e.isItUnderLine)
-	{
-		if (xCol < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) > ((yRow + 1) - e.bIntercept) / e.mSlope)
-		{
-			if (yRow <= (e.mSlope * xCol) + e.bIntercept && yRow + 1 >= (e.mSlope * xCol) + e.bIntercept)
-			{
-				return true;
-			}
-			
-			if (yRow <= (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 >= (e.mSlope * (xCol + 1)) + e.bIntercept)
-			{
-				return true;
-			}
-		}
-		
-		if (yRow <= (e.mSlope * xCol) + e.bIntercept && yRow + 1 >= (e.mSlope * xCol) + e.bIntercept && yRow <= (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 >= (e.mSlope * (xCol + 1)) + e.bIntercept)
-		{
-			if ((e.mSlope * xCol) + e.bIntercept - yRow + (e.mSlope * (xCol + 1)) + e.bIntercept - yRow >= 1)
-			{
-				return true;
-			}
-		}
-//		
-		if (xCol <= (yRow - e.bIntercept) / e.mSlope && (xCol + 1) >= (yRow - e.bIntercept) / e.mSlope && xCol <= ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) >= ((yRow + 1) - e.bIntercept) / e.mSlope)
-		{
-			if (((yRow - e.bIntercept) / e.mSlope) - xCol > (((yRow + 1) - e.bIntercept) / e.mSlope) - xCol)  //ha a felsõ nagyobb mint az alsó
-			{
-				if (((yRow - e.bIntercept) / e.mSlope) - xCol + (((yRow + 1) - e.bIntercept) / e.mSlope) - xCol >= 1)
-				{
-					return true;
-				}
-			}
-//			
-			if (((yRow - e.bIntercept) / e.mSlope) - xCol < (((yRow + 1) - e.bIntercept) / e.mSlope) - xCol)
-			{
-				if (((yRow - e.bIntercept) / e.mSlope) - xCol + (((yRow + 1) - e.bIntercept) / e.mSlope) - xCol <= 1)     //kisebb egel mükszik and w the other feltétel
-				{
-					return true;
-				}
-			}
-		}
-	}
-	
-//	if (!e.isItUnderLine)
+//	if (e.isItUnderLine)
 //	{
+//		if (xCol < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) > ((yRow + 1) - e.bIntercept) / e.mSlope)
+//		{
+//			if (yRow <= (e.mSlope * xCol) + e.bIntercept && yRow + 1 >= (e.mSlope * xCol) + e.bIntercept)
+//			{
+//				return true;
+//			}
+//			
+//			if (yRow <= (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 >= (e.mSlope * (xCol + 1)) + e.bIntercept)
+//			{
+//				return true;
+//			}
+//		}
+//		
+//		if (yRow <= (e.mSlope * xCol) + e.bIntercept && yRow + 1 >= (e.mSlope * xCol) + e.bIntercept && yRow <= (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 >= (e.mSlope * (xCol + 1)) + e.bIntercept)
+//		{
+//			if ((e.mSlope * xCol) + e.bIntercept - yRow + (e.mSlope * (xCol + 1)) + e.bIntercept - yRow >= 1)
+//			{
+//				return true;
+//			}
+//		}
+////		
+//		if (xCol <= (yRow - e.bIntercept) / e.mSlope && (xCol + 1) >= (yRow - e.bIntercept) / e.mSlope && xCol <= ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) >= ((yRow + 1) - e.bIntercept) / e.mSlope)
+//		{
+//			if (((yRow - e.bIntercept) / e.mSlope) - xCol > (((yRow + 1) - e.bIntercept) / e.mSlope) - xCol)  //ha a felsõ nagyobb mint az alsó
+//			{
+//				if (((yRow - e.bIntercept) / e.mSlope) - xCol + (((yRow + 1) - e.bIntercept) / e.mSlope) - xCol >= 1)
+//				{
+//					return true;
+//				}
+//			}
+////			
+//			if (((yRow - e.bIntercept) / e.mSlope) - xCol < (((yRow + 1) - e.bIntercept) / e.mSlope) - xCol)
+//			{
+//				if (((yRow - e.bIntercept) / e.mSlope) - xCol + (((yRow + 1) - e.bIntercept) / e.mSlope) - xCol <= 1)     //kisebb egel mükszik and w the other feltétel
+//				{
+//					return true;
+//				}
+//			}
+//		}
+//	}
+	
+	if (!e.isItUnderLine)
+	{
 //		if (xCol < (yRow - e.bIntercept) / e.mSlope && (xCol + 1) > (yRow - e.bIntercept) / e.mSlope)
 //		{
-//			if (yRow < (e.mSlope * xCol) + e.bIntercept && yRow + 1 > (e.mSlope * xCol) + e.bIntercept)
+//			if (yRow <= (e.mSlope * xCol) + e.bIntercept && yRow + 1 >= (e.mSlope * xCol) + e.bIntercept)
 //			{
 //				return true;
 //			}
-//			
-//			if (yRow < (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 > (e.mSlope * (xCol + 1)) + e.bIntercept)
-//			{
-//				return true;
-//			}
-//		}
-//		
-//		if (yRow < (e.mSlope * xCol) + e.bIntercept && yRow + 1 > (e.mSlope * xCol) + e.bIntercept && yRow < (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 > (e.mSlope * (xCol + 1)) + e.bIntercept)
-//		{
-//			if (yRow + 1 - (e.mSlope * xCol) + e.bIntercept + yRow + 1 - (e.mSlope * (xCol + 1)) + e.bIntercept >= 1)
+////			
+//			if (yRow <= (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 >= (e.mSlope * (xCol + 1)) + e.bIntercept)
 //			{
 //				return true;
 //			}
 //		}
 //		
-//		if (xCol < (yRow - e.bIntercept) / e.mSlope && (xCol + 1) > (yRow - e.bIntercept) / e.mSlope && xCol < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) > ((yRow + 1) - e.bIntercept) / e.mSlope)
+//		if (yRow <= (e.mSlope * xCol) + e.bIntercept && yRow + 1 >= (e.mSlope * xCol) + e.bIntercept && yRow <= (e.mSlope * (xCol + 1)) + e.bIntercept && yRow + 1 >= (e.mSlope * (xCol + 1)) + e.bIntercept)
 //		{
+//			if ((e.mSlope * xCol) + e.bIntercept - yRow + (e.mSlope * (xCol + 1)) + e.bIntercept - yRow <= 1)
+//			{
+//				return true;
+//			}
+//		}
+//		
+		if (xCol < (yRow - e.bIntercept) / e.mSlope && (xCol + 1) > (yRow - e.bIntercept) / e.mSlope && xCol < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) > ((yRow + 1) - e.bIntercept) / e.mSlope)
+		{
 //			if (((yRow + 1) - e.bIntercept) / e.mSlope - xCol > xCol + 1 - ((yRow + 1) - e.bIntercept) / e.mSlope)
 //			{
 //				if ((yRow - e.bIntercept) / e.mSlope - xCol + ((yRow + 1) - e.bIntercept) / e.mSlope - xCol >= 1)
@@ -319,8 +319,8 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 //					return true;
 //				}
 //			}
-//		}
-//	}
+		}
+	}
 
 	return false;
 	
