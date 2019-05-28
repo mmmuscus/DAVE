@@ -314,6 +314,30 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 //	}
 //
 //	return false;
+
+	//experimenting
+	//this dont ork either i dont get
+//	if (yRow <= (e.mSlope * xCol) + e.bIntercept && (yRow + 1) >= (e.mSlope * xCol) + e.bIntercept)
+//	{
+//		return true;
+//	}
+//	
+//	if (yRow <= (e.mSlope * (xCol + 1)) + e.bIntercept && (yRow + 1) >= (e.mSlope * (xCol + 1)) + e.bIntercept)
+//	{
+//		return true;
+//	}
+//	
+//	if (xCol <= (yRow - e.bIntercept) / e.mSlope && (xCol + 1) >= (yRow - e.bIntercept) / e.mSlope)
+//	{
+//		return true;
+//	}
+//	
+//	if (xCol <= ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) >= ((yRow + 1) - e.bIntercept) / e.mSlope)
+//	{
+//		return true;
+//	}
+//	
+//	return false;
 	
 //	egy "mûködõ" dolog
 //	if (yRow < (e.mSlope * xCol) + e.bIntercept && (yRow + 1) > (e.mSlope * xCol) + e.bIntercept)
