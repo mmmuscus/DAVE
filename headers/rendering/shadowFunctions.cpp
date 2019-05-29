@@ -227,6 +227,7 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 //	half of the area
 //	checked its cool
 	//the other case clompletely identical to this one 
+	//fractions that dont do numbers
 //	if (e.isItUnderLine)
 //	{
 //		if (xCol < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) > ((yRow + 1) - e.bIntercept) / e.mSlope)
@@ -340,22 +341,22 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 //	return false;
 	
 //	egy "mûködõ" dolog
-	if (yRow < (e.mSlope * xCol) + e.bIntercept && (yRow + 1) > (e.mSlope * xCol) + e.bIntercept)
+	if (yRow - 0.000001 < (e.mSlope * xCol) + e.bIntercept && (yRow + 1) + 0.000001 > (e.mSlope * xCol) + e.bIntercept)
 	{
 		return true;
 	}
 	
-	if (yRow < (e.mSlope * (xCol + 1)) + e.bIntercept && (yRow + 1) > (e.mSlope * (xCol + 1)) + e.bIntercept)
+	if (yRow - 0.000001 < (e.mSlope * (xCol + 1)) + e.bIntercept && (yRow + 1) + 0.000001 > (e.mSlope * (xCol + 1)) + e.bIntercept)
 	{
 		return true;
 	}
 	
-	if (xCol < (yRow - e.bIntercept) / e.mSlope && (xCol + 1) > (yRow - e.bIntercept) / e.mSlope)
+	if (xCol - 0.000001 < (yRow - e.bIntercept) / e.mSlope && (xCol + 1) + 0.000001 > (yRow - e.bIntercept) / e.mSlope)
 	{
 		return true;
 	}
 	
-	if (xCol < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) > ((yRow + 1) - e.bIntercept) / e.mSlope)
+	if (xCol - 0.000001 < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) + 0.000001 > ((yRow + 1) - e.bIntercept) / e.mSlope)
 	{
 		return true;
 	}
@@ -712,7 +713,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					{
 						if (isBehindWall(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
 						{
-							if (/*isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol)/* || */(doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
+							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
 							{
 								world[g + cameraRow][h + cameraCol].mapInView = false;
 							}			
@@ -774,7 +775,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					{
 						if (isBehindWall(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol))
 						{
-							if (/*isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || */(doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
+							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
 							{
 								world[g + cameraRow][h + cameraCol].mapInView = false;
 							}
