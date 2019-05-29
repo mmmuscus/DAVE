@@ -175,6 +175,9 @@ int main()
 		//SHADOW FUNCTIONS IS DONE BELOW:
 		playerPov = getPov(playerPov, player);
 	
+		//DEBUG RIGHT HERE:
+		goTo(0, 0);
+	
 		//&&& edges is felesleges RIGHT HERE BELOW
 		shadowFunction(newWorld, camera.col, camera.row, playerPov, edges);
 		
