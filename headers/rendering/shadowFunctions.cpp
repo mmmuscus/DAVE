@@ -340,7 +340,7 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 //	
 //	return false;
 	
-//	egy "mûködõ" dolog
+//	egy mûködõ dolog
 	if (yRow - INFINITECIMAL < (e.mSlope * xCol) + e.bIntercept && (yRow + 1) + INFINITECIMAL > (e.mSlope * xCol) + e.bIntercept)
 	{
 		return true;
