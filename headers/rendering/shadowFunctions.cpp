@@ -341,22 +341,22 @@ bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS
 //	return false;
 	
 //	egy "mûködõ" dolog
-	if (yRow - 0.000001 < (e.mSlope * xCol) + e.bIntercept && (yRow + 1) + 0.000001 > (e.mSlope * xCol) + e.bIntercept)
+	if (yRow - INFINITECIMAL < (e.mSlope * xCol) + e.bIntercept && (yRow + 1) + INFINITECIMAL > (e.mSlope * xCol) + e.bIntercept)
 	{
 		return true;
 	}
 	
-	if (yRow - 0.000001 < (e.mSlope * (xCol + 1)) + e.bIntercept && (yRow + 1) + 0.000001 > (e.mSlope * (xCol + 1)) + e.bIntercept)
+	if (yRow - INFINITECIMAL < (e.mSlope * (xCol + 1)) + e.bIntercept && (yRow + 1) + INFINITECIMAL > (e.mSlope * (xCol + 1)) + e.bIntercept)
 	{
 		return true;
 	}
 	
-	if (xCol - 0.000001 < (yRow - e.bIntercept) / e.mSlope && (xCol + 1) + 0.000001 > (yRow - e.bIntercept) / e.mSlope)
+	if (xCol - INFINITECIMAL < (yRow - e.bIntercept) / e.mSlope && (xCol + 1) + INFINITECIMAL > (yRow - e.bIntercept) / e.mSlope)
 	{
 		return true;
 	}
 	
-	if (xCol - 0.000001 < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) + 0.000001 > ((yRow + 1) - e.bIntercept) / e.mSlope)
+	if (xCol - INFINITECIMAL < ((yRow + 1) - e.bIntercept) / e.mSlope && (xCol + 1) + INFINITECIMAL > ((yRow + 1) - e.bIntercept) / e.mSlope)
 	{
 		return true;
 	}

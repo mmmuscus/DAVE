@@ -23,6 +23,8 @@ using namespace std;
 #define SOLIDCOUNT 5
 #define WALKABLECOUNT 3
 
+#define INFINITECIMAL 0.000001
+
 #endif //DEFINE_INIT
 
 #ifndef STRUCT_INIT
