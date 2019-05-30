@@ -723,27 +723,27 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 				
 				edg = getEdgeLines(pov, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol);
 				
-				if (edg.first.isItUnderLine)
-				{
-					cout<<"U ";
-				}
-				else
-				{
-					cout<<"O ";
-				}
-				
-				cout<<"Slope: "<<edg.first.mSlope<<" Intercept: "<<edg.first.bIntercept<<" ";
-				
-				if (edg.second.isItUnderLine)
-				{
-					cout<<"U ";
-				}
-				else
-				{
-					cout<<"O ";
-				}
-				
-				cout<<"Slope: "<<edg.second.mSlope<<" Intercept: "<<edg.second.bIntercept<<" ";
+//				if (edg.first.isItUnderLine)
+//				{
+//					cout<<"U ";
+//				}
+//				else
+//				{
+//					cout<<"O ";
+//				}
+//				
+//				cout<<"Slope: "<<edg.first.mSlope<<" Intercept: "<<edg.first.bIntercept<<" ";
+//				
+//				if (edg.second.isItUnderLine)
+//				{
+//					cout<<"U ";
+//				}
+//				else
+//				{
+//					cout<<"O ";
+//				}
+//				
+//				cout<<"Slope: "<<edg.second.mSlope<<" Intercept: "<<edg.second.bIntercept<<" ";
 				
 				for (int g = 0; g < SCREENROWS; g++)
 				{
