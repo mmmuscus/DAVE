@@ -720,7 +720,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 				{
 					k++;
 				}
-				
+//				
 				edg = getEdgeLines(pov, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol);
 				
 //				if (edg.first.isItUnderLine)
