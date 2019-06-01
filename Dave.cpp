@@ -36,11 +36,12 @@ int main()
 	
 	//init player
 	mob player;
-	player.row = 29;
-	player.col = 46;
+	player.row = 26;
+	player.col = 89;
+	
 	player.up = false;
 	player.down = true;
-	player.right = true;
+	player.right = false;
 	player.left = false;
 	
 	//init lastPlayer
@@ -50,8 +51,9 @@ int main()
 	
 	//init camera
 	mob camera;
-	camera.row = player.row - 12;
-	camera.col = player.col - 3;
+	camera = camMovement(camera, player);
+//	camera.row = player.row - 12;
+//	camera.col = player.col - 3;
 	
 	//init whereToCamera (where to move camera)
 	mob whereToCamera;
@@ -97,7 +99,7 @@ int main()
 	initFOV(leftDown, "FOVs/leftDown.txt");
 	initFOV(leftUp, "FOVs/leftUp.txt");
 	
-	makeCurrentFov(right, currentFov);
+	setCurrentFov(player, currentFov, right, left, up, down, rightUp, rightDown, leftUp, leftDown);
 	
 	playerInFov = getPlayerPosInFov(player, playerInFov);
 	
