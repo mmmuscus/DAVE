@@ -721,10 +721,10 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					{
 						if (isBehindWall(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
 						{
-//							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
-//							{
+							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
+							{
 								world[g + cameraRow][h + cameraCol].mapInView = false;
-//							}	
+							}
 						}
 					}
 				}
@@ -783,10 +783,10 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					{
 						if (isBehindWall(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol))
 						{
-//							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
-//							{
+							if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol) || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)))
+							{
 								world[g + cameraRow][h + cameraCol].mapInView = false;
-//							}
+							}
 						}
 					}
 				}
@@ -809,7 +809,7 @@ bool isBesideNotSolidInView(map world[WORLDROWS][WORLDCOLS], int xCol, int yRow)
 	{
 		for (int j = xCol - 1; j <= xCol + 1; j++)
 		{
-			if (world[j][i].mapInView && !world[j][i].solid)
+			if (world[j][i].mapInView/* && !world[j][i].solid*/)
 			{
 				return true;
 			}
