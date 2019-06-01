@@ -36,7 +36,7 @@ int main()
 	
 	//init player
 	mob player;
-	player.row = 36;
+	player.row = 35;
 	player.col = 45;
 	
 	player.up = false;
