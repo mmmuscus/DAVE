@@ -36,12 +36,12 @@ int main()
 	
 	//init player
 	mob player;
-	player.row = 44;
-	player.col = 85;
+	player.row = 36;
+	player.col = 45;
 	
-	player.up = true;
+	player.up = false;
 	player.down = false;
-	player.right = false;
+	player.right = true;
 	player.left = false;
 	
 	//init lastPlayer
