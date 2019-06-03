@@ -712,8 +712,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					k++;
 				}
 				
-				if (k > 1)
-				{
+//				if (k > 1)
+//				{
 					edg = getEdgeLines(pov, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol);
 				
 					for (int g = 0; g < SCREENROWS; g++)
@@ -734,7 +734,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 							}
 						}
 					}
-				}
+//				}
 				
 				j += k;
 			}
@@ -760,8 +760,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					k++;
 				}
 //				
-				if (k > 1)
-				{
+//				if (k > 1)
+//				{
 					edg = getEdgeLines(pov, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol);
 				
 					for (int g = 0; g < SCREENROWS; g++)
@@ -782,7 +782,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 							}
 						}
 					}
-				}
+//				}
 				
 				j += k;
 			}

@@ -220,7 +220,7 @@ int main()
 //	
 //	drawTestInView(newWorld);
 
-	screenShot(newScreen);
+//	screenShot(newScreen);
 
 //	frameDraw();
 	
