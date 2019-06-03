@@ -712,8 +712,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					k++;
 				}
 				
-//				if (k > 1)
-//				{
+				if (k > 1)
+				{
 					edg = getEdgeLines(pov, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol);
 				
 					for (int g = 0; g < SCREENROWS; g++)
@@ -727,14 +727,14 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 									world[g + cameraRow][h + cameraCol].mapInView = false;
 								}
 								
-								if ((doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)) /*&& !world[g + cameraRow][h + cameraCol].solid*/)
+								if ((doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)) && (i != g || h < j || h > j + k - 1))
 								{
 									world[g + cameraRow][h + cameraCol].mapInView = false;
 								}
 							}
 						}
 					}
-//				}
+				}
 				
 				j += k;
 			}
@@ -760,31 +760,9 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					k++;
 				}
 //				
-//				if (k > 1)
-//				{
+				if (k > 1)
+				{
 					edg = getEdgeLines(pov, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol);
-				
-//				if (edg.first.isItUnderLine)
-//				{
-//					cout<<"U ";
-//				}
-//				else
-//				{
-//					cout<<"O ";
-//				}
-//				
-//				cout<<"Slope: "<<edg.first.mSlope<<" Intercept: "<<edg.first.bIntercept<<" ";
-//				
-//				if (edg.second.isItUnderLine)
-//				{
-//					cout<<"U ";
-//				}
-//				else
-//				{
-//					cout<<"O ";
-//				}
-//				
-//				cout<<"Slope: "<<edg.second.mSlope<<" Intercept: "<<edg.second.bIntercept<<" ";
 				
 					for (int g = 0; g < SCREENROWS; g++)
 					{
@@ -797,14 +775,14 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 									world[g + cameraRow][h + cameraCol].mapInView = false;
 								}
 								
-								if ((doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))/* && !world[g + cameraRow][h + cameraCol].solid*/)
+								if ((doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)) && (i != h || g < j || g > j + k - 1))
 								{
 									world[g + cameraRow][h + cameraCol].mapInView = false;
 								}
 							}
 						}
 					}
-//				}
+				}
 				
 				j += k;
 			}
