@@ -795,10 +795,29 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 									world[g + cameraRow][h + cameraCol].mapInView = false;
 								}
 								
-								if ((doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)) && (i != h || g < j || g > j + k - 1))
-								{
-									world[g + cameraRow][h + cameraCol].mapInView = false;
-								}
+//								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
+//								{
+//									if (pov.y < j + cameraRow)
+//									{
+//										if ((h == i - 1 && g == j && !world[g + cameraRow][h + cameraCol].solid) || (h == i + 1 && g == j && !world[g + cameraRow][h + cameraCol].solid))
+//										{
+//											world[g + cameraRow][h + cameraCol].mapInView = false;
+//										}
+//									}
+//									
+//									if (pov.y > j + k + cameraRow - 1)
+//									{
+//										if ((h == i - 1 && g == j + k - 1 && !world[g + cameraRow][h + cameraCol].solid) || (h == i + 1 && g == j + k - 1 && !world[g + cameraRow][h + cameraCol].solid))
+//										{
+//											world[g + cameraRow][h + cameraCol].mapInView = false;
+//										}
+//									}
+////									
+//									if (pov.y >= j + cameraCol && pov.y <= j + k + cameraCol - 1)
+//									{
+//										world[g + cameraRow][h + cameraCol].mapInView = false;
+//									}
+//								}
 							}
 						}
 					}
