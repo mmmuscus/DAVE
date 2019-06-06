@@ -712,8 +712,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					k++;
 				}
 				
-//				if (k > 1)
-//				{
+				if (k > 1)
+				{
 					edg = getEdgeLines(pov, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol);
 				
 					for (int g = 0; g < SCREENROWS; g++)
@@ -750,21 +750,21 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 										world[g + cameraRow][h + cameraCol].mapInView = false;
 //									}
 
-									if (pov.x < j + cameraCol)
-									{
-										if ((g == i - 1 && h == j && world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j && world[g + cameraRow][h + cameraCol].solid))
-										{
-											world[g + cameraRow][h + cameraCol].mapInView = true;
-										}
-									}
-								
-									if (pov.x > j + k + cameraCol - 1)
-									{
-										if ((g == i - 1 && h == j + k - 1 && world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j + k - 1 && world[g + cameraRow][h + cameraCol].solid))
-										{
-											world[g + cameraRow][h + cameraCol].mapInView = true;
-										}
-									}
+//									if (pov.x < j + cameraCol)
+//									{
+//										if ((g == i - 1 && h == j && world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j && world[g + cameraRow][h + cameraCol].solid))
+//										{
+//											world[g + cameraRow][h + cameraCol].mapInView = true;
+//										}
+//									}
+//								
+//									if (pov.x > j + k + cameraCol - 1)
+//									{
+//										if ((g == i - 1 && h == j + k - 1 && world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j + k - 1 && world[g + cameraRow][h + cameraCol].solid))
+//										{
+//											world[g + cameraRow][h + cameraCol].mapInView = true;
+//										}
+//									}
 								}
 								
 //								if (pov.x < j + cameraCol)
@@ -785,7 +785,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 							}
 						}
 					}
-//				}
+				}
 				
 				j += k;
 			}
