@@ -748,24 +748,39 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 //									{
 										world[g + cameraRow][h + cameraCol].mapInView = false;
 //									}
-								}
-								
-								if (pov.x < j + cameraCol)
-								{
-									if ((g == i - 1 && h == j && world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j && world[g + cameraRow][h + cameraCol].solid))
+
+									if (pov.x < j + cameraCol)
 									{
-										world[g + cameraRow][h + cameraCol].mapInView = true;
+										if ((g == i - 1 && h == j && world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j && world[g + cameraRow][h + cameraCol].solid))
+										{
+											world[g + cameraRow][h + cameraCol].mapInView = true;
+										}
+									}
+								
+									if (pov.x > j + k + cameraCol - 1)
+									{
+										if ((g == i - 1 && h == j + k - 1 && world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j + k - 1 && world[g + cameraRow][h + cameraCol].solid))
+										{
+											world[g + cameraRow][h + cameraCol].mapInView = true;
+										}
 									}
 								}
-								else
 								
-								if (pov.x > j + k + cameraCol - 1)
-								{
-									if ((g == i - 1 && h == j + k - 1 && world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j + k - 1 && world[g + cameraRow][h + cameraCol].solid))
-									{
-										world[g + cameraRow][h + cameraCol].mapInView = true;
-									}
-								}
+//								if (pov.x < j + cameraCol)
+//								{
+//									if ((g == i - 1 && h == j && world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j && world[g + cameraRow][h + cameraCol].solid))
+//									{
+//										world[g + cameraRow][h + cameraCol].mapInView = true;
+//									}
+//								}
+//								
+//								if (pov.x > j + k + cameraCol - 1)
+//								{
+//									if ((g == i - 1 && h == j + k - 1 && world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j + k - 1 && world[g + cameraRow][h + cameraCol].solid))
+//									{
+//										world[g + cameraRow][h + cameraCol].mapInView = true;
+//									}
+//								}
 							}
 						}
 					}
