@@ -737,7 +737,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 //											world[g + cameraRow][h + cameraCol].mapInView = false;
 //										}
 //									}
-//									else if (pov.x > j + k + cameraCol - 1)
+//									else 
+//									if (pov.x > j + k + cameraCol - 1)
 //									{
 //										if ((g == i - 1 && h == j + k - 1 && !world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j + k - 1 && !world[g + cameraRow][h + cameraCol].solid))
 //										{
