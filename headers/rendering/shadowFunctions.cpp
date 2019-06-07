@@ -730,6 +730,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								// && if player at one side and the t shape is not a solid
 								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
 								{
+									//commenting this out makes it behave correctly xcept for the problem we wanna solve so tweak this and run th regular tests
+									//due to the other half malfunctioning its only showing 6 'x's but in reality theres 8 so the shadings good the display is the only sucky thang 
 //									if (pov.x < j + cameraCol)
 //									{
 //										if ((g == i - 1 && h == j && !world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j && !world[g + cameraRow][h + cameraCol].solid))
@@ -738,17 +740,17 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 //										}
 //									}
 //									else 
-//									if (pov.x > j + k + cameraCol - 1)
-//									{
-//										if ((g == i - 1 && h == j + k - 1 && !world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j + k - 1 && !world[g + cameraRow][h + cameraCol].solid))
-//										{
-//											world[g + cameraRow][h + cameraCol].mapInView = false;
-//										}
-//									}
-//									else
-//									{
+									if (pov.x > j + k + cameraCol - 1)
+									{
+										if ((g == i - 1 && h == j + k - 1 && !world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j + k - 1 && !world[g + cameraRow][h + cameraCol].solid))
+										{
+											world[g + cameraRow][h + cameraCol].mapInView = false;
+										}
+									}
+									else
+									{
 										world[g + cameraRow][h + cameraCol].mapInView = false;
-//									}
+									}
 
 //									if (pov.x < j + cameraCol)
 //									{
