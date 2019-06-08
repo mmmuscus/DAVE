@@ -712,8 +712,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					k++;
 				}
 				
-				if (k > 1)
-				{
+//				if (k > 1)
+//				{
 					edg = getEdgeLines(pov, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol);
 				
 					for (int g = 0; g < SCREENROWS; g++)
@@ -722,40 +722,47 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 						{
 							if (isBehindWall(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
 							{
+								//maybe a second pass is enough with just isBetweenLines
+								//possible solution:
+								// 1) pass with doesLineIntersect but it wont shade stuff that is solid
+								// 2) layer isBetweenLines on top of that
+								// 3) patch up function finds "walls" that are surrounded totally with shaded parts and knocks them the fuck out man
 								if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol)/* || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))*/)
 								{
 									world[g + cameraRow][h + cameraCol].mapInView = false;
 								}
 								
 								// && if player at one side and the t shape is not a solid
-								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
-								{
+//								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
+//								{
 									//commenting this out makes it behave correctly xcept for the problem we wanna solve so tweak this and run th regular tests
 									//due to the other half malfunctioning its only showing 6 'x's but in reality theres 8 so the shadings good the display is the only sucky thang
 									//when up against a not one long side of a wall and at the end of the wall the 1 sloped line does not function as it should
 									//when uo against the 1 long side of a wall the 1 sloped line computes correctly when looking left to right
 									
 									//maybe usual test is not good cos that should be taken care of in the other pass of the shading....man wtf
-									if (pov.x < j + cameraCol)
-									{
-										if ((g == i - 1 && h == j && !world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j && !world[g + cameraRow][h + cameraCol].solid))
-										{
-											world[g + cameraRow][h + cameraCol].mapInView = false;
-										}
-									}
-									else
+//									if (pov.x < j + cameraCol)
+//									{
+//										if ((g == i - 1 && h == j && !world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j && !world[g + cameraRow][h + cameraCol].solid))
+//										{
+//											world[g + cameraRow][h + cameraCol].mapInView = false;
+//										}
+//									}
+//									else
 									//if commenting this out the up against the 1 long wall 1 slope shading is solved when looking from right to left
-									if (pov.x > j + k + cameraCol - 1)
-									{
-										if ((g == i - 1 && h == j + k - 1 && !world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j + k - 1 && !world[g + cameraRow][h + cameraCol].solid))
-										{
-											world[g + cameraRow][h + cameraCol].mapInView = false;
-										}
-									}
-									else
-									{
-										world[g + cameraRow][h + cameraCol].mapInView = false;
-									}
+//									if (pov.x > j + k + cameraCol - 1)
+//									{
+//										if ((g == i - 1 && h == j + k - 1 && !world[g + cameraRow][h + cameraCol].solid) || (g == i + 1 && h == j + k - 1 && !world[g + cameraRow][h + cameraCol].solid))
+//										{
+//											world[g + cameraRow][h + cameraCol].mapInView = false;
+//										}
+//									}
+//									else
+//									{
+//										world[g + cameraRow][h + cameraCol].mapInView = false;
+//									}
+
+		//shit above is tha algorythm
 
 //									if (pov.x < j + cameraCol)
 //									{
@@ -772,7 +779,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 //											world[g + cameraRow][h + cameraCol].mapInView = true;
 //										}
 //									}
-								}
+//								}
 								
 //								if (pov.x < j + cameraCol)
 //								{
@@ -792,7 +799,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 							}
 						}
 					}
-				}
+//				}
 				
 				j += k;
 			}
@@ -818,8 +825,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					k++;
 				}
 //				
-				if (k > 1)
-				{
+//				if (k > 1)
+//				{
 					edg = getEdgeLines(pov, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol);
 				
 					for (int g = 0; g < SCREENROWS; g++)
@@ -833,8 +840,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 									world[g + cameraRow][h + cameraCol].mapInView = false;
 								}
 								
-								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
-								{
+//								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
+//								{
 //									if (pov.y < j + cameraRow)
 //									{
 //										if ((h == i - 1 && g == j && !world[g + cameraRow][h + cameraCol].solid) || (h == i + 1 && g == j && !world[g + cameraRow][h + cameraCol].solid))
@@ -853,13 +860,13 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 ////									
 //									if (pov.y >= j + cameraCol && pov.y <= j + k + cameraCol - 1)
 //									{
-										world[g + cameraRow][h + cameraCol].mapInView = false;
+//										world[g + cameraRow][h + cameraCol].mapInView = false;
 //									}
-								}
+//								}
 							}
 						}
 					}
-				}
+//				}
 				
 				j += k;
 			}
