@@ -727,6 +727,10 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								// 1) pass with doesLineIntersect but it wont shade stuff that is solid
 								// 2) layer isBetweenLines on top of that
 								// 3) patch up function finds "walls" that are surrounded totally with shaded parts and knocks them the fuck out man
+								
+								// add sub variable to map structure .shadedThisPass set this to true if you shaded w this wall in this pass then go for walls w 1xk dimensions where k > 1 and do the doesLineIntersect then shade the 1x1 ones
+								//		maybe add another sub variable .wasThis1Long and you set this to true in the first pass eery time k was 1 then shade the ones that have this as true and k is 1 for them in the second pass 
+								//		ofc reset both of these sub variables every frame
 								if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol)/* || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))*/)
 								{
 									world[g + cameraRow][h + cameraCol].mapInView = false;
