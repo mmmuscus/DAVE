@@ -728,7 +728,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								// 2) layer isBetweenLines on top of that
 								// 3) patch up function finds "walls" that are surrounded totally with shaded parts and knocks them the fuck out man
 								// problem w above solution is that it can be hard to determine such walls, maybe walls that are surrounded by only other walls and shaded areas(?)
-								//we need a wariable in the struct that indicates if the square was shaded by the doesLineIntersectIt function, then we "patch" up the thang w the above premise PLUS if that variable is true (and then we reset it)
+								// we need a wariable in the struct that indicates if the square was shaded by the doesLineIntersectIt function, then we "patch" up the thang w the above premise PLUS if that variable is true (and then we reset it)
 								// maybe we add a value to the map struct that indicates squares if the solid was NOT shaded by an intersecting line
 								
 								// perb we need to compute all shaded areas and then go through the array o vbisible cells w a fnction that determines if at least .5 of the cell is shaded
