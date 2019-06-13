@@ -732,6 +732,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								// maybe we add a value to the map struct that indicates squares if the solid was NOT shaded by an intersecting line
 								
 								// perb we need to compute all shaded areas and then go through the array o vbisible cells w a fnction that determines if at least .5 of the cell is shaded
+								// problem w this is all the angles and overlaps the lines could take
 								
 								// add sub variable to map structure .shadedThisPass set this to true if you shaded w this wall in this pass then go for walls w 1xk dimensions where k > 1 and do the doesLineIntersect then shade the 1x1 ones
 								//		maybe add another sub variable .wasThis1Long and you set this to true in the first pass eery time k was 1 then shade the ones that have this as true and k is 1 for them in the second pass 
