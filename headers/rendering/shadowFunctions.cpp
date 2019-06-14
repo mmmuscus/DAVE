@@ -738,9 +738,14 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								//		maybe add another sub variable .wasThis1Long and you set this to true in the first pass eery time k was 1 then shade the ones that have this as true and k is 1 for them in the second pass 
 								//		ofc reset both of these sub variables every frame
 								
-								if ((doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)) && !world[g + cameraRow][h + cameraCol].solid)
+								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
 								{
-									world[g + cameraRow][h + cameraCol].mapInView = false;
+									//here should the variable in the structure change
+									
+									if (!world[g + cameraRow][h + cameraCol].solid)
+									{
+										world[g + cameraRow][h + cameraCol].mapInView = false;
+									}
 								}
 								
 								if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol)/* || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))*/)
@@ -851,9 +856,14 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 						{
 							if (isBehindWall(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol))
 							{
-								if ((doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol)) && !world[g + cameraRow][h + cameraCol].solid)
+								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
 								{
-									world[g + cameraRow][h + cameraCol].mapInView = false;
+									//here should the variable in the structure change
+									
+									if (!world[g + cameraRow][h + cameraCol].solid)
+									{
+										world[g + cameraRow][h + cameraCol].mapInView = false;
+									}
 								}
 								
 								if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol)/* || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))*/)
