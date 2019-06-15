@@ -905,6 +905,14 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 							}
 						}
 					}
+					
+//					for (int g = 0; g < SCREENROWS; g++)
+//					{
+//						for (int h = 0; h < SCREENROWS; h++)
+//						{
+//							//yeye stuffz
+//						}
+//					}
 //				}
 				
 				j += k;
