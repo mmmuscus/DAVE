@@ -730,6 +730,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								// problem w above solution is that it can be hard to determine such walls, maybe walls that are surrounded by only other walls and shaded areas(?)
 								// we need a wariable in the struct that indicates if the square was shaded by the doesLineIntersectIt function, then we "patch" up the thang w the above premise PLUS if that variable is true (and then we reset it)
 								// maybe we add a value to the map struct that indicates squares if the solid was NOT shaded by an intersecting line
+								// well still need a function that will patch up holes in the ramined of things, berb the function that gives the green light to the shading function could do that too
+								//		when the thingy is surrounded on all sides by walls and/or shaded cells then its shaded, if not then we check if it was shaded by doesLineINtersectIT
 								
 								// perb we need to compute all shaded areas and then go through the array o vbisible cells w a fnction that determines if at least .5 of the cell is shaded
 								// problem w this is all the angles and overlaps the lines could take
@@ -915,7 +917,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 //					}
 //				}
 				
-				j += k;
+				j += k;  //lol jk xD
 			}
 			else
 			{
