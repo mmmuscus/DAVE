@@ -740,6 +740,13 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								//		maybe add another sub variable .wasThis1Long and you set this to true in the first pass eery time k was 1 then shade the ones that have this as true and k is 1 for them in the second pass 
 								//		ofc reset both of these sub variables every frame
 								
+								
+								// Problem statement(s):
+								// a) if we just put isbetweenlines and does it intesect to work then some walls will shade themselves
+								// b) if we put the above two functions to work with the twist of if this wall has walls in of the opposite orientation as itself at correct end they dnt get shaded, then 'T' shaped "intersections" can still
+								//    shade the wrong walls
+								// c) if we go isbetweenlines -> doesitintersect and dont let the latter function shade solids then the solids that SHOULD be shaded by this function arent, and we cant dercide easily which are these solids
+								
 								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
 								{
 									//here should the variable in the structure change
