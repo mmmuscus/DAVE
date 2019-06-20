@@ -746,6 +746,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								// b) if we put the above two functions to work with the twist of if this wall has walls in of the opposite orientation as itself at correct end they dnt get shaded, then 'T' shaped "intersections" can still
 								//    shade the wrong walls
 								// c) if we go isbetweenlines -> doesitintersect and dont let the latter function shade solids then the solids that SHOULD be shaded by this function arent, and we cant dercide easily which are these solids
+								// d) if we add a subvariable to the structure that determines if the wall was shaded with already the problem here is that if we shade an intersecting wall in a 'T' shape b4 we shade the other it fucks up
 								
 								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
 								{
