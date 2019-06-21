@@ -748,6 +748,12 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								// c) if we go isbetweenlines -> doesitintersect and dont let the latter function shade solids then the solids that SHOULD be shaded by this function arent, and we cant dercide easily which are these solids
 								// d) if we add a subvariable to the structure that determines if the wall was shaded with already the problem here is that if we shade an intersecting wall in a 'T' shape b4 we shade the other it fucks up
 								
+								// Dem solutions tho
+								// a) 
+								// b) 
+								// c) 
+								// d) 
+								
 								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
 								{
 									//here should the variable in the structure change
