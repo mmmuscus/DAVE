@@ -749,10 +749,10 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								// d) if we add a subvariable to the structure that determines if the wall was shaded with already the problem here is that if we shade an intersecting wall in a 'T' shape b4 we shade the other it fucks up
 								
 								// Dem solutions tho
-								// a) 
-								// b) 
-								// c) 
-								// d) 
+								// a) some form of complex wall detection (citation needed)
+								// b) an interpretor that determines which walls are closer to the player (citation needed)
+								// c) samey problem as above and therfore possible solution (citation needed)
+								// d) samey problem as b) therefore samey solution (citation needed)
 								
 								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
 								{
