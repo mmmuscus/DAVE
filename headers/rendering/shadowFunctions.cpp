@@ -222,6 +222,7 @@ bool isBetweenLines(line a, line b, int yRow, int xCol)
 	return true;
 }
 
+// just compare the middle points (w correct infinitecimal additions or subtractions) you absolutle cunt lemming
 bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS THE BEHINDWALL AND THIS FUNCTION INTERACTING
 {
 //	half of the area
