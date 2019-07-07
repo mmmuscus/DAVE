@@ -753,7 +753,10 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								// a) some form of complex wall detection (citation needed)
 								// b) an interpretor that determines which walls are closer to the player (citation needed)
 								// c) samey problem as above and therfore possible solution (citation needed)
+								//    
 								// d) samey problem as b) therefore samey solution (citation needed)
+								
+								// add a soft isBehindWall where if its a wall and doesItIntersect is ture then we make it in view and also apply the c) solution w this
 								
 								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
 								{
