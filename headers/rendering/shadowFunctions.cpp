@@ -613,6 +613,13 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int r
 	return false;
 }
 
+// its like the k + 1 thingy but for the whole row/column
+//softbehindwalls
+bool tShapeDetector ()
+{
+	
+}
+
 edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left)
 {
 	edgeLines edg;
