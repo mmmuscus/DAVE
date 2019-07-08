@@ -30,6 +30,8 @@ bool doesLineIntersectIt(line e, int yRow, int xCol);
 
 bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left);
 
+bool tShapeDetector(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left);
+
 // secon d megoldas maybe lets see
 
 edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left);
