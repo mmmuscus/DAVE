@@ -760,8 +760,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					k++;
 				}
 				
-//				if (k > 1)
-//				{
+				if (k > 1)
+				{
 					edg = getEdgeLines(pov, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol);
 				
 					for (int g = 0; g < SCREENROWS; g++)
@@ -809,7 +809,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								{
 									//here should the variable in the structure change
 									
-									if (!world[g + cameraRow][h + cameraCol].solid)
+									if (!(world[g + cameraRow][h + cameraCol].solid && tShapeDetector(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol)))
 									{
 										world[g + cameraRow][h + cameraCol].mapInView = false;
 									}
@@ -895,7 +895,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 //							//yeye stuffz
 //						}
 //					}
-//				}
+				}
 				
 				j += k;
 			}
@@ -921,8 +921,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 					k++;
 				}
 //				
-//				if (k > 1)
-//				{
+				if (k > 1)
+				{
 					edg = getEdgeLines(pov, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol);
 				
 					for (int g = 0; g < SCREENROWS; g++)
@@ -935,7 +935,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								{
 									//here should the variable in the structure change
 									
-									if (!world[g + cameraRow][h + cameraCol].solid)
+									if (!(world[g + cameraRow][h + cameraCol].solid && tShapeDetector(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol)))
 									{
 										world[g + cameraRow][h + cameraCol].mapInView = false;
 									}
@@ -980,7 +980,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 //							//yeye stuffz
 //						}
 //					}
-//				}
+				}
 				
 				j += k;  //lol jk xD
 			}
