@@ -805,6 +805,9 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								
 								// add a soft isBehindWall where if its a wall and doesItIntersect is ture then we make it in view and also apply the c) solution w this
 								
+								
+								// we make sure we only shade w vsible bits of wall and then after we shaded w em we set their visibility back to true   (???)
+								
 								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
 								{
 									//here should the variable in the structure change
