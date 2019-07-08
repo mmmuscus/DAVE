@@ -896,6 +896,29 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 //						}
 //					}
 				}
+//				else if (!world[j + cameraRow + 1][i + cameraCol].solid && !world[j + cameraRow - 1][i + cameraCol].solid)
+//				{
+//					edg = getEdgeLines(pov, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol);
+//					
+//					for (int g = 0; g < SCREENROWS; g++)
+//					{
+//						for (int h = 0; h < SCREENCOLS; h++)
+//						{
+//							if (isBehindWall(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
+//							{
+//								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
+//								{
+//									world[g + cameraRow][h + cameraCol].mapInView = false;
+//								}
+//								
+//								if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol)/* || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))*/)
+//								{
+//									world[g + cameraRow][h + cameraCol].mapInView = false;
+//								}
+//							}
+//						}
+//					}
+//				}
 				
 				j += k;
 			}
@@ -927,7 +950,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 				
 					for (int g = 0; g < SCREENROWS; g++)
 					{
-						for(int h = 0; h < SCREENCOLS; h++)
+						for (int h = 0; h < SCREENCOLS; h++)
 						{
 							if (isBehindWall(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol))
 							{
@@ -981,6 +1004,29 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 //						}
 //					}
 				}
+//				else if (!world[j + cameraRow][i + cameraCol + 1].solid && !world[j + cameraRow][i + cameraCol - 1].solid)
+//				{
+//					edg = getEdgeLines(pov, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol);
+//					
+//					for (int g = 0; g < SCREENROWS; g++)
+//					{
+//						for (int h = 0; h < SCREENCOLS; h++)
+//						{
+//							if (isBehindWall(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol))
+//							{
+//								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
+//								{
+//									world[g + cameraRow][h + cameraCol].mapInView = false;
+//								}
+//								
+//								if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol)/* || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))*/)
+//								{
+//									world[g + cameraRow][h + cameraCol].mapInView = false;
+//								}
+//							}
+//						}
+//					}
+//				}
 				
 				j += k;  //lol jk xD
 			}
