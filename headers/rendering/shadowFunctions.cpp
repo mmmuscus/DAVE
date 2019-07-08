@@ -615,9 +615,49 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int r
 
 // its like the k + 1 thingy but for the whole row/column
 //softbehindwalls
-bool tShapeDetector ()
+bool tShapeDetector(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
 {
+	//when horizontal
+	if (bottom - top == 1)
+	{
+		if (pov.x < left)
+		{
+			if (xCol == left)
+			{
+				return true;
+			}
+		}
+		
+		if (pov.x > right)
+		{
+			if (xCol == right - 1)
+			{
+				return true;
+			}
+		}
+	}
 	
+	//when vertical
+	if (right - left == 1)
+	{
+		if (pov.y < top)
+		{
+			if (yRow == top)
+			{
+				return true;
+			}
+		}
+		
+		if (pov.y > bottom)
+		{
+			if (xCol == bottom - 1)
+			{
+				return true;
+			}
+		}
+	}
+	
+	return false;
 }
 
 edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left)
