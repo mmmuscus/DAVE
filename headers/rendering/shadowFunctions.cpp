@@ -1042,6 +1042,8 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 			}
 		}
 	}
+	
+//	world[pov.y - 0.5][pov.x - 0.5].mapInView = true;
 }
 
 void holePlugger(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRow)
