@@ -223,7 +223,7 @@ bool isBetweenLines(line a, line b, int yRow, int xCol)
 }
 
 // just compare the middle points (w correct infinitecimal additions or subtractions) you absolutle cunt lemming
-bool doesLineIntersectIt(line e, int yRow, int xCol)            //THE PROBLEM IS THE BEHINDWALL AND THIS FUNCTION INTERACTING
+bool isMoreThanHalfInShade(line e, int yRow, int xCol)            //THE PROBLEM IS THE BEHINDWALL AND THIS FUNCTION INTERACTING
 {
 //	half of the area
 //	checked its cool
@@ -811,7 +811,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								
 								// only that one sucks which has the 'T' shape upside down  
 								
-								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
+								if (isMoreThanHalfInShade(edg.first, g + cameraRow, h + cameraCol) || isMoreThanHalfInShade(edg.second, g + cameraRow, h + cameraCol))
 								{
 									//here should the variable in the structure change
 									
@@ -960,7 +960,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 						{
 							if (isBehindWall(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol))
 							{
-								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
+								if (isMoreThanHalfInShade(edg.first, g + cameraRow, h + cameraCol) || isMoreThanHalfInShade(edg.second, g + cameraRow, h + cameraCol))
 								{
 									//here should the variable in the structure change
 									
@@ -1020,7 +1020,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 						{
 							if (isBehindWall(pov, g + cameraRow, h + cameraCol, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol))
 							{
-								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
+								if (isMoreThanHalfInShade(edg.first, g + cameraRow, h + cameraCol) || isMoreThanHalfInShade(edg.second, g + cameraRow, h + cameraCol))
 								{
 									world[g + cameraRow][h + cameraCol].mapInView = false;
 								}
@@ -1056,7 +1056,7 @@ void holePlugger(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRow)
 				{
 					world[j + cameraRow][i + cameraCol].mapInView = false;
 				}
-			}
+			} 
 		}
 	}
 }
