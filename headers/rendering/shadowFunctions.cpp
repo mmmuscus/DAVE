@@ -652,12 +652,12 @@ bool tShapeDetector(koordinate pov, int yRow, int xCol, int top, int bottom, int
 		{
 			if (xCol == bottom - 1)
 			{
-				return true;
+				return false;
 			}
 		}
 	}
 	
-	return false;
+	return true;
 }
 
 edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left)
@@ -809,7 +809,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								// this below is bs
 								// we make sure we only shade w vsible bits of wall and then after we shaded w em we set their visibility back to true   (???)
 								
-								// only that one sucks which has the 'T' shape upside down 
+								// only that one sucks which has the 'T' shape upside down  
 								
 								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
 								{
