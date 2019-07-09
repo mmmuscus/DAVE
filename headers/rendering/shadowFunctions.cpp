@@ -1044,6 +1044,23 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 	}
 }
 
+void holePlugger(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRow)
+{
+	for (int i = 0; i < SCREENCOLS; i++)
+	{
+		for (int j = 0; j < SCREENROWS; j++)
+		{
+			if (world[j + cameraRow][i + cameraCol].mapInView)
+			{
+				if ((world[j + cameraRow + 1][i + cameraCol].solid || !world[j + cameraRow + 1][i + cameraCol].mapInView) && (world[j + cameraRow - 1][i + cameraCol].solid || !world[j + cameraRow - 1][i + cameraCol].mapInView) && (world[j + cameraRow][i + cameraCol + 1].solid || !world[j + cameraRow][i + cameraCol + 1].mapInView) && (world[j + cameraRow][i + cameraCol - 1].solid || !world[j + cameraRow][i + cameraCol - 1].mapInView))
+				{
+					world[j + cameraRow][i + cameraCol].mapInView = false;
+				}
+			}
+		}
+	}
+}
+
 // i need to rewrite this cos sg is really bad
 // there is still a bug it is shaped like the camera, while there is a camera pan
 bool isBesideNotSolidInView(map world[WORLDROWS][WORLDCOLS], int xCol, int yRow)

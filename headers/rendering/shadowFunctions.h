@@ -38,6 +38,8 @@ edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left);
 
 void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRow, koordinate pov, edgeLines edg);
 
+void holePlugger(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRow);
+
 bool isBesideNotSolidInView(map world[WORLDROWS][WORLDCOLS], int xCol, int yRow);
 
 void mapIsEdgeCalculation(map world[WORLDROWS][WORLDCOLS], int cameraRow, int cameraCol);
