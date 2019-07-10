@@ -36,12 +36,12 @@ int main()
 	
 	//init player
 	mob player;
-	player.row = 35;
-	player.col = 45;
+	player.row = 44;
+	player.col = 68;
 	
-	player.up = false;
+	player.up = true;
 	player.down = false;
-	player.right = true;
+	player.right = false;
 	player.left = false;
 	
 	//init lastPlayer
@@ -221,7 +221,7 @@ int main()
 //	
 //	drawTestInView(newWorld);
 
-//	screenShot(newScreen);
+	screenShot(newScreen);
 
 //	frameDraw();
 	
