@@ -33,6 +33,7 @@ animation initNewAnimation(animation anim, string fileName)
 	return anim;
 }
 
+//redo this so it renders onto screenArray and Menuarray
 void playAnimation(animation anim, int currentFrame, int yRow, int xCol)
 {
 	if (currentFrame < anim.frames)

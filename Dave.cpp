@@ -70,9 +70,10 @@ int main()
 	
 	//RENDER
 	
-	int sleepTime = 30;
+	int sleepTime = 10;
 	
 	bool isNotExit = true;
+	bool isGame = false;
 	
 	char oldScreen[SCREENROWS][SCREENCOLS];                       //dont ask why this is the way it is but it is the way it is and the way it is it works so... IDK IDC IDGAF            pOSTsCRIPT: pHUCKtHISbUGtOhELL
 	char newScreen[SCREENROWS][SCREENCOLS];
@@ -123,98 +124,109 @@ int main()
 	//gmae lööp
 	while (isNotExit)
 	{
-		Sleep(sleepTime);
+		if (!isGame)
+		{
+			isEscPressed = escPressed();
+			
+			playAnimation(logo, frame, 0, 0);
+			if (frame < logo.frames)
+			{
+				frame++;
+			}
+			
+			if (isEscPressed)
+			{
+				isGame = true;
+				sleepTime = 30;
+				frame = 0;
+			}
+		}
+		else
+		{
+			Sleep(sleepTime);
 		
 		
-		//INPUT
+			//INPUT
 		
-		isWPressed = false;
-		isAPressed = false;
-		isSPressed = false;
-		isDPressed = false;
-		isEscPressed = false;
+			isWPressed = false;
+			isAPressed = false;
+			isSPressed = false;
+			isDPressed = false;
+			isEscPressed = false;
 		
-		isWPressed = wPressed();
-		isAPressed = aPressed();
-		isSPressed = sPressed();
-		isDPressed = dPressed();
-		isEscPressed = escPressed();
+			isWPressed = wPressed();
+			isAPressed = aPressed();
+			isSPressed = sPressed();
+			isDPressed = dPressed();
+			isEscPressed = escPressed();
 
-		cancelOut(isWPressed, isSPressed);
-		cancelOut(isAPressed, isDPressed);
+			cancelOut(isWPressed, isSPressed);
+			cancelOut(isAPressed, isDPressed);
 		
 		
-		//OUTPUT
+			//OUTPUT
 
-		saveLastScreenArray(oldScreen, newScreen);
+			saveLastScreenArray(oldScreen, newScreen);
 		
-		saveLastMenuArray(oldMenu, newMenu);
+			saveLastMenuArray(oldMenu, newMenu);
 		
-		if (isEscPressed)
-		{
-			isNotExit = false;
-		}
+			if (isEscPressed)
+			{
+				isNotExit = false;
+			}
 		
-		lastPlayer.row = player.row;
-		lastPlayer.col = player.col;
+			lastPlayer.row = player.row;
+			lastPlayer.col = player.col;
 		
-		//PLAYER HANDLEING
+			//PLAYER HANDLEING
 		
-		player = playerMovement(player, isWPressed, isSPressed, isAPressed, isDPressed);
-		player = keepInBounds(player, lastPlayer, newWorld);
-		player = setDirections(player, isWPressed, isSPressed, isAPressed, isDPressed);
+			player = playerMovement(player, isWPressed, isSPressed, isAPressed, isDPressed);
+			player = keepInBounds(player, lastPlayer, newWorld);
+			player = setDirections(player, isWPressed, isSPressed, isAPressed, isDPressed);
 		
-		//CAMERA HANDLEING
+			//CAMERA HANDLEING
 		
-		whereToCamera = camMovement(whereToCamera, player);
-		camera = cameraPan(camera, whereToCamera);                                                                             //&&& SLOWPAN OR FASTPAN??????????????????????????????,
-		camera = keepCamInBounds(camera, newWorld);
+			whereToCamera = camMovement(whereToCamera, player);
+			camera = cameraPan(camera, whereToCamera);                                                                             //&&& SLOWPAN OR FASTPAN??????????????????????????????,
+			camera = keepCamInBounds(camera, newWorld);
 		
-		//FOV HANDLEING
-		
-		setCurrentFov(player, currentFov, right, left, up, down, rightUp, rightDown, leftUp, leftDown);
-		playerInFov = getPlayerPosInFov(player, playerInFov);
-		addFovInfoToMap(newWorld, player, playerInFov, currentFov);
-		
-		//SHADOW FUNCTIONS IS DONE BELOW:
-		playerPov = getPov(playerPov, player);
+			//FOV HANDLEING
+			
+			setCurrentFov(player, currentFov, right, left, up, down, rightUp, rightDown, leftUp, leftDown);
+			playerInFov = getPlayerPosInFov(player, playerInFov);
+			addFovInfoToMap(newWorld, player, playerInFov, currentFov);
+			
+			//SHADOW FUNCTIONS IS DONE BELOW:
+			playerPov = getPov(playerPov, player);
 	
-		//DEBUG RIGHT HERE:
-		goTo(0, 0);
+			//DEBUG RIGHT HERE:
+			goTo(0, 0);
 	
-		//&&& edges is felesleges RIGHT HERE BELOW
-		shadowFunction(newWorld, camera.col, camera.row, playerPov, edges);
-		holePlugger(newWorld, camera.col, camera.row);
+			//&&& edges is felesleges RIGHT HERE BELOW
+			shadowFunction(newWorld, camera.col, camera.row, playerPov, edges);
+			holePlugger(newWorld, camera.col, camera.row);
 		
-		mapIsEdgeCalculation(newWorld, camera.row, camera.col);
+			mapIsEdgeCalculation(newWorld, camera.row, camera.col);
 		
-		//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-		//this is filling out mapIsEdge
-		calculateScreen(newWorld, newScreen, camera.row, camera.col);
+			//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+			//this is filling out mapIsEdge
+			calculateScreen(newWorld, newScreen, camera.row, camera.col);
 		
-		if (newScreen[lastPlayer.row - camera.row][lastPlayer.col - camera.col] == playerTexture)
-		{		
-			newScreen[lastPlayer.row - camera.row][lastPlayer.col - camera.col] = ' ';
+			if (newScreen[lastPlayer.row - camera.row][lastPlayer.col - camera.col] == playerTexture)
+			{		
+				newScreen[lastPlayer.row - camera.row][lastPlayer.col - camera.col] = ' ';
+			}
+			newScreen[player.row - camera.row][player.col - camera.col] = playerTexture;
+		
+			for (int i = 0; i < SCREENROWS; i++)
+			{
+				newMenu[i][0] = screenDivisionTexture;
+			}
+		
+			renderScreen(oldScreen, newScreen);
+			
+			renderMenu(oldMenu, newMenu);
 		}
-		newScreen[player.row - camera.row][player.col - camera.col] = playerTexture;
-		
-		for (int i = 0; i < SCREENROWS; i++)
-		{
-			newMenu[i][0] = screenDivisionTexture;
-		}
-		
-		renderScreen(oldScreen, newScreen);
-		
-		renderMenu(oldMenu, newMenu);
-		
-		playAnimation(logo, frame, 0, 40);
-		if (frame < logo.frames)
-		{
-			frame++;
-		}
-		
-		goTo(0, 0);
-		cout<<frame;
 	}
 	
 	//END OF THE GAME LOOP
