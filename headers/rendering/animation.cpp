@@ -2,6 +2,8 @@
 
 animation initNewAnimation(animation anim, string fileName)
 {
+	char cahr;
+	
 	fstream fbe (fileName.c_str());
 	
 	fbe>>anim.frames>>anim.height>>anim.width;
@@ -12,7 +14,16 @@ animation initNewAnimation(animation anim, string fileName)
 		{
 			for (int j = 0; j < anim.width; j++)
 			{
-				fbe>>anim.frameArray[g][i][j];
+				fbe>>cahr;
+				
+				if (cahr == 'i')
+				{
+					anim.frameArray[g][i][j] = ' ';
+				}
+				else
+				{
+					anim.frameArray[g][i][j] = cahr;
+				}
 			}
 		}
 	}
@@ -22,7 +33,18 @@ animation initNewAnimation(animation anim, string fileName)
 	return anim;
 }
 
-void animationPlayer(animation anim, int yRow, int xCol)
+void playAnimation(animation anim, int currentFrame, int yRow, int xCol)
 {
-	goTo(yRow, xCol);
+	if (currentFrame < anim.frames)
+	{
+		for (int i = 0; i < anim.height; i++)
+		{
+			goTo(yRow + i, xCol);
+			
+			for (int j = 0; j < anim.width; j++)
+			{
+				cout<<anim.frameArray[currentFrame][i][j];
+			}
+		}
+	}
 }

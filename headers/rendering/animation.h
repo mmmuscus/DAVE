@@ -3,4 +3,4 @@
 
 animation initNewAnimation(animation anim, string fileName);
 
-void animationPlayer(animation anim, int yRow, int xCol);
+void playAnimation(animation anim, int currentFrame, int yRow, int xCol);

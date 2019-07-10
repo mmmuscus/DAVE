@@ -118,6 +118,7 @@ int main()
 	initWorld(newWorld, solid, walkable, "maps/world.txt");
 	
 	animation logo = initNewAnimation(logo, "animations/logo.txt");
+	int frame = 0;
 	
 	//gmae lööp
 	while (isNotExit)
@@ -205,6 +206,15 @@ int main()
 		renderScreen(oldScreen, newScreen);
 		
 		renderMenu(oldMenu, newMenu);
+		
+		playAnimation(logo, frame, 0, 40);
+		if (frame < logo.frames)
+		{
+			frame++;
+		}
+		
+		goTo(0, 0);
+		cout<<frame;
 	}
 	
 	//END OF THE GAME LOOP
