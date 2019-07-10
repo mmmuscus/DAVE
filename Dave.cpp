@@ -117,9 +117,7 @@ int main()
 
 	initWorld(newWorld, solid, walkable, "maps/world.txt");
 	
-	animation logo;
-//	
-	logo = initAnimation(logo, "animations/logo.txt");
+	animation logo = initNewAnimation(logo, "animations/logo.txt");
 	
 	//gmae lööp
 	while (isNotExit)
@@ -224,7 +222,7 @@ int main()
 //	
 //	drawTestInView(newWorld);
 
-	screenShot(newScreen);
+//	screenShot(newScreen);
 
 //	frameDraw();
 	

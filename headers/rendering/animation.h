@@ -1,3 +1,6 @@
 #include "../system/system.h"
+#include "../rendering/render.h"
 
-animation initAnimation(animation anim, string fileName);
+animation initNewAnimation(animation anim, string fileName);
+
+void animationPlayer(animation anim, int yRow, int xCol);
