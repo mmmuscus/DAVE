@@ -12,6 +12,7 @@
 
 #include "headers/rendering/render.h"
 #include "headers/rendering/shadowFunctions.h"
+#include "headers/rendering/animation.h"
 
 
 //using namespace std;
@@ -116,7 +117,9 @@ int main()
 
 	initWorld(newWorld, solid, walkable, "maps/world.txt");
 	
-	int fiveMinuitesOfFrames = sleepTime * 5 * 60;
+	animation logo;
+//	
+	logo = initAnimation(logo, "animations/logo.txt");
 	
 	//gmae lööp
 	while (isNotExit)
@@ -224,6 +227,8 @@ int main()
 	screenShot(newScreen);
 
 //	frameDraw();
+	
+//	animationArrayTest(logo);
 	
 	return 0;
 }

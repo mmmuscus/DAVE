@@ -25,6 +25,8 @@ using namespace std;
 
 #define INFINITECIMAL 0.000001
 
+#define MAXAMOUNTOFANIMATIONFRAMES 2
+
 #endif //DEFINE_INIT
 
 #ifndef STRUCT_INIT
@@ -77,7 +79,10 @@ struct koordinate
 
 struct animation
 {
-	char frame[SCREENROWS][SCREENCOLS + MENUCOLS];
+	int frames;
+	int height;
+	int width;
+	char frameArray[MAXAMOUNTOFANIMATIONFRAMES][SCREENROWS][SCREENCOLS + MENUCOLS];
 };
 
 //struct in
