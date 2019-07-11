@@ -129,11 +129,11 @@ void drawTestInView(map world[WORLDROWS][WORLDCOLS])
 	fki.close();
 }
 
-void screenShot(char s[SCREENROWS][SCREENCOLS])
+void screenShot(char s[CONSOLEROWS][SCREENCOLS])
 {
 	ofstream fki ("screenShot.txt");
 	
-	for (int i = 0; i < SCREENROWS; i++)
+	for (int i = 0; i < CONSOLEROWS; i++)
 	{
 		for (int j = 0; j < SCREENCOLS; j++)
 		{
@@ -159,7 +159,7 @@ void frameDraw()
 	
 	char cahr;
 	
-	for (int i = 0; i < SCREENROWS; i++)
+	for (int i = 0; i < CONSOLEROWS; i++)
 	{
 		for (int j = 0; j < SCREENCOLS; j++)
 		{

@@ -745,7 +745,7 @@ edgeLines getEdgeLines(koordinate pov, int top, int bot, int right, int left)
 
 void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRow, koordinate pov, edgeLines edg)
 {
-	for (int i = 0; i < SCREENROWS; i++)
+	for (int i = 0; i < CONSOLEROWS; i++)
 	{
 		int j = 0;
 			
@@ -764,7 +764,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 				{
 					edg = getEdgeLines(pov, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol);
 				
-					for (int g = 0; g < SCREENROWS; g++)
+					for (int g = 0; g < CONSOLEROWS; g++)
 					{
 						for(int h = 0; h < SCREENCOLS; h++)
 						{
@@ -939,7 +939,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 	{
 		int j = 0;
 		
-		while (j < SCREENROWS)
+		while (j < CONSOLEROWS)
 		{
 			if (world[j + cameraRow][i + cameraCol].solid)
 			{
@@ -954,7 +954,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 				{
 					edg = getEdgeLines(pov, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol);
 				
-					for (int g = 0; g < SCREENROWS; g++)
+					for (int g = 0; g < CONSOLEROWS; g++)
 					{
 						for (int h = 0; h < SCREENCOLS; h++)
 						{
@@ -1014,7 +1014,7 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 				{
 					edg = getEdgeLines(pov, j + cameraRow, j + k + cameraRow, i + cameraCol + 1, i + cameraCol);
 					
-					for (int g = 0; g < SCREENROWS; g++)
+					for (int g = 0; g < CONSOLEROWS; g++)
 					{
 						for (int h = 0; h < SCREENCOLS; h++)
 						{
@@ -1053,7 +1053,7 @@ void holePlugger(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRow)
 {
 	for (int i = 0; i < SCREENCOLS; i++)
 	{
-		for (int j = 0; j < SCREENROWS; j++)
+		for (int j = 0; j < CONSOLEROWS; j++)
 		{
 			if (world[j + cameraRow][i + cameraCol].mapInView)
 			{
@@ -1088,7 +1088,7 @@ void mapIsEdgeCalculation(map world[WORLDROWS][WORLDCOLS], int cameraRow, int ca
 {
 	//possible bugfix
 	//looping through the rows and cols just outside view, and making them not in view so the rows and cols beside wont register falsly as isEdge
-	for (int i = 0; i < SCREENROWS + 2; i++)
+	for (int i = 0; i < CONSOLEROWS + 2; i++)
 	{
 		world[cameraRow - 1 + i][cameraCol - 1].mapInView = false;
 		world[cameraRow - 1 + i][cameraCol + SCREENCOLS].mapInView = false;
@@ -1097,11 +1097,11 @@ void mapIsEdgeCalculation(map world[WORLDROWS][WORLDCOLS], int cameraRow, int ca
 	for (int i = 0; i < SCREENCOLS + 2; i++)
 	{
 		world[cameraRow - 1][cameraCol - 1 + i].mapInView = false;
-		world[cameraRow + SCREENROWS][cameraCol - 1 + i].mapInView = false;
+		world[cameraRow + CONSOLEROWS][cameraCol - 1 + i].mapInView = false;
 	}
 	
 	//re rewrite time:
-	for (int i = 0; i < SCREENROWS; i++)
+	for (int i = 0; i < CONSOLEROWS; i++)
 	{
 		for (int j = 0; j < SCREENCOLS; j++)
 		{

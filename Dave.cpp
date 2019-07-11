@@ -74,7 +74,7 @@ int main()
 	int sleepTime = 30;
 	
 	bool isNotExit = true;
-	bool isGame = false;
+	bool isIntro = true;
 	
 	char oldConsole[CONSOLEROWS][CONSOLECOLS];
 	char newConsole[CONSOLEROWS][CONSOLECOLS];
@@ -117,12 +117,11 @@ int main()
 	initWorld(newWorld, solid, walkable, "maps/world.txt");
 	
 	animation logo = initNewAnimation(logo, "animations/logo.txt");
-	int frame = 0;
 	
 	//gmae lööp
 	while (isNotExit)
 	{
-		if (!isGame)
+		if (isIntro)
 		{
 			Sleep(sleepTime);
 			
@@ -130,18 +129,20 @@ int main()
 			
 			if (isEPressed)
 			{
-				isGame = true;
-				sleepTime = 30;
-				frame = 0;
+				isIntro = false;
 			}
 			else
 			{
 				saveLastConsoleArray(oldConsole, newConsole);
 				
-				playAnimation(newConsole, logo, frame, 0, 0);
-				if (frame < logo.frames)
+				playAnimation(newConsole, logo, 0, 0);
+				if (logo.currentFrame < logo.frames)
 				{
-					frame++;
+					logo.currentFrame++;
+				}
+				else
+				{
+					isIntro = false;
 				}
 				
 				renderConsole(oldConsole, newConsole);

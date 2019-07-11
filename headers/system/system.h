@@ -82,6 +82,7 @@ struct koordinate
 struct animation
 {
 	int frames;
+	int currentFrame;
 	int height;
 	int width;
 	char frameArray[MAXAMOUNTOFANIMATIONFRAMES][CONSOLEROWS][CONSOLECOLS];

@@ -239,9 +239,9 @@ mob keepCamInBounds(mob cam, map world[WORLDROWS][WORLDCOLS])
 		cam.col = 0;
 	}
 	
-	if (cam.row > WORLDROWS - SCREENROWS)
+	if (cam.row > WORLDROWS - CONSOLEROWS)
 	{
-		cam.row = WORLDROWS - SCREENROWS;
+		cam.row = WORLDROWS - CONSOLEROWS;
 	}
 	
 	if (cam.col > WORLDCOLS - SCREENCOLS)

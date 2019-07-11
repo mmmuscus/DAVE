@@ -3,4 +3,4 @@
 
 animation initNewAnimation(animation anim, string fileName);
 
-void playAnimation(char console[CONSOLEROWS][CONSOLECOLS], animation anim, int currentFrame, int yRow, int xCol);
+void playAnimation(char console[CONSOLEROWS][CONSOLECOLS], animation anim, int yRow, int xCol);
