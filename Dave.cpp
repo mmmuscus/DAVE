@@ -71,7 +71,7 @@ int main()
 	
 	//RENDER
 	
-	int sleepTime = 10;
+	int sleepTime = 30;
 	
 	bool isNotExit = true;
 	bool isGame = false;
@@ -124,6 +124,8 @@ int main()
 	{
 		if (!isGame)
 		{
+			Sleep(sleepTime);
+			
 			isEPressed = ePressed();
 			
 			if (isEPressed)
@@ -134,12 +136,16 @@ int main()
 			}
 			else
 			{
-				playAnimation(logo, frame, 0, 0);
+				saveLastConsoleArray(oldConsole, newConsole);
+				
+				playAnimation(newConsole, logo, frame, 0, 0);
 				if (frame < logo.frames)
 				{
 					frame++;
 				}
-			}	
+				
+				renderConsole(oldConsole, newConsole);
+			}
 		}
 		else
 		{

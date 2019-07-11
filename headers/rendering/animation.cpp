@@ -34,17 +34,19 @@ animation initNewAnimation(animation anim, string fileName)
 }
 
 //redo this so it renders onto screenArray and Menuarray
-void playAnimation(animation anim, int currentFrame, int yRow, int xCol)
+//get an onFrame variable into aniation structure so this all can run more smoothly
+void playAnimation(char console[CONSOLEROWS][CONSOLECOLS], animation anim, int currentFrame, int yRow, int xCol)
 {
 	if (currentFrame < anim.frames)
 	{
 		for (int i = 0; i < anim.height; i++)
 		{
-			goTo(yRow + i, xCol);
-			
+//			goTo(yRow + i, xCol);
+//			
 			for (int j = 0; j < anim.width; j++)
 			{
-				cout<<anim.frameArray[currentFrame][i][j];
+//				cout<<anim.frameArray[currentFrame][i][j];
+				console[yRow + i][xCol + j] = anim.frameArray[currentFrame][i][j];
 			}
 		}
 	}
