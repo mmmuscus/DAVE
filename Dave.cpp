@@ -30,6 +30,7 @@ int main()
 	bool isSPressed;
 	bool isAPressed;
 	bool isDPressed;
+	bool isEPressed;
 	bool isEscPressed;
 	
 	
@@ -123,9 +124,9 @@ int main()
 	{
 		if (!isGame)
 		{
-			isEscPressed = escPressed();
+			isEPressed = ePressed();
 			
-			if (isEscPressed)
+			if (isEPressed)
 			{
 				isGame = true;
 				sleepTime = 30;
@@ -151,12 +152,14 @@ int main()
 			isAPressed = false;
 			isSPressed = false;
 			isDPressed = false;
+			isEPressed = false;
 			isEscPressed = false;
 		
 			isWPressed = wPressed();
 			isAPressed = aPressed();
 			isSPressed = sPressed();
 			isDPressed = dPressed();
+			isEPressed = ePressed();
 			isEscPressed = escPressed();
 
 			cancelOut(isWPressed, isSPressed);
