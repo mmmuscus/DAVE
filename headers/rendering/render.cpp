@@ -53,38 +53,6 @@ void clearScreen()
 	SetConsoleCursorPosition( hConsole, coordScreen );
 }
 
-//void renderScreen(char oldS[SCREENROWS][SCREENCOLS], char newS[SCREENROWS][SCREENCOLS])
-//{
-//	for (int i = 0; i < SCREENROWS; i++)
-//	{
-//		for (int j = 0; j < SCREENCOLS; j++)
-//		{
-//			if (newS[i][j] != oldS[i][j])
-//			{
-//				goTo(i, j);
-//				cout<<newS[i][j];
-//			}
-//		}
-//	}
-//	
-//	goTo(SCREENROWS, 0);
-//}
-//
-//void renderMenu(char oldM[SCREENROWS][MENUCOLS], char newM[SCREENROWS][MENUCOLS])
-//{
-//	for (int i = 0; i < SCREENROWS; i++)
-//	{
-//		for (int j = 0; j < MENUCOLS; j++)
-//		{
-//			if (newM[i][j] != oldM[i][j])
-//			{
-//				goTo(i, SCREENCOLS + j);
-//				cout<<newM[i][j];
-//			}
-//		}
-//	}
-//}
-
 void renderConsole(char oldC[CONSOLEROWS][CONSOLECOLS], char newC[CONSOLEROWS][CONSOLECOLS])
 {
 	for (int i = 0; i < CONSOLEROWS; i++)

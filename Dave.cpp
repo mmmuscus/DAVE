@@ -75,14 +75,6 @@ int main()
 	bool isNotExit = true;
 	bool isGame = false;
 	
-	//redundant?
-//	char oldScreen[SCREENROWS][SCREENCOLS];                       //dont ask why this is the way it is but it is the way it is and the way it is it works so... IDK IDC IDGAF            pOSTsCRIPT: pHUCKtHISbUGtOhELL
-//	char newScreen[SCREENROWS][SCREENCOLS];
-//	
-//	char oldMenu[SCREENROWS][MENUCOLS];
-//	char newMenu[SCREENROWS][MENUCOLS];
-	//</redundant>
-	
 	char oldConsole[CONSOLEROWS][CONSOLECOLS];
 	char newConsole[CONSOLEROWS][CONSOLECOLS];
 	
@@ -173,12 +165,6 @@ int main()
 		
 			//OUTPUT
 			
-			//redundant
-//			saveLastScreenArray(oldScreen, newScreen);
-//		
-//			saveLastMenuArray(oldMenu, newMenu);
-			//</redundant>
-			
 			saveLastConsoleArray(oldConsole, newConsole);
 		
 			if (isEscPressed)
@@ -221,40 +207,21 @@ int main()
 		
 			//Filling up the screen for rendering :OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 			//this is filling out mapIsEdge
-			//redundant(?)
-//			calculateScreen(newWorld, newScreen, camera.row, camera.col);
 			calculateScreen(newWorld, newConsole, camera.row, camera.col);
 			
-			//redundant
-//			if (newScreen[lastPlayer.row - camera.row][lastPlayer.col - camera.col] == playerTexture)
-//			{		
-//				newScreen[lastPlayer.row - camera.row][lastPlayer.col - camera.col] = ' ';
-//			}
-//			newScreen[player.row - camera.row][player.col - camera.col] = playerTexture;
-			//</redundant>
-			
+			//placing player and screendivision textures
 			if (newConsole[lastPlayer.row - camera.row][lastPlayer.col - camera.col] == playerTexture)
 			{		
 				newConsole[lastPlayer.row - camera.row][lastPlayer.col - camera.col] = ' ';
 			}
 			newConsole[player.row - camera.row][player.col - camera.col] = playerTexture;
-		
-			//redundant
-//			for (int i = 0; i < SCREENROWS; i++)
-//			{
-//				newMenu[i][0] = screenDivisionTexture;
-//			}
-//		
-//			renderScreen(oldScreen, newScreen);
-//			
-//			renderMenu(oldMenu, newMenu);
-			//</redundant>
 			
 			for (int i = 0; i < CONSOLEROWS; i++)
 			{
 				newConsole[i][39] = screenDivisionTexture;
 			}
 			
+			//rendering
 			renderConsole(oldConsole, newConsole);
 		}
 	}

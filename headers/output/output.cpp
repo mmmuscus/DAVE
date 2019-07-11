@@ -2,28 +2,6 @@
 
 using namespace std;
 
-//void saveLastScreenArray(char oldS[SCREENROWS][SCREENCOLS], char newS[SCREENROWS][SCREENCOLS])
-//{
-//	for (int i = 0; i < SCREENROWS; i++)
-//	{
-//		for (int j = 0; j < SCREENCOLS; j++)
-//		{
-//			oldS[i][j] = newS[i][j];
-//		}
-//	}
-//}
-//
-//void saveLastMenuArray(char oldM[SCREENROWS][MENUCOLS], char newM[SCREENROWS][MENUCOLS])
-//{
-//	for (int i = 0; i < SCREENROWS; i++)
-//	{
-//		for (int j = 0; j < MENUCOLS; j++)
-//		{
-//			oldM[i][j] = newM[i][j];
-//		}
-//	}
-//}
-
 void saveLastConsoleArray(char oldC[CONSOLEROWS][CONSOLECOLS], char newC[CONSOLEROWS][CONSOLECOLS])
 {
 	for (int i = 0; i < CONSOLEROWS; i++)
