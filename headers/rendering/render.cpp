@@ -53,58 +53,73 @@ void clearScreen()
 	SetConsoleCursorPosition( hConsole, coordScreen );
 }
 
-void renderScreen(char oldS[SCREENROWS][SCREENCOLS], char newS[SCREENROWS][SCREENCOLS])
+//void renderScreen(char oldS[SCREENROWS][SCREENCOLS], char newS[SCREENROWS][SCREENCOLS])
+//{
+//	for (int i = 0; i < SCREENROWS; i++)
+//	{
+//		for (int j = 0; j < SCREENCOLS; j++)
+//		{
+//			if (newS[i][j] != oldS[i][j])
+//			{
+//				goTo(i, j);
+//				cout<<newS[i][j];
+//			}
+//		}
+//	}
+//	
+//	goTo(SCREENROWS, 0);
+//}
+//
+//void renderMenu(char oldM[SCREENROWS][MENUCOLS], char newM[SCREENROWS][MENUCOLS])
+//{
+//	for (int i = 0; i < SCREENROWS; i++)
+//	{
+//		for (int j = 0; j < MENUCOLS; j++)
+//		{
+//			if (newM[i][j] != oldM[i][j])
+//			{
+//				goTo(i, SCREENCOLS + j);
+//				cout<<newM[i][j];
+//			}
+//		}
+//	}
+//}
+
+void renderConsole(char oldC[CONSOLEROWS][CONSOLECOLS], char newC[CONSOLEROWS][CONSOLECOLS])
 {
-	for (int i = 0; i < SCREENROWS; i++)
+	for (int i = 0; i < CONSOLEROWS; i++)
 	{
-		for (int j = 0; j < SCREENCOLS; j++)
+		for (int j = 0; j < CONSOLECOLS; j++)
 		{
-			if (newS[i][j] != oldS[i][j])
+			if (newC[i][j] != oldC[i][j])
 			{
 				goTo(i, j);
-				cout<<newS[i][j];
-			}
-		}
-	}
-	
-	goTo(SCREENROWS, 0);
-}
-
-void renderMenu(char oldM[SCREENROWS][MENUCOLS], char newM[SCREENROWS][MENUCOLS])
-{
-	for (int i = 0; i < SCREENROWS; i++)
-	{
-		for (int j = 0; j < MENUCOLS; j++)
-		{
-			if (newM[i][j] != oldM[i][j])
-			{
-				goTo(i, SCREENCOLS + j);
-				cout<<newM[i][j];
+				cout<<newC[i][j];
 			}
 		}
 	}
 }
 
-void calculateScreen(map world[WORLDROWS][WORLDCOLS], char screen[SCREENROWS][SCREENCOLS], int cameraRow, int cameraCol)
+void calculateScreen(map world[WORLDROWS][WORLDCOLS], char console[CONSOLEROWS][CONSOLECOLS], /*char screen[SCREENROWS][SCREENCOLS],*/ int cameraRow, int cameraCol)
 {
-	for (int i = 0; i < SCREENROWS; i++)
+	for (int i = 0; i < CONSOLEROWS; i++)
 	{
 		for (int j = 0; j < SCREENCOLS; j++)
 		{
 			if (world[i + cameraRow][j + cameraCol].mapInView)
 			{
-				screen[i][j] = world[i + cameraRow][j + cameraCol].texture;
+				console[i][j] = world[i + cameraRow][j + cameraCol].texture;
 			}
 			else
 			{
 				if (world[i + cameraRow][j + cameraCol].mapIsEdge)
 				{
-						screen[i][j] = char(176);
+						console[i][j] = char(176);
 				}
 				else
 				{
 					//&&& possible choice between black or white shadows
-					screen[i][j] = char(178);
+					console[i][j] = char(178);
 					//if you choose the black shadow make sure you make some marks on the ground (eg.: . : , ; - ¡ ^) somer rubbble to make sure what you do see and what you dont
 //					screen[i][j] = ' ';
 				}

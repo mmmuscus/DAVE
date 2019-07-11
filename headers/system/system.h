@@ -9,10 +9,12 @@ using namespace std;
 #ifndef DEFINE_INIT
 #define DEFINE_INIT
 
-#define SCREENROWS 24
 #define SCREENCOLS 39
 
 #define MENUCOLS 41
+
+#define CONSOLEROWS 24
+#define CONSOLECOLS 80
 
 #define FOVROWS 21
 #define FOVCOLS 35
@@ -82,7 +84,7 @@ struct animation
 	int frames;
 	int height;
 	int width;
-	char frameArray[MAXAMOUNTOFANIMATIONFRAMES][SCREENROWS][SCREENCOLS + MENUCOLS];
+	char frameArray[MAXAMOUNTOFANIMATIONFRAMES][CONSOLEROWS][CONSOLECOLS];
 };
 
 //struct in
