@@ -68,6 +68,18 @@ void renderConsole(char oldC[CONSOLEROWS][CONSOLECOLS], char newC[CONSOLEROWS][C
 	}
 }
 
+void clearConsole(char newC[CONSOLEROWS][CONSOLECOLS], char oldC[CONSOLEROWS][CONSOLECOLS])
+{
+	for (int i = 0; i < CONSOLEROWS; i++)
+	{
+		for (int j = 0; j < CONSOLECOLS; j++)
+		{
+			newC[i][j] = ' ';
+			oldC[i][j] = 'x';
+		}
+	}
+}
+
 void calculateScreen(map world[WORLDROWS][WORLDCOLS], char console[CONSOLEROWS][CONSOLECOLS], /*char screen[SCREENROWS][SCREENCOLS],*/ int cameraRow, int cameraCol)
 {
 	for (int i = 0; i < CONSOLEROWS; i++)

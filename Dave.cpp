@@ -130,6 +130,8 @@ int main()
 			if (isEPressed)
 			{
 				isIntro = false;
+				
+				clearConsole(newConsole, oldConsole);
 			}
 			else
 			{
@@ -143,10 +145,12 @@ int main()
 				else
 				{
 					isIntro = false;
+					
+					clearConsole(newConsole, oldConsole);
 				}
-				
-				renderConsole(oldConsole, newConsole);
 			}
+			
+			renderConsole(oldConsole, newConsole);
 		}
 		else
 		{
