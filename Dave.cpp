@@ -71,7 +71,7 @@ int main()
 	
 	//RENDER
 	
-	int sleepTime = 30;
+	int sleepTime = 60;
 	
 	bool isNotExit = true;
 	bool isIntro = true;
@@ -131,12 +131,15 @@ int main()
 			{
 				isIntro = false;
 				
+				sleepTime = 30;
+				
 				clearConsole(newConsole, oldConsole);
 			}
 			else
 			{
 				saveLastConsoleArray(oldConsole, newConsole);
 				
+				// add w variable witch makes i the animation can be played at halftime
 				playAnimation(newConsole, logo, 0, 0);
 				if (logo.currentFrame < logo.frames)
 				{
@@ -145,6 +148,8 @@ int main()
 				else
 				{
 					isIntro = false;
+					
+					sleepTime = 30;
 					
 					clearConsole(newConsole, oldConsole);
 				}
