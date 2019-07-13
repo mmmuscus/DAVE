@@ -145,14 +145,14 @@ int main()
 				{
 					logo.currentFrame++;
 				}
-				else
-				{
-					isIntro = false;
-					
-					sleepTime = 30;
-					
-					clearConsole(newConsole, oldConsole);
-				}
+//				else
+//				{
+//					isIntro = false;
+//					
+//					sleepTime = 30;
+//					
+//					clearConsole(newConsole, oldConsole);
+//				}
 			}
 			
 			renderConsole(oldConsole, newConsole);
