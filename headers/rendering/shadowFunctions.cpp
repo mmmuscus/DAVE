@@ -220,6 +220,8 @@ bool isBetweenLines(line a, line b, int yRow, int xCol)
 	}
 
 	return true;
+	
+	//yes but
 }
 
 // just compare the middle points (w correct infinitecimal additions or subtractions) you absolutle cunt lemming
@@ -314,6 +316,23 @@ bool isMoreThanHalfInShade(line e, int yRow, int xCol)            //THE PROBLEM 
 			}
 		}
 	}
+
+	return false;
+
+//	if (e.isItUnderLine)
+//	{
+//		if ((yRow + 0.5) >= ((xCol + 0.5) * e.mSlope) + e.bIntercept)  //ha a line felett van
+//		{
+//			return true;
+//		}
+//	}
+//	else
+//	{
+//		if ((yRow + 0.5) <= ((xCol + 0.5) * e.mSlope) + e.bIntercept) //ha alatta
+//		{
+//			return true;
+//		}
+//	}
 
 	return false;
 	
@@ -823,7 +842,10 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								
 								if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol)/* || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))*/)
 								{
-									world[g + cameraRow][h + cameraCol].mapInView = false;
+//									if (!world[g + cameraRow][h + cameraCol].solid || !tShapeDetector(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
+//									{
+										world[g + cameraRow][h + cameraCol].mapInView = false;
+//									}
 								}
 								
 								// && if player at one side and the t shape is not a solid
@@ -972,7 +994,10 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								
 								if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol)/* || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))*/)
 								{
-									world[g + cameraRow][h + cameraCol].mapInView = false;
+//									if (!world[g + cameraRow][h + cameraCol].solid || !tShapeDetector(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
+//									{
+										world[g + cameraRow][h + cameraCol].mapInView = false;
+//									}
 								}
 								
 //								if (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))
@@ -1030,7 +1055,10 @@ void shadowFunction(map world[WORLDROWS][WORLDCOLS], int cameraCol, int cameraRo
 								
 								if (isBetweenLines(edg.first, edg.second, g + cameraRow, h + cameraCol)/* || (doesLineIntersectIt(edg.first, g + cameraRow, h + cameraCol) || doesLineIntersectIt(edg.second, g + cameraRow, h + cameraCol))*/)
 								{
-									world[g + cameraRow][h + cameraCol].mapInView = false;
+//									if (!world[g + cameraRow][h + cameraCol].solid || !tShapeDetector(pov, g + cameraRow, h + cameraCol, i + cameraRow, i + cameraRow + 1, j + k + cameraCol, j + cameraCol))
+//									{
+										world[g + cameraRow][h + cameraCol].mapInView = false;
+//									}
 								}
 							}
 						}

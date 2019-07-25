@@ -145,14 +145,14 @@ int main()
 				{
 					logo.currentFrame++;
 				}
-//				else
-//				{
+				else
+				{
 //					isIntro = false;
 //					
 //					sleepTime = 30;
 //					
 //					clearConsole(newConsole, oldConsole);
-//				}
+				}
 			}
 			
 			renderConsole(oldConsole, newConsole);
@@ -180,7 +180,6 @@ int main()
 
 			cancelOut(isWPressed, isSPressed);
 			cancelOut(isAPressed, isDPressed);
-		
 		
 			//OUTPUT
 			
