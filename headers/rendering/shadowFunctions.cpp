@@ -646,9 +646,9 @@ bool tShapeDetector(koordinate pov, int yRow, int xCol, int top, int bottom, int
 			}
 		}
 		
-		if (pov.x > right + 1)
+		if (pov.x > right)
 		{
-			if (xCol == right)
+			if (xCol == right - 1)
 			{
 				return true;
 			}
@@ -665,9 +665,9 @@ bool tShapeDetector(koordinate pov, int yRow, int xCol, int top, int bottom, int
 			}
 		}
 		
-		if (pov.y > bottom + 1)
+		if (pov.y > bottom)
 		{
-			if (xCol == bottom)
+			if (xCol == bottom - 1)
 			{
 				return false;
 			}
