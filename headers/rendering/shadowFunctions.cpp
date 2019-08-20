@@ -636,7 +636,6 @@ bool isBehindWall(koordinate pov, int yRow, int xCol, int top, int bottom, int r
 //softbehindwalls
 bool tShapeDetector(koordinate pov, int yRow, int xCol, int top, int bottom, int right, int left)
 {
-	//when horizontal
 	if (bottom - top == 1)
 	{
 		if (pov.x < left)
@@ -647,16 +646,15 @@ bool tShapeDetector(koordinate pov, int yRow, int xCol, int top, int bottom, int
 			}
 		}
 		
-		if (pov.x > right)
+		if (pov.x > right + 1)
 		{
-			if (xCol == right - 1)
+			if (xCol == right)
 			{
 				return true;
 			}
 		}
 	}
 	
-	//when vertical
 	if (right - left == 1)
 	{
 		if (pov.y < top)
@@ -667,9 +665,9 @@ bool tShapeDetector(koordinate pov, int yRow, int xCol, int top, int bottom, int
 			}
 		}
 		
-		if (pov.y > bottom)
+		if (pov.y > bottom + 1)
 		{
-			if (xCol == bottom - 1)
+			if (xCol == bottom)
 			{
 				return false;
 			}

@@ -217,6 +217,7 @@ int main()
 			//&&& edges is felesleges RIGHT HERE BELOW
 			shadowFunction(newWorld, camera.col, camera.row, playerPov, edges);
 			holePlugger(newWorld, camera.col, camera.row);
+//			holePlugger(newWorld, camera.col, camera.row);
 		
 			mapIsEdgeCalculation(newWorld, camera.row, camera.col);
 		
