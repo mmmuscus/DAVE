@@ -216,6 +216,7 @@ int main()
 	
 			//&&& edges is felesleges RIGHT HERE BELOW
 			shadowFunction(newWorld, camera.col, camera.row, playerPov, edges);
+			//itt a bug a sarkokkal a player isSolid ezért bedobozolja azokat is ami mellett az van
 			holePlugger(newWorld, camera.col, camera.row);
 //			holePlugger(newWorld, camera.col, camera.row);
 		
