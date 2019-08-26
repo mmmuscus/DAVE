@@ -129,7 +129,7 @@ void drawTestInView(map world[WORLDROWS][WORLDCOLS])
 	fki.close();
 }
 
-void screenShot(char s[CONSOLEROWS][SCREENCOLS])
+void screenShot(char s[CONSOLEROWS][CONSOLECOLS])
 {
 	ofstream fki ("screenShot.txt");
 	
@@ -155,7 +155,7 @@ void screenShot(char s[CONSOLEROWS][SCREENCOLS])
 
 void frameDraw()
 {
-	ifstream fbe ("screenShot.txt");
+	ifstream fbe ("frameDraw.txt");
 	
 	char cahr;
 	

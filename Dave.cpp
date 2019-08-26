@@ -258,9 +258,9 @@ int main()
 //	
 //	drawTestInView(newWorld);
 
-//	screenShot(newScreen);
+//	screenShot(newConsole);
 
-//	frameDraw();
+	frameDraw();
 	
 //	animationArrayTest(logo);
 	
